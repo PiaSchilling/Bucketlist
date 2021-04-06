@@ -2,4 +2,4 @@ Das ist nur ein Text um zu testen ob alles funktioniert
 Ja das tut es! @ps149
 
 ------- Aufgabe 8 - Nachdenkzettel ---------
-Es waren einmal drei Studentinnen im zweiten Semester an der HdM
+Es waren einmal drei Studentinnen im zweiten Semester an der HdM, diese waren verzweifelt am coden eines Projekts.
