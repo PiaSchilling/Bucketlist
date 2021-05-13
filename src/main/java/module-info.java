@@ -4,5 +4,5 @@ module gui {
     requires org.apache.logging.log4j;
 
     opens org.example to javafx.fxml;
-    exports org.example;
+    //exports org.example;
 }
