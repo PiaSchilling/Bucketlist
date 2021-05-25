@@ -9,5 +9,8 @@
         <module name="Bucketlist" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="untitled" target="15" />
+    </bytecodeTargetLevel>
   </component>
 </project>

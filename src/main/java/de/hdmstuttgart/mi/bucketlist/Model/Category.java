@@ -1,9 +1,5 @@
-package core;
+package de.hdmstuttgart.mi.bucketlist.Model;
 
-/**
- * predefined Categories that can be chosen when a new Event is added
- * Every Category has a short description about what kind of event might fit to it
- */
 public enum Category {
 
     SKILLS("Things you want to learn"),
@@ -17,12 +13,12 @@ public enum Category {
     HOBBY("Hobbies you want to try"),
     FAMILY("Things you want to do with you family"),
     RELATIONSHIP("Things you want to do with your partner"),
-    FRIENDS("Things you want to do with your friends");
+    FRIENDS("Things you want to do with your friends"),
+    FOOD("Essen");
 
-    String description;
+    private String description;
 
     Category(String description){
         this.description = description;
     }
-
 }
