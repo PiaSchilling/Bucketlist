@@ -10,36 +10,62 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.apache.commons.io.FileUtils;
+
+/**
+ * Read/ Write form/to Files
+ * only used by a repository
+ */
 public class FileSource implements Saver{
 
-
-
-
     /**
-     * writes Eventlist to File
-     * File has the name of the eventlist
-     * @param saveable
+     * writes Savables to Files
+     * File has the name of the saveable (only makes sense if the saveable is a list)
+     * @param saveable -- saveable which should be saved
      */
     @Override
-    public void writeToSrouce(Saveable saveable) {
-
+    public void writeToSource(Saveable saveable) {
         String filename = saveable.getName();
         String filepath = "Data/" + filename;
         File outputfile = new File(filepath);
         saveable.toJson(outputfile);
-
-        // saveable.toJson(new File(saveable.getName()));
     }
 
+    /**
+     * cleans the directory
+     * should be used before saving (get rid of outdated files)
+     */
     @Override
-    public void readFromSource(String source, Saveable saveable) {
-
-         saveable.fromJson(new File(source));
-
+    public void updateSource() {
+        try {
+            FileUtils.cleanDirectory(new File("Data"));
+        } catch (IOException e) {
+            System.out.println("IO Exception"); //todo log here
+        }
     }
 
+    /**
+     * loops through the list of files in a Directory, creates objects from this data and stores them in a List
+     * calls the Method fromJson to fill the Saveable with the data loaded from the fileSource
+     * @param saveables -- empty List of saveables which is going to be filled by this method
+     * @param saveable -- a concrete Saveable, so the right fromJson Method is called (Polymorphism)
+     */
+    @Override
+    public void readFromSource(ArrayList<Saveable> saveables, Saveable saveable) {
+        //List of all Files in the Directory "Data"
+        List<Path> listOfFiles = walkDirectory();
+
+        for (int i = 0; i < listOfFiles.size(); i++) {
+            saveables.add(saveable.fromJson(new File(listOfFiles.get(i).toString())));
+        }
+    }
+
+
+    /**
+     * walks through the whole directory "Data" and writes all file names to a List
+     * @return -- list of filenames of the data Directory
+     */
     public List<Path> walkDirectory(){
-        //todo understand it completly
 
         Path path = Paths.get("Data");
 
@@ -53,9 +79,4 @@ public class FileSource implements Saver{
         return result;
     }
 
-    public static void main(String[] args) {
-        FileSource s = new FileSource();
-        List l = s.walkDirectory();
-        System.out.println(l.toString());
-    }
 }

@@ -71,7 +71,7 @@ public class Event implements Saveable {
 
 
     @Override
-    public void fromJson(File file){
+    public Saveable fromJson(File file){
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
@@ -83,9 +83,12 @@ public class Event implements Saveable {
             this.isCompleted = temp.isCompleted;
             this.eventImageUrl = temp.eventImageUrl;
 
+            return temp;
+
         } catch (IOException e) {
             System.out.println("IO execption"); //todo log here
         }
+        return null;
     }
 
     @Override

@@ -9,7 +9,7 @@ public interface Saveable {
 
     void toJson(File file);
 
-    void fromJson(File file);
+    Saveable fromJson(File file);
 
     String getName();
 }

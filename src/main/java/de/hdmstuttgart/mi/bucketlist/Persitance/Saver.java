@@ -1,9 +1,12 @@
 package de.hdmstuttgart.mi.bucketlist.Persitance;
 
+import java.util.ArrayList;
+
 public interface Saver {
 
-    void writeToSrouce(Saveable saveable);
+    void writeToSource(Saveable saveable);
 
+    void readFromSource(ArrayList<Saveable> saveables, Saveable saveable);
 
-    void readFromSource(String source, Saveable saveable);
+    void updateSource();
 }

@@ -1,5 +1,6 @@
 package de.hdmstuttgart.mi.bucketlist.Model;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import de.hdmstuttgart.mi.bucketlist.Persitance.Saveable;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -64,6 +65,10 @@ public class Eventlist implements Saveable {
         return "Eventlistname:" + this.eventlistName + ", " + Arrays.toString(this.events.toArray());
     }
 
+    /**
+     * writes the object as a json string to a file
+     * @param file -- file which should hold the created json strings
+     */
     @Override
     public void toJson(File file){
         ObjectMapper objectMapper = new ObjectMapper();
@@ -72,22 +77,31 @@ public class Eventlist implements Saveable {
         }catch(FileNotFoundException e){
             System.out.println("FIle not found");
         } catch (IOException e) {
-            System.out.println("IO Exeption");//todo log here
+            System.out.println("IO Exeption in Method toJson");//todo log here
         }
     }
 
+    /**
+     * loads json string from a file
+     * @param file -- source
+     * @return -- the created object
+     */
     @Override
-    public void fromJson(File file) {
+    public Saveable fromJson(File file) {
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); //todo understand why
         try {
-            Eventlist temp = objectMapper.readValue(file,this.getClass());
+            Eventlist temp = objectMapper.readerFor(Eventlist.class).readValue(file);
 
             this.eventlistName = temp.eventlistName;
-            this.events = temp.events;
+            this.events = temp.getEvents();
+
+            return temp;
 
         } catch (IOException e) {
             System.out.println("IO execption"); //todo log here
         }
+        return null;
     }
 
     /**
@@ -152,19 +166,4 @@ public class Eventlist implements Saveable {
         return this.eventlistName;
     }
 
-    public static void main(String[] args) {
-        Eventlist e = new Eventlist("test");
-      /*  e.addEvent("essen",Category.SKILLS);
-        e.addEvent("cool",Category.LIFEGOALS);
-        e.addEvent("essen",Category.SKILLS);
-
-        e.deleteEvent("esseeen");*/
-
-
-        //e.toJson();
-
-        e.fromJson(new File("test"));
-        System.out.println(e.eventlistName);
-        System.out.println(Arrays.toString(e.events.toArray()));
-    }
 }

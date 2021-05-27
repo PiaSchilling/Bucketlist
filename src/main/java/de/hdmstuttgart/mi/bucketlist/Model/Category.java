@@ -13,8 +13,8 @@ public enum Category {
     HOBBY("Hobbies you want to try"),
     FAMILY("Things you want to do with you family"),
     RELATIONSHIP("Things you want to do with your partner"),
-    FRIENDS("Things you want to do with your friends"),
-    FOOD("Essen");
+    FRIENDS("Things you want to do with your friends");
+
 
     private String description;
 

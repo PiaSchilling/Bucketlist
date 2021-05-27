@@ -2,25 +2,24 @@ package de.hdmstuttgart.mi.bucketlist.ModelController;
 
 
 import de.hdmstuttgart.mi.bucketlist.Model.*;
-import de.hdmstuttgart.mi.bucketlist.Persitance.Repository;
+import de.hdmstuttgart.mi.bucketlist.Persitance.EventlistRepository;
 import de.hdmstuttgart.mi.bucketlist.Persitance.Sourcetype;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class ListManager {
 
     private ArrayList<Eventlist> eventlists;
-    private Repository repository;
-   // private Repository repositoryDB;
+    private final EventlistRepository eventlistRepository;
 
 
     public ListManager(){
         this.eventlists = new ArrayList<>();
-        this.repository = new Repository(Sourcetype.FILESOURCE);
-        //this.repositoryDB = new Repository(Sourcetype.DATABASESOURCE);
+        this.eventlistRepository = new EventlistRepository(Sourcetype.FILESOURCE);
     }
 
     /**
@@ -28,23 +27,30 @@ public class ListManager {
      * @param eventlistName -- the name of the eventlist
      */
     public void createEventlist(String eventlistName){
-        this.eventlists.add(new Eventlist(eventlistName));
-        //todo log here: eventlist added
+        if(this.eventlists.stream().anyMatch(eventlist -> eventlist.getName().equals(eventlistName))){
+            System.out.println("There is already an eventlist with the name " + "\"" + eventlistName + "\"" + " please choose another one");
+        }else{
+            this.eventlists.add(new Eventlist(eventlistName));
+            System.out.println("Eventlist " + "\"" + eventlistName + "\"" + " added successfully");
+            //todo log here: eventlist added
+        }
     }
 
     /**
      * deletes Eventlist
-     * @param eventlistName -- the name of the eventlist which sould be deleted
+     * @param eventlistName -- the name of the eventlist which should be deleted
      */
     public void deleteEventlist(String eventlistName){
-        for (int i = 0; i < this.eventlists.size(); i++){
-            if(this.eventlists.get(i).getName().equals(eventlistName)){
-                this.eventlists.remove(i);
-                System.out.println("Eventlist " + "\"" + eventlistName + "\"" + " deleted successfully");
-                //todo log enventlist deleted
-            }
+        List<Eventlist> temp = this.eventlists.stream().filter(eventlist -> eventlist.getName().equals(eventlistName)).collect(Collectors.toList());
+        if(temp.size() == 0){
+            System.out.println("No Eventlist with matching name found"); //todo log here
+        }else if(temp.size() > 1){
+            System.out.println("Multiple Eventlists with matching name found");
+        }else{
+            this.eventlists.removeAll(temp);
+            System.out.println("Eventlist " + "\"" + eventlistName + "\"" + " deleted successfully");
+            //todo log here: eventlist deleted
         }
-        //todo log if no eventlist with matching name was found
     }
 
 
@@ -148,73 +154,51 @@ public class ListManager {
      * saves the eventlists
      */
     public void save(){
-
-        for (int i = 0; i < this.eventlists.size(); i++) {
-            this.repository.writeSaveable(this.eventlists.get(i));
-        }
-
-        //this.repository.writeSaveable(this.eventlists.get(0));
-        //this.repositoryDB.writeSaveable(this.eventlists.get(0));
+        this.eventlistRepository.writeSaveable(this.eventlists);
     }
 
 
+    /**
+     * loads the eventlists which have been saved
+     */
     public void load(){
-
-        Eventlist list = new Eventlist();
-        this.repository.loadSaveable("Data/Cool",list);
-        System.out.println(list.toString());
-
-        /*for (int i = 0; i < this.eventlists.size(); i++) {
-            this.repository.loadSaveable(this.eventlists.get(i).getName(),this.eventlists.get(i));
-        }*/
-        /*this.eventlists.set(0,(Eventlist)this.repository.loadSaveable("repotest",this.eventlists.get(0)));
-        System.out.println(this.eventlists.get(0).getName());*/
-
-
+        this.eventlists = this.eventlistRepository.loadSaveable();
     }
 
+    /**
+     *
+     * @return -- returns a copy of all Eventlists saved in the Manager
+     */
+    public ArrayList<Eventlist> getEventlists() {
+        ArrayList<Eventlist> copy = new ArrayList<>(this.eventlists);
+        return copy;
+    }
 
-
+    /**
+     * only for testing
+     * @param args --
+     */
     public static void main(String[] args) {
         ListManager l = new ListManager();
-        l.createEventlist("Cool");
-        l.createEventlist("Del");
+        l.createEventlist("Lifegoals");
+        l.createEventlist("HobbyGoals");
 
-        System.out.println(Arrays.toString(l.eventlists.toArray()));
+        l.addEvent("Test1",Category.SKILLS,"Lifegoals");
+        l.addEvent("Test2",Category.CULINARY,"Lifegoals");
+        l.addEvent("Test3",Category.CULTURE,"Lifegoals");
 
-        //l.deleteEventlist("Del");
-        System.out.println(Arrays.toString(l.eventlists.toArray()));
+        l.addEvent("Test1",Category.SKILLS,"HobbyGoals");
+        l.addEvent("Test2",Category.CULINARY,"HobbyGoals");
+        l.addEvent("Test3",Category.CULTURE,"HobbyGoals");
 
-        l.addEvent("Essen",Category.SKILLS,"Cool");
-        l.addEvent("Spielen",Category.SKILLS,"Cool");
-        l.addEvent("HUnger",Category.SKILLS,"Cool");
-        l.addEvent("HIHI",Category.LIFEGOALS,"Cool");
+        l.save();
 
-        l.addEvent("hahah",Category.LIFEGOALS,"Del");
-        l.addEvent("waaas",Category.SKILLS,"Del");
+        ListManager m = new ListManager();
+        m.load();
+        System.out.println(m.eventlists.toString());
+        System.out.println(m.eventlists.get(0));
 
-        System.out.println(l.eventlists.toString());
-        l.deleteEvent("Spielen","Cool");
-        System.out.println(l.eventlists.toString());
-
-        l.completeEvent("Essen","Cool","url","tolle sache ist das");
-
-        System.out.println(l.eventlists.toString());
-
-        //l.save();
-        //l.load();
-
-       System.out.println(l.eventlists.toString());
-
-
-        HashMap<Category,Categorylist> cat = l.getFilledCatgeoryLists();
-        System.out.println(cat.get(Category.SKILLS));
-        System.out.println(cat.get(Category.LIFEGOALS));
-
-
-
-        //repository.loadSaveable("Lesen",eventlist);
-
+        System.out.println(m.getFilledCatgeoryLists());
 
     }
 }
