@@ -6,7 +6,6 @@ import de.hdmstuttgart.mi.bucketlist.Persitance.EventlistRepository;
 import de.hdmstuttgart.mi.bucketlist.Persitance.Sourcetype;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -182,6 +181,7 @@ public class ListManager {
         ListManager l = new ListManager();
         l.createEventlist("Lifegoals");
         l.createEventlist("HobbyGoals");
+        l.createEventlist("Geiler Scheiss");
 
         l.addEvent("Test1",Category.SKILLS,"Lifegoals");
         l.addEvent("Test2",Category.CULINARY,"Lifegoals");
@@ -190,6 +190,10 @@ public class ListManager {
         l.addEvent("Test1",Category.SKILLS,"HobbyGoals");
         l.addEvent("Test2",Category.CULINARY,"HobbyGoals");
         l.addEvent("Test3",Category.CULTURE,"HobbyGoals");
+
+        l.addEvent("Test1",Category.SKILLS,"Geiler Scheiss");
+        l.addEvent("Test2",Category.CULINARY,"Geiler Scheiss");
+        l.addEvent("Test3",Category.CULTURE,"Geiler Scheiss");
 
         l.save();
 

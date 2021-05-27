@@ -2,13 +2,7 @@ package de.hdmstuttgart.mi.bucketlist.Persitance;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.apache.commons.io.FileUtils;
 
@@ -26,7 +20,7 @@ public class FileSource implements Saver{
     @Override
     public void writeToSource(Saveable saveable) {
         String filename = saveable.getName();
-        String filepath = "Data/" + filename;
+        String filepath = "src/main/resources/data/" + filename;
         File outputfile = new File(filepath);
         saveable.toJson(outputfile);
     }
@@ -38,7 +32,7 @@ public class FileSource implements Saver{
     @Override
     public void updateSource() {
         try {
-            FileUtils.cleanDirectory(new File("Data"));
+            FileUtils.cleanDirectory(new File("src/main/resources/data"));
         } catch (IOException e) {
             System.out.println("IO Exception"); //todo log here
         }
@@ -52,31 +46,25 @@ public class FileSource implements Saver{
      */
     @Override
     public void readFromSource(ArrayList<Saveable> saveables, Saveable saveable) {
-        //List of all Files in the Directory "Data"
-        List<Path> listOfFiles = walkDirectory();
+        //List of all Files in the Directory
+        File[] listOfFiles = listDirectory("src/main/resources/data");
 
-        for (int i = 0; i < listOfFiles.size(); i++) {
-            saveables.add(saveable.fromJson(new File(listOfFiles.get(i).toString())));
+        for (int i = 0; i < listOfFiles.length; i++) {
+            saveables.add(saveable.fromJson(new File(listOfFiles[i].toString())));
         }
     }
 
 
     /**
-     * walks through the whole directory "Data" and writes all file names to a List
-     * @return -- list of filenames of the data Directory
+     * lists all Files in the given Directory
+     * @return -- list of filenames of the Directory
      */
-    public List<Path> walkDirectory(){
+    public File[] listDirectory(String path){
+        File directory = new File(path);
+        File[] files = directory.listFiles();
 
-        Path path = Paths.get("Data");
-
-        List<Path> result = new ArrayList<>();
-        try (Stream<Path> walk = Files.walk(path)) {
-            result = walk.filter(Files::isRegularFile)
-                    .collect(Collectors.toList());
-        }catch (IOException e) {
-            System.out.println("IO ");
-        }
-        return result;
+        return files;
     }
+
 
 }
