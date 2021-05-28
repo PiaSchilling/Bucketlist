@@ -178,7 +178,7 @@ public class Eventlist implements Saveable {
         for (int i = 0; i < this.events.size(); i++) {
             if(this.events.get(i).getName().equals(eventName)){
                 this.events.get(i).completeEvent(eventImageUrl,eventDescription,eventDay, eventMonth, eventYear);
-                System.out.println("Event completed successfully");
+                log.debug("Event completed successfully");
             }
         }
     }
