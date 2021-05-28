@@ -19,10 +19,19 @@ public class Main {
         //gets the listManager handed over, so it can use it too
         StatisticsManager statisticsManager = new StatisticsManager(listManager);
 
-        listManager.createEventlist("Test");
-        listManager.addEvent("Event1", Category.SKILLS,"Test");
-        listManager.addEvent("Event2", Category.SHOPPING,"Test");
-        listManager.addEvent("Event3", Category.LIFEGOALS,"Test");
+        listManager.createEventlist("Traumdates");
+        listManager.createEventlist("Lebensziele");
+
+        listManager.addEvent("Zebra Reiten", Category.RELATIONSHIP,"Traumdates");
+        listManager.addEvent("Romantisches Dinner mit Martin", Category.CULINARY,"Traumdates");
+        listManager.addEvent("Über wolken gehen", Category.CULTURE,"Traumdates");
+
+        listManager.addEvent("Mit Papagei sprechen", Category.LIFEGOALS,"Lebensziele");
+        listManager.addEvent("Eigene Hüpfburg besitzen", Category.LIFEGOALS,"Lebensziele");
+        listManager.addEvent("John Lennon treffen", Category.LIFEGOALS,"Lebensziele");
+
+        listManager.save();
+        //listManager.load();
 
         System.out.println(listManager.getEventlists().toString());
         System.out.println(categoryManager.getFilledCatgeoryLists().toString());
