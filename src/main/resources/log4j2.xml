@@ -14,7 +14,7 @@
         <Logger name="org.example.GuiDriver" level="debug">
             <AppenderRef ref="A1"/>
         </Logger>
-        <Root level="info">
+        <Root level="debug">
             <AppenderRef ref="STDOUT"/>
         </Root>
     </Loggers>
