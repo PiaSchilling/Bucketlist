@@ -22,6 +22,7 @@ public class Eventlist implements Saveable {
     //private Date expiryDate;
 
 
+
     public Eventlist(String eventlistName /*String dateString*/){
         this.eventlistName = eventlistName;
         this.events = new ArrayList<>();
