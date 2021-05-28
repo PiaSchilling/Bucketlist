@@ -22,13 +22,16 @@ public class Main {
         listManager.createEventlist("Traumdates");
         listManager.createEventlist("Lebensziele");
 
-        listManager.addEvent("Zebra Reiten", Category.RELATIONSHIP,"Traumdates");
-        listManager.addEvent("Romantisches Dinner mit Martin", Category.CULINARY,"Traumdates");
-        listManager.addEvent("Über wolken gehen", Category.CULTURE,"Traumdates");
+        listManager.addEventToList("Zebra Reiten", Category.RELATIONSHIP,"Traumdates");
+        listManager.addEventToList("Romantisches Dinner mit Martin", Category.CULINARY,"Traumdates");
+        listManager.addEventToList("Über wolken gehen", Category.CULTURE,"Traumdates");
 
-        listManager.addEvent("Mit Papagei sprechen", Category.LIFEGOALS,"Lebensziele");
-        listManager.addEvent("Eigene Hüpfburg besitzen", Category.LIFEGOALS,"Lebensziele");
-        listManager.addEvent("John Lennon treffen", Category.LIFEGOALS,"Lebensziele");
+        listManager.addEventToList("Mit Papagei sprechen", Category.LIFEGOALS,"Lebensziele");
+        listManager.addEventToList("Eigene Hüpfburg besitzen", Category.LIFEGOALS,"Lebensziele");
+        listManager.addEventToList("John Lennon treffen", Category.LIFEGOALS,"Lebensziele");
+
+        listManager.completeEvent("Mit Papagei sprechen", "Lebensziele", "data/Lebensziele", "It was awesome", 12,11,2033);
+
 
         listManager.save();
         //listManager.load();

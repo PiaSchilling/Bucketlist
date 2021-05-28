@@ -10,10 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
@@ -26,15 +23,24 @@ public class Eventlist implements Saveable {
 
     private ArrayList<Event> events;
     private String eventlistName;
-    //private Date expiryDate;
+    private GregorianCalendar expiryDateGregorian;
+
+    private String expiryDateString;
 
 
 
-    public Eventlist(String eventlistName /*String dateString*/){
+    // Constructor without date
+    public Eventlist(String eventlistName) {
         this.eventlistName = eventlistName;
         this.events = new ArrayList<>();
-        //this.expiryDate = configureDate(dateString);
     }
+
+    // Constructor with date
+    public Eventlist(String eventlistName, int expiryDay, int expiryMonth, int expiryYear){
+        this.eventlistName = eventlistName;
+        this.events = new ArrayList<>();
+        this.expiryDateGregorian = configureExpiryDate(expiryDay, expiryMonth ,expiryYear);    }
+
 
     /**
      * default constructor for json parsing
@@ -52,21 +58,28 @@ public class Eventlist implements Saveable {
     }
 
     /**
-     * parses Date String in an Object of type date
-     * //todo check date
-     * @param dateString Date as a String
-     * @return the date as an date object
+     *
+     * @param expiryDay
+     * @param expiryMonth
+     * @param expiryYear
+     * @return GregorianCalender Date with the selected Month, Year and Day from the User
      */
-    private Date configureDate(String dateString){
-        log.debug("configureDate method started");
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-        try {
-            Date date = format.parse(dateString);
-            return date;
-        }catch (ParseException e){
-            log.error("Parse Exception");
-        }
-        return null;
+
+    private GregorianCalendar configureExpiryDate(int expiryDay, int expiryMonth, int expiryYear) {
+        log.debug("configureDate method started");      // todo @merve is this correct? I (@sara) copied it from the old method
+        expiryDateString= expiryDay + "." + expiryMonth + "." + expiryYear;
+        GregorianCalendar gregorianCalendar = new GregorianCalendar(expiryYear,expiryMonth,expiryDay);
+        return gregorianCalendar;
+    }
+
+
+    /**
+     *
+     * @return the expiry date as a String
+     */
+    private String expiryDateView(){
+        // return copy?
+        return expiryDateString;
     }
 
     @Override
@@ -159,13 +172,13 @@ public class Eventlist implements Saveable {
      * @param eventImageUrl -- the url of the image the user chose
      * @param eventDescription -- the description entered by the user
      */
-    public void completeEvent(String eventName, String eventImageUrl,String eventDescription){
+    public void completeEvent(String eventName, String eventImageUrl,String eventDescription, int eventDay, int eventMonth, int eventYear ){
         //todo when no event found
         log.debug("completeEvent method started");
         for (int i = 0; i < this.events.size(); i++) {
             if(this.events.get(i).getName().equals(eventName)){
-                this.events.get(i).completeEvent(eventImageUrl,eventDescription);
-                log.debug("Event completed successfully");
+                this.events.get(i).completeEvent(eventImageUrl,eventDescription,eventDay, eventMonth, eventYear);
+                System.out.println("Event completed successfully");
             }
         }
     }

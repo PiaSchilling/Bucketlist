@@ -2,6 +2,7 @@
   "events" : [ {
     "eventName" : "Zebra Reiten",
     "eventCategory" : "RELATIONSHIP",
+    "eventDate" : null,
     "eventImageUrl" : null,
     "eventDescription" : null,
     "isCompleted" : false,
@@ -9,6 +10,7 @@
   }, {
     "eventName" : "Romantisches Dinner mit Martin",
     "eventCategory" : "CULINARY",
+    "eventDate" : null,
     "eventImageUrl" : null,
     "eventDescription" : null,
     "isCompleted" : false,
@@ -16,11 +18,14 @@
   }, {
     "eventName" : "Über wolken gehen",
     "eventCategory" : "CULTURE",
+    "eventDate" : null,
     "eventImageUrl" : null,
     "eventDescription" : null,
     "isCompleted" : false,
     "name" : "Über wolken gehen"
   } ],
   "eventlistName" : "Traumdates",
+  "expiryDateGregorian" : null,
+  "expiryDateString" : null,
   "name" : "Traumdates"
 }

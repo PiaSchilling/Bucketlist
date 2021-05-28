@@ -2,13 +2,15 @@
   "events" : [ {
     "eventName" : "Mit Papagei sprechen",
     "eventCategory" : "LIFEGOALS",
-    "eventImageUrl" : null,
-    "eventDescription" : null,
-    "isCompleted" : false,
+    "eventDate" : "12.11.2033",
+    "eventImageUrl" : "data/Lebensziele",
+    "eventDescription" : "It was awesome",
+    "isCompleted" : true,
     "name" : "Mit Papagei sprechen"
   }, {
     "eventName" : "Eigene Hüpfburg besitzen",
     "eventCategory" : "LIFEGOALS",
+    "eventDate" : null,
     "eventImageUrl" : null,
     "eventDescription" : null,
     "isCompleted" : false,
@@ -16,11 +18,14 @@
   }, {
     "eventName" : "John Lennon treffen",
     "eventCategory" : "LIFEGOALS",
+    "eventDate" : null,
     "eventImageUrl" : null,
     "eventDescription" : null,
     "isCompleted" : false,
     "name" : "John Lennon treffen"
   } ],
   "eventlistName" : "Lebensziele",
+  "expiryDateGregorian" : null,
+  "expiryDateString" : null,
   "name" : "Lebensziele"
 }

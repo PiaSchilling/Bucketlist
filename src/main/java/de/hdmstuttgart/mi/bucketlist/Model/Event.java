@@ -23,7 +23,7 @@ public class Event implements Saveable {
     private String eventName;
     private Category eventCategory;
 
-    //private Date eventDate;
+    private String eventDate;
     private String eventImageUrl;
     private String eventDescription;
     private boolean isCompleted;
@@ -48,17 +48,23 @@ public class Event implements Saveable {
      * @param eventImageUrl -- the url which points to the url of the image the user chose
      * @param eventDescription -- short description about the event (entered by the user)
      */
-    public void completeEvent(String eventImageUrl,String eventDescription){
+    public void completeEvent(String eventImageUrl,String eventDescription, int eventDay, int eventMonth, int eventYear){
         log.debug("completeEvent method started");
         this.eventImageUrl = eventImageUrl;
         this.eventDescription = eventDescription;
         this.isCompleted = true;
+        this.eventDate= closingDate(eventDay, eventMonth,eventYear);
+    }
+
+    public String closingDate (int eventDay, int eventMonth, int eventYear){
+        return eventDay + "." + eventMonth + "." + eventYear;
     }
 
     @Override
     public String toString(){
-        return "Eventname:" + this.eventName + ", " + this.eventCategory + ", abgeschlossen:" + this.isCompleted;
+        return "Eventname:" + this.eventName + ", " + this.eventCategory + ", abgeschlossen:" + this.isCompleted + " Datum " + this.eventDate;
     }
+
 
     /**
      * parses an event object into a json object and writes it to a file

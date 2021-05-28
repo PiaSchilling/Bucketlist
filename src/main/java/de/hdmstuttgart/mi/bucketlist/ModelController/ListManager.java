@@ -98,11 +98,11 @@ public class ListManager {
      * @param eventImageUrl -- the url of the eventImage chosen by the user
      * @param eventDescription -- the event description written by the user
      */
-    public void completeEvent(String eventName, String eventlistName, String eventImageUrl, String eventDescription) {
+    public void completeEvent(String eventName, String eventlistName, String eventImageUrl, String eventDescription, int eventDay, int eventMonth, int eventYear) {
         log.debug("completeEvent method started");
         for (int i = 0; i < this.eventlists.size(); i++) {
             if(this.eventlists.get(i).getName().equals(eventlistName)){
-                this.eventlists.get(i).completeEvent(eventName,eventImageUrl,eventDescription);
+                this.eventlists.get(i).completeEvent(eventName,eventImageUrl,eventDescription, eventDay, eventMonth, eventYear);
                 log.debug("Event "  + "\"" + eventName + "\"" + " completed succesfully");
             }
         }
