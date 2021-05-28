@@ -2,14 +2,20 @@ package de.hdmstuttgart.mi.bucketlist.ModelController;
 
 
 import de.hdmstuttgart.mi.bucketlist.Model.*;
-import de.hdmstuttgart.mi.bucketlist.Persitance.EventlistRepository;
-import de.hdmstuttgart.mi.bucketlist.Persitance.Sourcetype;
+import de.hdmstuttgart.mi.bucketlist.Persistance.EventlistRepository;
+import de.hdmstuttgart.mi.bucketlist.Persistance.Sourcetype;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class ListManager {
+
+    // initialize Logger
+    private static final Logger log = LogManager.getLogger(ListManager.class);
 
     private ArrayList<Eventlist> eventlists = new ArrayList<>();
     private final EventlistRepository eventlistRepository = new EventlistRepository(Sourcetype.FILESOURCE);
@@ -24,12 +30,12 @@ public class ListManager {
      * @param eventlistName -- the name of the eventlist
      */
     public void createEventlist(String eventlistName){
+        log.debug("createEventlist method started");
         if(this.eventlists.stream().anyMatch(eventlist -> eventlist.getName().equals(eventlistName))){
-            System.out.println("There is already an eventlist with the name " + "\"" + eventlistName + "\"" + " please choose another one");
+            log.info("There is already an eventlist with the name " + "\"" + eventlistName + "\"" + " please choose another one");
         }else{
             this.eventlists.add(new Eventlist(eventlistName));
-            System.out.println("Eventlist " + "\"" + eventlistName + "\"" + " added successfully");
-            //todo log here: eventlist added
+            log.debug( "Eventlist " + "\"" + eventlistName + "\"" + " added successfully");
         }
     }
 
@@ -38,35 +44,36 @@ public class ListManager {
      * @param eventlistName -- the name of the eventlist which should be deleted
      */
     public void deleteEventlist(String eventlistName){
+        log.debug("deleteEventlist method started");
         List<Eventlist> temp = this.eventlists.stream().filter(eventlist -> eventlist.getName().equals(eventlistName)).collect(Collectors.toList());
         if(temp.size() == 0){
-            System.out.println("No Eventlist with matching name found"); //todo log here
+            log.error("No Eventlist with matching name found");
         }else if(temp.size() > 1){
-            System.out.println("Multiple Eventlists with matching name found");
+            log.info("Multiple Eventlists with matching name found");
         }else{
             this.eventlists.removeAll(temp);
-            System.out.println("Eventlist " + "\"" + eventlistName + "\"" + " deleted successfully");
-            //todo log here: eventlist deleted
+            log.debug("Eventlist " + "\"" + eventlistName + "\"" + " deleted successfully");
         }
     }
 
     /**
      * finds the right list to add an event
-     * than colls the addEventMethod of eventlist
+     * than calls the addEventMethod of eventlist
      * creates a new event within an already existing eventlist
      * @param eventName -- the name of the event
-     * @param eventCategory -- the categroy of the event
+     * @param eventCategory -- the category of the event
      * @param eventlistName -- the name of the eventlist where the event should be added
      */
-    //todo change method name
-   public void addEvent(String eventName, Category eventCategory, String eventlistName){
 
+   public void addEventToList(String eventName, Category eventCategory, String eventlistName){
+
+       log.debug("addEventToList method started");
         for (int i = 0; i < this.eventlists.size(); i++) {
             if(this.eventlists.get(i).getName().equals(eventlistName)){
                 this.eventlists.get(i).addEvent(eventName,eventCategory);
             }
         }
-        //todo log here process finished
+       log.debug( "Event " + "\"" + eventName + "\"" + " added successfully to " + eventlistName);
     }
 
     /**
@@ -75,12 +82,13 @@ public class ListManager {
      * @param eventlistName -- the name of the eventlist which contains the event
      */
     public void deleteEvent(String eventName, String eventlistName){
+        log.debug("deleteEvent method started");
         for (int i = 0; i < this.eventlists.size(); i++) {
             if(this.eventlists.get(i).getName().equals(eventlistName)){
                 this.eventlists.get(i).deleteEvent(eventName);
             }
         }
-        //todo log here process finished
+        log.debug("Event " + "\"" + eventName + "\"" + " deleted successfully");
     }
 
     /**
@@ -88,16 +96,17 @@ public class ListManager {
      * @param eventName -- the name of the event, you want to complete
      * @param eventlistName -- the name of the eventlist which contains the event
      * @param eventImageUrl -- the url of the eventImage chosen by the user
-     * @param eventDescritption -- the event description written by the user
+     * @param eventDescription -- the event description written by the user
      */
-    public void completeEvent(String eventName, String eventlistName, String eventImageUrl, String eventDescritption) {
+    public void completeEvent(String eventName, String eventlistName, String eventImageUrl, String eventDescription) {
+        log.debug("completeEvent method started");
         for (int i = 0; i < this.eventlists.size(); i++) {
             if(this.eventlists.get(i).getName().equals(eventlistName)){
-                this.eventlists.get(i).completeEvent(eventName,eventImageUrl,eventDescritption);
-                System.out.println("Event "  + "\"" + eventName + "\"" + " completed succesfully"); //todo log here
+                this.eventlists.get(i).completeEvent(eventName,eventImageUrl,eventDescription);
+                log.debug("Event "  + "\"" + eventName + "\"" + " completed succesfully");
             }
         }
-        //todo log here process finished
+        log.debug("Event completed successfully");
     }
 
     /**

@@ -10,6 +10,6 @@ module gui {
     opens de.hdmstuttgart.mi.bucketlist to javafx.fxml;
     exports de.hdmstuttgart.mi.bucketlist;
     opens de.hdmstuttgart.mi.bucketlist.Model to javafx.fxml, com.fasterxml.jackson.databind;
-    opens de.hdmstuttgart.mi.bucketlist.Persitance to com.fasterxml.jackson.databind;
+    opens de.hdmstuttgart.mi.bucketlist.Persistance to com.fasterxml.jackson.databind;
 
 }

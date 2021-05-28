@@ -3,7 +3,13 @@ package de.hdmstuttgart.mi.bucketlist.Model;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Categorylist {
+
+    // initialize Logger
+    private static final Logger log = LogManager.getLogger(Categorylist.class);
 
     private ArrayList<Event> events;
     private Category listCategory;
@@ -19,12 +25,13 @@ public class Categorylist {
      * @param events -- List of Events which replaces the empty list
      */
     public void fill(ArrayList<Event> events){
+        log.debug("fill method started");
         if(events.stream().anyMatch(event -> event.getEventCategory() != this.listCategory)){
             //normaly this should be never reached
-            System.out.println("Error. List Contains Events with the wrong category"); //todo leg here
+            log.error("List Contains Events with the wrong category");
         }else{
             this.events = events;
-            System.out.println("Eventlist of " + events.size() + " items added sucessfully to the categorylist " + this.listCategory);//todo log here
+            log.debug("Eventlist of " + events.size() + " items added sucessfully to the categorylist " + this.listCategory);
         }
 
     }

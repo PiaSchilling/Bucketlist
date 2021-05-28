@@ -1,4 +1,4 @@
-package de.hdmstuttgart.mi.bucketlist.Persitance;
+package de.hdmstuttgart.mi.bucketlist.Persistance;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,11 +6,17 @@ import java.util.ArrayList;
 
 import org.apache.commons.io.FileUtils;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Read/ Write form/to Files
  * only used by a repository
  */
 public class FileSource implements Saver{
+
+    // initialize Logger
+    private static final Logger log = LogManager.getLogger(FileSource.class);
 
     /**
      * writes Savables to Files
@@ -19,6 +25,7 @@ public class FileSource implements Saver{
      */
     @Override
     public void writeToSource(Saveable saveable) {
+        log.debug("writeToSource method started");
         String filename = saveable.getName();
         String filepath = "src/main/resources/data/" + filename;
         File outputfile = new File(filepath);
@@ -31,10 +38,11 @@ public class FileSource implements Saver{
      */
     @Override
     public void updateSource() {
+        log.debug("updateSource method started");
         try {
             FileUtils.cleanDirectory(new File("src/main/resources/data"));
         } catch (IOException e) {
-            System.out.println("IO Exception"); //todo log here
+            log.error("IO Exception");
         }
     }
 
@@ -46,6 +54,7 @@ public class FileSource implements Saver{
      */
     @Override
     public void readFromSource(ArrayList<Saveable> saveables, Saveable saveable) {
+        log.debug("readFromSource method started");
         //List of all Files in the Directory
         File[] listOfFiles = listDirectory("src/main/resources/data");
 

@@ -1,7 +1,8 @@
 package de.hdmstuttgart.mi.bucketlist.Model;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import de.hdmstuttgart.mi.bucketlist.Persitance.Saveable;
+
+import de.hdmstuttgart.mi.bucketlist.Persistance.Saveable;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
@@ -15,7 +16,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class Eventlist implements Saveable {
+
+    // initialize Logger
+    private static final Logger log = LogManager.getLogger(Eventlist.class);
 
     private ArrayList<Event> events;
     private String eventlistName;
@@ -51,12 +58,13 @@ public class Eventlist implements Saveable {
      * @return the date as an date object
      */
     private Date configureDate(String dateString){
+        log.debug("configureDate method started");
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
         try {
             Date date = format.parse(dateString);
             return date;
         }catch (ParseException e){
-            System.out.println("Parse exception");//todo log right here
+            log.error("Parse Exception");
         }
         return null;
     }
@@ -72,13 +80,14 @@ public class Eventlist implements Saveable {
      */
     @Override
     public void toJson(File file){
+        log.debug("toJson method started");
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, this);
         }catch(FileNotFoundException e){
-            System.out.println("FIle not found");
+            log.error("File not found");
         } catch (IOException e) {
-            System.out.println("IO Exeption in Method toJson");//todo log here
+            log.error("IO Exception in Method toJson");
         }
     }
 
@@ -89,6 +98,7 @@ public class Eventlist implements Saveable {
      */
     @Override
     public Saveable fromJson(File file) {
+        log.debug("fromJson method started");
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); //todo understand why
         try {
@@ -100,7 +110,7 @@ public class Eventlist implements Saveable {
             return temp;
 
         } catch (IOException e) {
-            System.out.println("IO execption"); //todo log here
+            log.error("IO Exception");
         }
         return null;
     }
@@ -112,34 +122,34 @@ public class Eventlist implements Saveable {
      * @param eventCategory -- the category the event should have
      */
    public void addEvent(String eventName, Category eventCategory){
+       log.debug("addEvent method started");
        if(this.events.stream().anyMatch(event -> event.getName().equals(eventName))){
-           System.out.println("There ist already an event with the name "  + "\"" + eventName +  "\"" + " in the list " +  "\"" + this.eventlistName +  "\"" + ". Please select another name.");
-           //todo log here
-       }else{
+           log.info("There is already an event with the name "  + "\"" + eventName +  "\"" + " in the list " +  "\"" + this.eventlistName +  "\"" + ". Please select another name.");
+       } else {
            this.events.add(new Event(eventName,eventCategory));
-           System.out.println("Event " + "\"" + eventName +  "\"" + " added successfully to the list " + "\"" + this.eventlistName +  "\"");
-           //todo log here
+           log.debug("Event " + "\"" + eventName +  "\"" + " added successfully to the list " + "\"" + this.eventlistName +  "\"");
        }
 
     }
 
     /**
-     * deletes an event form "this" eventlist
+     * deletes an event from "this" eventlist
      * takes care of the case, when no event with matching name found
      * @param eventName -- the name of the event you want to delete
      */
     public void deleteEvent(String eventName){
 
+        log.debug("deleteEvent method started");
         List<Event> temp = this.events.stream().filter(event -> event.getName().equals(eventName)).collect(Collectors.toList());
 
         if(temp.size() == 0){
-            System.out.println("No event with matching name found"); //todo log here
+            log.error("No event with matching name found");
         }else if(temp.size() > 1){
             //this should normally never be the case (watch addEvent method, problem already treated there)
-            System.out.println("Multiple events with matching events found"); //todo log here
+            log.info("Multiple events with matching name found");
         }else{
             this.events.removeAll(temp);
-            System.out.println("Event " + "\"" + eventName +  "\"" + " deleted successfully from the list " + "\"" + this.eventlistName +  "\""); //todo log here
+            log.debug("Event " + "\"" + eventName +  "\"" + " deleted successfully from the list " + "\"" + this.eventlistName +  "\"");
         }
     }
 
@@ -151,10 +161,11 @@ public class Eventlist implements Saveable {
      */
     public void completeEvent(String eventName, String eventImageUrl,String eventDescription){
         //todo when no event found
+        log.debug("completeEvent method started");
         for (int i = 0; i < this.events.size(); i++) {
             if(this.events.get(i).getName().equals(eventName)){
                 this.events.get(i).completeEvent(eventImageUrl,eventDescription);
-                System.out.println("Event completed successfully");
+                log.debug("Event completed successfully");
             }
         }
     }

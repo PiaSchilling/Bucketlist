@@ -1,8 +1,11 @@
-package de.hdmstuttgart.mi.bucketlist.Persitance;
+package de.hdmstuttgart.mi.bucketlist.Persistance;
 
 import de.hdmstuttgart.mi.bucketlist.Model.Eventlist;
 
 import java.util.ArrayList;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * mediates between the data store and the business logic
@@ -11,6 +14,9 @@ import java.util.ArrayList;
  */
 public class EventlistRepository {
 
+    // initialize Logger
+    private static final Logger log = LogManager.getLogger(EventlistRepository.class);
+
     final private Saver saver;
 
     /**
@@ -18,6 +24,7 @@ public class EventlistRepository {
      * @param sourcetype the type of source you want the saver to be
      */
     public EventlistRepository(Sourcetype sourcetype){
+        log.debug("EventlistRepository method started");
         SourceFactory sourceFactory = new SourceFactory();
         this.saver = sourceFactory.getSource(sourcetype);
     }
@@ -27,6 +34,7 @@ public class EventlistRepository {
      * @param eventlists -- list of eventlists which should be saved
      */
     public void writeSaveable(ArrayList<Eventlist> eventlists){
+        log.debug("writeSaveable method started");
         //prepares the source (old data is deleted)
         this.saver.updateSource();
         for (int i = 0; i < eventlists.size(); i++) {
@@ -40,6 +48,7 @@ public class EventlistRepository {
      */
     public ArrayList<Eventlist> loadSaveable(){
 
+        log.debug("loadSaveable method started");
         //stores the Saveables created by the readFromSource Method
         ArrayList<Saveable> saveables = new ArrayList<>();
         //stores the casted Eventlists
@@ -54,7 +63,7 @@ public class EventlistRepository {
             try{
                 eventlists.add((Eventlist) saveables.get(i));
             }catch (ClassCastException classCastException){
-                System.out.println("Cast exeption"); //todo log here
+                log.error("Cast Exception");
             }
         }
         //return the list of eventlists

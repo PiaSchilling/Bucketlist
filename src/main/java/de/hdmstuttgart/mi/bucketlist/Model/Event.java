@@ -3,15 +3,22 @@ package de.hdmstuttgart.mi.bucketlist.Model;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.hdmstuttgart.mi.bucketlist.Persitance.Saveable;
+
+import de.hdmstuttgart.mi.bucketlist.Persistance.Saveable;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 //todo no need to implement the saveable interface ?
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY )
 public class Event implements Saveable {
+
+    // initialize Logger
+    private static final Logger log = LogManager.getLogger(Event.class);
 
     private String eventName;
     private Category eventCategory;
@@ -42,6 +49,7 @@ public class Event implements Saveable {
      * @param eventDescription -- short description about the event (entered by the user)
      */
     public void completeEvent(String eventImageUrl,String eventDescription){
+        log.debug("completeEvent method started");
         this.eventImageUrl = eventImageUrl;
         this.eventDescription = eventDescription;
         this.isCompleted = true;
@@ -53,25 +61,26 @@ public class Event implements Saveable {
     }
 
     /**
-     * parses an event object ito a json object and writes it to a file
+     * parses an event object into a json object and writes it to a file
      */
     @Override
     public void toJson(File file) {
         ObjectMapper objectMapper = new ObjectMapper();
 
-
+        log.debug("toJson method started");
         try {
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File("test"), this);
         }catch(FileNotFoundException e){
-            System.out.println("FIle not found");
+            log.error("File not found");
         } catch (IOException e) {
-            System.out.println("IO Exeption");//todo log here
+            log.error("IO Exception");
         }
     }
 
 
     @Override
     public Saveable fromJson(File file){
+        log.debug("fromJson method started");
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
@@ -86,7 +95,7 @@ public class Event implements Saveable {
             return temp;
 
         } catch (IOException e) {
-            System.out.println("IO execption"); //todo log here
+            log.error("IO Exception");
         }
         return null;
     }

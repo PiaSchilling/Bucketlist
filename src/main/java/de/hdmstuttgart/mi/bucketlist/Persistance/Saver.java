@@ -1,4 +1,4 @@
-package de.hdmstuttgart.mi.bucketlist.Persitance;
+package de.hdmstuttgart.mi.bucketlist.Persistance;
 
 import java.util.ArrayList;
 
