@@ -5,6 +5,7 @@ import de.hdmstuttgart.mi.bucketlist.Model.*;
 import de.hdmstuttgart.mi.bucketlist.Persistance.EventlistRepository;
 import de.hdmstuttgart.mi.bucketlist.Persistance.Sourcetype;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,10 +13,11 @@ import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
 public class ListManager {
 
     // initialize Logger
-    private static final Logger log = LogManager.getLogger(ListManager.class);
+private static final Logger log = LogManager.getLogger(ListManager.class);
 
     private ArrayList<Eventlist> eventlists = new ArrayList<>();
     private final EventlistRepository eventlistRepository = new EventlistRepository(Sourcetype.FILESOURCE);
@@ -30,12 +32,12 @@ public class ListManager {
      * @param eventlistName -- the name of the eventlist
      */
     public void createEventlist(String eventlistName){
-        log.debug("createEventlist method started");
+        log.info("createEventlist method started");
         if(this.eventlists.stream().anyMatch(eventlist -> eventlist.getName().equals(eventlistName))){
             log.info("There is already an eventlist with the name " + "\"" + eventlistName + "\"" + " please choose another one");
         }else{
             this.eventlists.add(new Eventlist(eventlistName));
-            log.debug( "Eventlist " + "\"" + eventlistName + "\"" + " added successfully");
+            log.info( "Eventlist " + "\"" + eventlistName + "\"" + " added successfully");
         }
     }
 
@@ -149,5 +151,7 @@ public class ListManager {
         ArrayList<Eventlist> copy = new ArrayList<>(this.eventlists);
         return copy;
     }
+
+
 
 }

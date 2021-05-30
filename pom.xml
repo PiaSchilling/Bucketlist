@@ -4,7 +4,6 @@
 
     <groupId>de.hdmstuttgart.mi.bucketlist</groupId>
     <artifactId>Bucketlist</artifactId>
-    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
 

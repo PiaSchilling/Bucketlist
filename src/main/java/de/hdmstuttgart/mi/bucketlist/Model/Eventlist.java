@@ -28,7 +28,6 @@ public class Eventlist implements Saveable {
     private String expiryDateString;
 
 
-
     // Constructor without date
     public Eventlist(String eventlistName) {
         this.eventlistName = eventlistName;

@@ -11,10 +11,10 @@
     <Loggers>
 
         <!-- You my want to define class or package level per-logger rules -->
-        <Logger name="org.example.GuiDriver" level="debug">
+        <Logger name="de.hdmstuttgart.mi.bucketlist.ModelController.ListManager" level="debug">
             <AppenderRef ref="A1"/>
         </Logger>
-        <Root level="info">
+        <Root level="debug">
             <AppenderRef ref="STDOUT"/>
         </Root>
     </Loggers>

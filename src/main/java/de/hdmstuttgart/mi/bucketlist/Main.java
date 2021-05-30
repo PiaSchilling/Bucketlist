@@ -18,21 +18,21 @@ public class Main {
         CategoryManager categoryManager = new CategoryManager(listManager);
 
 
-        listManager.createEventlist("Traumdates");
-        listManager.createEventlist("Lebensziele", 3,3,2033);
+        listManager.createEventlist("TestList");
+        //listManager.createEventlist("Lebensziele", 3,3,2033);
 
-        listManager.addEventToList("Zebra Reiten", Category.RELATIONSHIP,"Traumdates");
-        listManager.addEventToList("Romantisches Dinner mit Martin", Category.CULINARY,"Traumdates");
-        listManager.addEventToList("Über wolken gehen", Category.CULTURE,"Traumdates");
+        listManager.addEventToList("Zebra Reiten", Category.RELATIONSHIP,"TestList");
+        listManager.addEventToList("Romantisches Dinner mit Martin", Category.CULINARY,"TestList");
+        listManager.addEventToList("Über wolken gehen", Category.CULTURE,"TestList");
 
-        listManager.addEventToList("Mit Papagei sprechen", Category.LIFEGOALS,"Lebensziele");
-        listManager.addEventToList("Eigene Hüpfburg besitzen", Category.LIFEGOALS,"Lebensziele");
-        listManager.addEventToList("John Lennon treffen", Category.LIFEGOALS,"Lebensziele");
+        listManager.addEventToList("Mit Papagei sprechen", Category.LIFEGOALS,"TestList");
+        listManager.addEventToList("Eigene Hüpfburg besitzen", Category.LIFEGOALS,"TestList");
+        listManager.addEventToList("John Lennon treffen", Category.LIFEGOALS,"TestList");
 
-        listManager.completeEvent("Mit Papagei sprechen", "Lebensziele", "data/Lebensziele", "It was awesome", 12,11,2033);
+        //listManager.completeEvent("Mit Papagei sprechen", "Lebensziele", "data/Lebensziele", "It was awesome", 12,11,2033);
 
 
-        listManager.save();
+        //listManager.save();
         //listManager.load();
 
         System.out.println(listManager.getEventlists().toString());
