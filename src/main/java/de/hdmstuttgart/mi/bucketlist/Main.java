@@ -20,7 +20,7 @@ public class Main {
         StatisticsManager statisticsManager = new StatisticsManager(listManager);
 
         listManager.createEventlist("Traumdates");
-        listManager.createEventlist("Lebensziele");
+        listManager.createEventlist("Lebensziele", 3,3,2033);
 
         listManager.addEventToList("Zebra Reiten", Category.RELATIONSHIP,"Traumdates");
         listManager.addEventToList("Romantisches Dinner mit Martin", Category.CULINARY,"Traumdates");

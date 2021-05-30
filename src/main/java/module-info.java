@@ -7,6 +7,7 @@ module gui {
     requires jackson.annotations;
     requires org.apache.commons.io;
 
+
     opens de.hdmstuttgart.mi.bucketlist to javafx.fxml;
     exports de.hdmstuttgart.mi.bucketlist;
     opens de.hdmstuttgart.mi.bucketlist.Model to javafx.fxml, com.fasterxml.jackson.databind;

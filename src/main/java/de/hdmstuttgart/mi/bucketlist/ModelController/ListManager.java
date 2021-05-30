@@ -40,6 +40,23 @@ public class ListManager {
     }
 
     /**
+     * creates new Eventlist with expiry date
+     * @param eventlistName     -- the name of the Eventlist
+     * @param expiryDay     -- day of the expiry date
+     * @param expiryMonth   -- month of the expiry date
+     * @param expiryYear    -- year of the expiry date
+     */
+    public void createEventlist(String eventlistName, int expiryDay, int expiryMonth, int expiryYear){
+        log.debug("createEventlist method started");
+        if(this.eventlists.stream().anyMatch(eventlist -> eventlist.getName().equals(eventlistName))){
+            log.info("There is already an eventlist with the name " + "\"" + eventlistName + "\"" + " please choose another one");
+        }else{
+            this.eventlists.add(new Eventlist(eventlistName, expiryDay, expiryMonth, expiryYear));
+            log.debug( "Eventlist " + "\"" + eventlistName + "\"" + " added successfully");
+        }
+    }
+
+    /**
      * deletes Eventlist
      * @param eventlistName -- the name of the eventlist which should be deleted
      */

@@ -25,7 +25,7 @@
     "name" : "John Lennon treffen"
   } ],
   "eventlistName" : "Lebensziele",
-  "expiryDateGregorian" : null,
-  "expiryDateString" : null,
+  "expiryDateGregorian" : 1996092000000,
+  "expiryDateString" : "3.3.2033",
   "name" : "Lebensziele"
 }
