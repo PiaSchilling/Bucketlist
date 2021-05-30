@@ -68,7 +68,7 @@ public class Eventlist implements Saveable {
     private GregorianCalendar configureExpiryDate(int expiryDay, int expiryMonth, int expiryYear) {
         log.debug("configureDate method started");      // todo @merve is this correct? I (@sara) copied it from the old method
         expiryDateString= expiryDay + "." + expiryMonth + "." + expiryYear;
-        GregorianCalendar gregorianCalendar = new GregorianCalendar(expiryYear,expiryMonth,expiryDay);
+        GregorianCalendar gregorianCalendar = new GregorianCalendar(expiryYear,expiryMonth-1,expiryDay+1);
         return gregorianCalendar;
     }
 
@@ -191,4 +191,12 @@ public class Eventlist implements Saveable {
         return this.eventlistName;
     }
 
+
+    /**
+     *
+     * @return the date as a GregorianCalendar Object
+     */
+    public GregorianCalendar getExpiryDateGregorian(){
+        return this.expiryDateGregorian;
+    }
 }
