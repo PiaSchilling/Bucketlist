@@ -65,10 +65,12 @@ public class Eventlist implements Saveable {
      * @return GregorianCalender Date with the selected Month, Year and Day from the User
      */
     private GregorianCalendar configureExpiryDate(int expiryDay, int expiryMonth, int expiryYear) {
-        log.debug("configureDate method started");      // todo @merve is this correct? I (@sara) copied it from the old method
+        log.debug("configureExpiryDate method started");
         expiryDateString= expiryDay + "." + expiryMonth + "." + expiryYear;
         GregorianCalendar gregorianCalendar = new GregorianCalendar(expiryYear,expiryMonth-1,expiryDay+1);
+        log.debug("configureExpiryDate method ended");
         return gregorianCalendar;
+
     }
 
     /**
@@ -100,7 +102,7 @@ public class Eventlist implements Saveable {
         } catch (IOException ioException) {
             log.error(ioException.getMessage());
         } finally {
-            log.debug("toJson method started");
+            log.debug("toJson method ended");
         }
     }
 

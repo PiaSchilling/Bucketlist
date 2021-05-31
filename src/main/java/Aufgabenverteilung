@@ -3,23 +3,25 @@
 AKTUELLE DEADLINE:
 4. Juni 2021
 
+//todo threads
+//todo gui
+//todo doku
 
 Pia:
-- Category-Filter Zeug
-- File Speicherung
+unit test: persistance //todo @pia
+Data ordner verschieben //todo @pia
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 Merve:
-- Logging
+unit test: model //todo @merve
+custom exception //todo @merve
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 Sara:
-- Datumsausgaben
-    Event : check Sequence siehe To Do Liste
-    Evenlist : check Sequence siehe To Do Liste
-- Statistiken
+unit test: modelController, view controller //todo @sara
+arraylist in methode reinziehen und als instanzvariable löschen //todo @sara
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

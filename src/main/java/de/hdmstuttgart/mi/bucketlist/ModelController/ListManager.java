@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
+//todo modify event description-method
 public class ListManager {
 
     // initialize Logger

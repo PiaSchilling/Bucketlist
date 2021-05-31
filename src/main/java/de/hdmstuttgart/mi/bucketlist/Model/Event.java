@@ -28,8 +28,6 @@ public class Event implements Saveable {
     private String eventDescription;
     private boolean isCompleted;
 
-
-
     public Event(String eventName, Category eventCategory){
         this.eventName = eventName;
         this.eventCategory = eventCategory;

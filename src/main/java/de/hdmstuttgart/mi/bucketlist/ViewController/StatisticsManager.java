@@ -50,6 +50,7 @@ public class StatisticsManager {
      * @return the number of completed events in general
      */
     public int countCompletedEvents(){
+        ArrayList<Eventlist> temp = this.listManager.getEventlists();
         int count=0;
         for (int i = 0; i < this.eventlists.size(); i++) {
             // für nicht gefüllte Listen definieren
@@ -114,7 +115,7 @@ public class StatisticsManager {
     }
 
     public String daysLeft (String eventlistName) {
-        log.debug("daysLeft method started");      // todo @merve is this correct? I (@sara) copied it from the old method
+        log.debug("daysLeft method started");
         int days=0;
 
         GregorianCalendar today = new GregorianCalendar();
@@ -129,7 +130,7 @@ public class StatisticsManager {
 
             days = (int) (difference / (1000 * 60 * 60 * 24));
 
-
+            log.debug("daysLeft method ended");
         }return String.valueOf(days) + " days left for " + "'" + eventlistName + "'";
     }
 
