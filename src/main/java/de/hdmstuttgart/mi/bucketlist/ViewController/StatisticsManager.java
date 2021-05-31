@@ -16,7 +16,7 @@ public class StatisticsManager {
 
     private final ListManager listManager;
 
-    ArrayList<Eventlist> eventlists;
+   // ArrayList<Eventlist> eventlists;
 
     private CategoryManager categoryManager;
 
@@ -31,7 +31,7 @@ public class StatisticsManager {
      */
     public StatisticsManager(ListManager listManager){
         this.listManager = listManager;
-        this.eventlists= this.listManager.getEventlists();
+        //this.eventlists= this.listManager.getEventlists();
         this.categoryManager= new CategoryManager(listManager);
     }
 
@@ -41,7 +41,9 @@ public class StatisticsManager {
      * @return the number of the created lists
      */
     public int countLists(){
-        return this.eventlists.size();
+        ArrayList<Eventlist> temp = this.listManager.getEventlists();
+
+        return temp.size();
     }
 
 
@@ -51,11 +53,11 @@ public class StatisticsManager {
      */
     public int countCompletedEvents(){
         ArrayList<Eventlist> temp = this.listManager.getEventlists();
+
         int count=0;
-        for (int i = 0; i < this.eventlists.size(); i++) {
-            // für nicht gefüllte Listen definieren
-            for (int j = 0; j < this.eventlists.get(i).getEvents().size(); j++) {
-                if (this.eventlists.get(i).getEvents().get(j).getIsCompleted()== true){
+        for (int i = 0; i < temp.size(); i++) {
+            for (int j = 0; j < temp.get(i).getEvents().size(); j++) {
+                if (temp.get(i).getEvents().get(j).getIsCompleted()== true){
                     count++;
                 }
             }
@@ -68,11 +70,13 @@ public class StatisticsManager {
      * @return the number of events
      */
     public int countEventsPerList(String eventlistName) {
+        ArrayList<Eventlist> temp = this.listManager.getEventlists();
+
         int count = 0;
 
-        for (int i = 0; i < this.eventlists.size(); i++) {
-            if (this.eventlists.get(i).getName().equals(eventlistName)) {
-                count= this.eventlists.get(i).getEvents().size();
+        for (int i = 0; i < temp.size(); i++) {
+            if (temp.get(i).getName().equals(eventlistName)) {
+                count= temp.get(i).getEvents().size();
             }
         } return count;
     }
@@ -84,12 +88,14 @@ public class StatisticsManager {
      * @return the number of completed events
      */
     public int countCompletedEventsPerList(String eventlistName){
+        ArrayList<Eventlist> temp = this.listManager.getEventlists();
+
         int count=0;
 
-        for (int i = 0; i < this.eventlists.size(); i++) {
-            if( this.eventlists.get(i).getName().equals(eventlistName)){
-                for (int j = 0; j < this.eventlists.get(i).getEvents().size(); j++) {
-                    if (this.eventlists.get(i).getEvents().get(j).getIsCompleted()== true){
+        for (int i = 0; i < temp.size(); i++) {
+            if( temp.get(i).getName().equals(eventlistName)){
+                for (int j = 0; j < temp.get(i).getEvents().size(); j++) {
+                    if (temp.get(i).getEvents().get(j).getIsCompleted()== true){
                         count++;
                     }
                 }
@@ -103,9 +109,11 @@ public class StatisticsManager {
      * @return String with the calculates percentage
      */
     public String calculatePercentageCompletedEventsPerList(String eventlistName){
+        ArrayList<Eventlist> temp = this.listManager.getEventlists();
+
         double percentage=-1;
-        for (int i = 0; i < this.eventlists.size(); i++) {
-            if( this.eventlists.get(i).getName().equals(eventlistName)){
+        for (int i = 0; i < temp.size(); i++) {
+            if( temp.get(i).getName().equals(eventlistName)){
                 double numerator= countCompletedEventsPerList(eventlistName);
                 double denominator= countEventsPerList(eventlistName);
 
@@ -115,21 +123,24 @@ public class StatisticsManager {
     }
 
     public String daysLeft (String eventlistName) {
-        log.debug("daysLeft method started");
+
+        log.debug("daysLeft method started");      // todo @merve is this correct? I (@sara) copied it from the old method
+        ArrayList<Eventlist> temp = this.listManager.getEventlists();
+
         int days=0;
         long difference;
 
         GregorianCalendar today = new GregorianCalendar();
         GregorianCalendar future = new GregorianCalendar();
 
-        for (int i = 0; i < this.eventlists.size(); i++) {
-            if (this.eventlists.get(i).getName().equals(eventlistName)) {
-                future = this.eventlists.get(i).getExpiryDateGregorian();
+        for (int i = 0; i < temp.size(); i++) {
+            if (temp.get(i).getName().equals(eventlistName)) {
+                future = temp.get(i).getExpiryDateGregorian();
                 difference = future.getTimeInMillis() - today.getTimeInMillis();
                 days = (int) (difference / (1000 * 60 * 60 * 24));
             }
 
-            log.debug("daysLeft method ended");
+
         }return String.valueOf(days) + " days left for " + "'" + eventlistName + "'";
     }
 
