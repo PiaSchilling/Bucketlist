@@ -26,7 +26,7 @@ public class FileSource implements Saver{
     @Override
     public void writeToSource(Saveable saveable) {
         String filename = saveable.getName();
-        String filepath = "src/main/resources/data/" + filename;
+        String filepath = "Data/" + filename;
         File outputfile = new File(filepath);
         saveable.toJson(outputfile);
     }
@@ -39,7 +39,7 @@ public class FileSource implements Saver{
     public void updateSource() {
         log.debug("updateSource method started");
         try {
-            FileUtils.cleanDirectory(new File("src/main/resources/data"));
+            FileUtils.cleanDirectory(new File("Data"));
         } catch (IOException ioException) {
             log.error(ioException.getMessage());
         }
@@ -55,7 +55,7 @@ public class FileSource implements Saver{
     public void readFromSource(ArrayList<Saveable> saveables, Saveable saveable) {
         log.debug("readFromSource method started");
         //List of all Files in the Directory
-        File[] listOfFiles = listDirectory("src/main/resources/data");
+        File[] listOfFiles = listDirectory("Data");
 
         for (int i = 0; i < listOfFiles.length; i++) {
             saveables.add(saveable.fromJson(new File(listOfFiles[i].toString())));

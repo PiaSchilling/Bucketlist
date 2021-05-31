@@ -16,54 +16,41 @@ public class Main {
         ListManager listManager = new ListManager();
         //gets the listManager handed over, so it can use it too
         CategoryManager categoryManager = new CategoryManager(listManager);
+/*
+        listManager.createEventlist("List1");
+        listManager.createEventlist("List2");
+        listManager.createEventlist("List3",4,6,2021);
+
+        listManager.addEventToList("event1",Category.SKILLS,"List1");
+        listManager.addEventToList("event2",Category.SKILLS,"List1");
+        listManager.addEventToList("event3",Category.SKILLS,"List1");
+
+        listManager.addEventToList("event1",Category.SKILLS,"List2");
+        listManager.addEventToList("event2",Category.SKILLS,"List2");
+        listManager.addEventToList("event3",Category.SKILLS,"List2");
+
+        listManager.addEventToList("event1",Category.SKILLS,"List3");
+        listManager.addEventToList("event2",Category.SKILLS,"List3");
+        listManager.addEventToList("event3",Category.SKILLS,"List3");
 
 
-        listManager.createEventlist("TestList");
-        //listManager.createEventlist("Lebensziele", 3,3,2033);
-
-        listManager.addEventToList("Zebra Reiten", Category.RELATIONSHIP,"TestList");
-        listManager.addEventToList("Romantisches Dinner mit Martin", Category.CULINARY,"TestList");
-        listManager.addEventToList("Über wolken gehen", Category.CULTURE,"TestList");
-
-        listManager.addEventToList("Mit Papagei sprechen", Category.LIFEGOALS,"TestList");
-        listManager.addEventToList("Eigene Hüpfburg besitzen", Category.LIFEGOALS,"TestList");
-        listManager.addEventToList("John Lennon treffen", Category.LIFEGOALS,"TestList");
-
-        //listManager.completeEvent("Mit Papagei sprechen", "Lebensziele", "data/Lebensziele", "It was awesome", 12,11,2033);
-
+        listManager.completeEvent("event1","List1","URL","Beschreibung",3,6,2021);
+        listManager.completeEvent("event1","List2","URL","Beschreibung",12,12,2021);
+        listManager.completeEvent("event1","List3","URL","Beschreibung",12,12,2021);*/
 
         //listManager.save();
-        //listManager.load();
+        listManager.load();
 
-        System.out.println(listManager.getEventlists().toString());
-        System.out.println(categoryManager.getFilledCatgeoryLists().toString());
-
-
-        // Main methods to check the StatisticsManager class
-        listManager.createEventlist("Liste 3", 05,05,2055);
-
-
-        listManager.addEventToList("Spagetti Essen", Category.CULINARY, "Liste 3");
-        listManager.addEventToList("Skydive", Category.LIFEGOALS, "Liste 3");
-        listManager.addEventToList("Hund besitzen", Category.FAMILY, "Liste 3");
-        listManager.addEventToList("Haus bauen", Category.FAMILY, "Liste 3");
-        listManager.addEventToList("Niagarafälle sehen", Category.TRAVEL, "Liste 3");
-
-
-        listManager.completeEvent("Mit Papagei sprechen", "Lebensziele", "data/Lebensziele", "It was awesome", 12,11,2033);
-        listManager.completeEvent("Skydive", "Liste 3", "data/Liste 3", "Es war sehr schön", 13, 3, 2021);
-        listManager.completeEvent("Haus bauen", "Liste 3", "data/Liste 3", "Es war auch sehr schön", 13, 3, 2021);
-
-        listManager.save();
-
-        //gets the listManager handed over, so it can use it too
         StatisticsManager statisticsManager = new StatisticsManager(listManager);
-        System.out.println("CountLists: " + statisticsManager.countLists());
-        System.out.println("Count Completed Events: " + statisticsManager.countCompletedEvents());
-        System.out.println("Count Events in List: " + statisticsManager.countEventsPerList("Liste 3"));
-        System.out.println("Count Completed Events in choosen List: " + statisticsManager.countCompletedEventsPerList("Liste 3"));
-        System.out.println("Percentage of completed events in choosen List " + statisticsManager.calculatePercentageCompletedEventsPerList("Liste 3"));
-        System.out.println(statisticsManager.daysLeft("Liste 3"));
+
+        System.out.println( "days left: " + statisticsManager.daysLeft("List3"));
+        System.out.println("coutn lists: " + statisticsManager.countLists());
+        System.out.println("completed events: " + statisticsManager.countCompletedEvents());
+        System.out.println(statisticsManager.countCompletedEventsPerList("List2"));
+        System.out.println(statisticsManager.calculatePercentageCompletedEventsPerList("List1"));
+
+
+
 
     }
 }

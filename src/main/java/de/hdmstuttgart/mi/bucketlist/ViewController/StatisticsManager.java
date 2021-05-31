@@ -117,6 +117,7 @@ public class StatisticsManager {
     public String daysLeft (String eventlistName) {
         log.debug("daysLeft method started");
         int days=0;
+        long difference;
 
         GregorianCalendar today = new GregorianCalendar();
         GregorianCalendar future = new GregorianCalendar();
@@ -124,11 +125,9 @@ public class StatisticsManager {
         for (int i = 0; i < this.eventlists.size(); i++) {
             if (this.eventlists.get(i).getName().equals(eventlistName)) {
                 future = this.eventlists.get(i).getExpiryDateGregorian();
+                difference = future.getTimeInMillis() - today.getTimeInMillis();
+                days = (int) (difference / (1000 * 60 * 60 * 24));
             }
-
-            long difference = future.getTimeInMillis() - today.getTimeInMillis();
-
-            days = (int) (difference / (1000 * 60 * 60 * 24));
 
             log.debug("daysLeft method ended");
         }return String.valueOf(days) + " days left for " + "'" + eventlistName + "'";

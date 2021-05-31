@@ -2,6 +2,7 @@ package de.hdmstuttgart.mi.bucketlist.Model;
 
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import de.hdmstuttgart.mi.bucketlist.Persistance.Saveable;
@@ -13,9 +14,8 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-//todo no need to implement the saveable interface ?
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY )
-public class Event implements Saveable {
+public class Event {
 
     // initialize Logger
     private static final Logger log = LogManager.getLogger(Event.class);
@@ -73,51 +73,6 @@ public class Event implements Saveable {
         return "Eventname:" + this.eventName + ", " + this.eventCategory + ", abgeschlossen:" + this.isCompleted + " Datum " + this.eventDateString;
     }
 
-
-    /**
-     * parses an event object into a json object and writes it to a file
-     */
-    @Override
-    public void toJson(File file) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        log.debug("toJson method started");
-        try {
-            objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File("test"), this);
-        }catch(FileNotFoundException fileNotFoundException){
-            log.error(fileNotFoundException.getMessage());
-        } catch (IOException ioException) {
-            log.error(ioException.getMessage());
-        } finally {
-            log.debug("toJson method ended");
-        }
-    }
-
-
-    @Override
-    public Saveable fromJson(File file){
-        log.debug("fromJson method started");
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        try {
-            Event temp = objectMapper.readValue(new File("test"),this.getClass());
-
-            this.eventName = temp.eventName;
-            this.eventDescription = temp.eventDescription;
-            this.eventCategory = temp.eventCategory;
-            this.isCompleted = temp.isCompleted;
-            this.eventImageUrl = temp.eventImageUrl;
-
-            return temp;
-
-        } catch (IOException ioException) {
-            log.error(ioException.getMessage());
-        } finally {
-            log.debug("fromJson method ended");
-        }
-        return null;
-    }
-
-    @Override
     public String getName(){
         return this.eventName;
     }

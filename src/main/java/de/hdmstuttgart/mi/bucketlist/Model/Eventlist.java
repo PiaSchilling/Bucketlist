@@ -1,5 +1,8 @@
 package de.hdmstuttgart.mi.bucketlist.Model;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 
 import de.hdmstuttgart.mi.bucketlist.Persistance.Saveable;
@@ -16,6 +19,7 @@ import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY )
 public class Eventlist implements Saveable {
 
     // initialize Logger
@@ -23,9 +27,11 @@ public class Eventlist implements Saveable {
 
     private ArrayList<Event> events;
     private String eventlistName;
+    private String expiryDateString;
+
+    @JsonIgnore
     private GregorianCalendar expiryDateGregorian;
 
-    private String expiryDateString;
 
 
     // Constructor without date
@@ -66,11 +72,26 @@ public class Eventlist implements Saveable {
      */
     private GregorianCalendar configureExpiryDate(int expiryDay, int expiryMonth, int expiryYear) {
         log.debug("configureExpiryDate method started");
-        expiryDateString= expiryDay + "." + expiryMonth + "." + expiryYear;
+
+        //StringDate needs to have 2 chars for day and month
+        StringBuffer stringBuffer = new StringBuffer();
+        if(expiryDay < 10){
+            stringBuffer.append("0" + expiryDay + ".");
+        }else{
+            stringBuffer.append(expiryDay + ".");
+        }
+
+        if(expiryMonth < 10){
+            stringBuffer.append("0" + expiryMonth + ".");
+        }else{
+            stringBuffer.append(expiryMonth + ".");
+        }
+        stringBuffer.append(expiryYear);
+        expiryDateString= stringBuffer.toString();
+
         GregorianCalendar gregorianCalendar = new GregorianCalendar(expiryYear,expiryMonth-1,expiryDay+1);
         log.debug("configureExpiryDate method ended");
         return gregorianCalendar;
-
     }
 
     /**
@@ -114,13 +135,22 @@ public class Eventlist implements Saveable {
     @Override
     public Saveable fromJson(File file) {
         log.debug("fromJson method started");
+
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); //todo understand why
+
         try {
             Eventlist temp = objectMapper.readerFor(Eventlist.class).readValue(file);
 
             this.eventlistName = temp.eventlistName;
             this.events = temp.getEvents();
+
+            if(temp.expiryDateString != null){
+                this.expiryDateString = temp.expiryDateString;
+
+                temp.expiryDateGregorian = configureExpiryDate(Integer.parseInt(temp.expiryDateString.substring(0,2)),Integer.parseInt(temp.expiryDateString.substring(3,5)),Integer.parseInt(temp.expiryDateString.substring(6,10)));
+                this.expiryDateGregorian = configureExpiryDate(Integer.parseInt(temp.expiryDateString.substring(0,2)),Integer.parseInt(temp.expiryDateString.substring(3,5)),Integer.parseInt(temp.expiryDateString.substring(6,10)));
+            }
 
             return temp;
 

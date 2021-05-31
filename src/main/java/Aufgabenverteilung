@@ -6,10 +6,12 @@ AKTUELLE DEADLINE:
 //todo threads
 //todo gui
 //todo doku
+//todo check complete event method (man sollte fehler werfen,wenn event completed werden soll, das es nicht gibt)
 
 Pia:
 unit test: persistance //todo @pia
 Data ordner verschieben //todo @pia
+//todo @pia clean fromJson method up
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
