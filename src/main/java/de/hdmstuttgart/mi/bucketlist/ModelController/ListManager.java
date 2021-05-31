@@ -17,7 +17,7 @@ import org.apache.logging.log4j.Logger;
 public class ListManager {
 
     // initialize Logger
-private static final Logger log = LogManager.getLogger(ListManager.class);
+    private static final Logger log = LogManager.getLogger(ListManager.class);
 
     private ArrayList<Eventlist> eventlists = new ArrayList<>();
     private final EventlistRepository eventlistRepository = new EventlistRepository(Sourcetype.FILESOURCE);
@@ -43,10 +43,10 @@ private static final Logger log = LogManager.getLogger(ListManager.class);
 
     /**
      * creates new Eventlist with expiry date
-     * @param eventlistName     -- the name of the Eventlist
-     * @param expiryDay     -- day of the expiry date
-     * @param expiryMonth   -- month of the expiry date
-     * @param expiryYear    -- year of the expiry date
+     * @param eventlistName -- the name of the Eventlist
+     * @param expiryDay -- day of the expiry date
+     * @param expiryMonth -- month of the expiry date
+     * @param expiryYear -- year of the expiry date
      */
     public void createEventlist(String eventlistName, int expiryDay, int expiryMonth, int expiryYear){
         log.debug("createEventlist method started");

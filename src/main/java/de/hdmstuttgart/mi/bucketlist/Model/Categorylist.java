@@ -26,14 +26,16 @@ public class Categorylist {
      */
     public void fill(ArrayList<Event> events){
         log.debug("fill method started");
+        //check if there are any events which dont match the category of the list
         if(events.stream().anyMatch(event -> event.getEventCategory() != this.listCategory)){
             //normaly this should be never reached
+            //todo might be a system out (display for the user)
             log.error("List Contains Events with the wrong category");
         }else{
             this.events = events;
             log.debug("Eventlist of " + events.size() + " items added sucessfully to the categorylist " + this.listCategory);
         }
-
+        log.debug("fill method ended");
     }
 
     /**

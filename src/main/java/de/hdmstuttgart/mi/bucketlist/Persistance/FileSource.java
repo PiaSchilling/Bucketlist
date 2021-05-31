@@ -25,7 +25,6 @@ public class FileSource implements Saver{
      */
     @Override
     public void writeToSource(Saveable saveable) {
-        log.debug("writeToSource method started");
         String filename = saveable.getName();
         String filepath = "src/main/resources/data/" + filename;
         File outputfile = new File(filepath);
@@ -41,8 +40,8 @@ public class FileSource implements Saver{
         log.debug("updateSource method started");
         try {
             FileUtils.cleanDirectory(new File("src/main/resources/data"));
-        } catch (IOException e) {
-            log.error("IO Exception");
+        } catch (IOException ioException) {
+            log.error(ioException.getMessage());
         }
     }
 

@@ -1,7 +1,7 @@
 package de.hdmstuttgart.mi.bucketlist.ModelController;
 
 /**
- * gloabl controller to control the listManager
+ * at this point there is no use for the class, maybe later
  */
 public class ListController {
 

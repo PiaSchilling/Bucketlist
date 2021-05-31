@@ -56,15 +56,15 @@ public class Event implements Saveable {
         this.eventImageUrl = eventImageUrl;
         this.eventDescription = eventDescription;
         this.isCompleted = true;
-        this.eventDateString= closingDate(eventDay, eventMonth,eventYear);
+        this.eventDateString= closingDate(eventDay,eventMonth,eventYear);
     }
 
     /**
      * configures a String with a formatted output for the selected date
-     * @param eventDay
-     * @param eventMonth
-     * @param eventYear
-     * @return
+     * @param eventDay -- the day of the event as an int
+     * @param eventMonth -- the month of the event as an int
+     * @param eventYear -- the year of the event as an int
+     * @return -- the whole date as a String
      */
     public String closingDate (int eventDay, int eventMonth, int eventYear){
         return eventDay + "." + eventMonth + "." + eventYear;
@@ -82,14 +82,15 @@ public class Event implements Saveable {
     @Override
     public void toJson(File file) {
         ObjectMapper objectMapper = new ObjectMapper();
-
         log.debug("toJson method started");
         try {
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File("test"), this);
-        }catch(FileNotFoundException e){
-            log.error("File not found");
-        } catch (IOException e) {
-            log.error("IO Exception");
+        }catch(FileNotFoundException fileNotFoundException){
+            log.error(fileNotFoundException.getMessage());
+        } catch (IOException ioException) {
+            log.error(ioException.getMessage());
+        } finally {
+            log.debug("toJson method ended");
         }
     }
 
@@ -110,8 +111,10 @@ public class Event implements Saveable {
 
             return temp;
 
-        } catch (IOException e) {
-            log.error("IO Exception");
+        } catch (IOException ioException) {
+            log.error(ioException.getMessage());
+        } finally {
+            log.debug("fromJson method ended");
         }
         return null;
     }
@@ -125,16 +128,8 @@ public class Event implements Saveable {
         return this.eventCategory;
     }
 
-
     public boolean getIsCompleted() {
         return  this.isCompleted;
     }
 
-
-    public static void main(String[] args) {
-        Event e = new Event("Essen",Category.SKILLS);
-        //e.toJson();
-       // e.fromJson();
-        System.out.println(e.eventName);
-    }
 }

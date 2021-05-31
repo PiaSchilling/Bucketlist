@@ -24,7 +24,6 @@ public class EventlistRepository {
      * @param sourcetype the type of source you want the saver to be
      */
     public EventlistRepository(Sourcetype sourcetype){
-        log.debug("EventlistRepository method started");
         SourceFactory sourceFactory = new SourceFactory();
         this.saver = sourceFactory.getSource(sourcetype);
     }
@@ -35,11 +34,14 @@ public class EventlistRepository {
      */
     public void writeSaveable(ArrayList<Eventlist> eventlists){
         log.debug("writeSaveable method started");
+
         //prepares the source (old data is deleted)
         this.saver.updateSource();
+
         for (int i = 0; i < eventlists.size(); i++) {
             this.saver.writeToSource(eventlists.get(i));
         }
+        log.debug("writeSaveable method ended");
     }
 
     /**
@@ -63,9 +65,10 @@ public class EventlistRepository {
             try{
                 eventlists.add((Eventlist) saveables.get(i));
             }catch (ClassCastException classCastException){
-                log.error("Cast Exception");
+                log.error(classCastException.getMessage());
             }
         }
+        log.debug("loadSaveable method ended");
         //return the list of eventlists
         return eventlists;
     }

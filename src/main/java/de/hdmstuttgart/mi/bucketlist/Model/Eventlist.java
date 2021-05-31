@@ -38,7 +38,8 @@ public class Eventlist implements Saveable {
     public Eventlist(String eventlistName, int expiryDay, int expiryMonth, int expiryYear){
         this.eventlistName = eventlistName;
         this.events = new ArrayList<>();
-        this.expiryDateGregorian = configureExpiryDate(expiryDay, expiryMonth ,expiryYear);    }
+        this.expiryDateGregorian = configureExpiryDate(expiryDay, expiryMonth ,expiryYear);
+    }
 
 
     /**
@@ -58,12 +59,11 @@ public class Eventlist implements Saveable {
 
     /**
      *
-     * @param expiryDay
-     * @param expiryMonth
-     * @param expiryYear
+     * @param expiryDay -- the day of the date as an int
+     * @param expiryMonth -- the month of the date as an int
+     * @param expiryYear -- the year of the date as an int
      * @return GregorianCalender Date with the selected Month, Year and Day from the User
      */
-
     private GregorianCalendar configureExpiryDate(int expiryDay, int expiryMonth, int expiryYear) {
         log.debug("configureDate method started");      // todo @merve is this correct? I (@sara) copied it from the old method
         expiryDateString= expiryDay + "." + expiryMonth + "." + expiryYear;
@@ -71,13 +71,12 @@ public class Eventlist implements Saveable {
         return gregorianCalendar;
     }
 
-
     /**
      *
      * @return the expiry date as a String
      */
     private String expiryDateView(){
-        // return copy?
+        // todo return copy?
         return expiryDateString;
     }
 
@@ -96,10 +95,12 @@ public class Eventlist implements Saveable {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, this);
-        }catch(FileNotFoundException e){
-            log.error("File not found");
-        } catch (IOException e) {
-            log.error("IO Exception in Method toJson");
+        }catch(FileNotFoundException fileNotFoundException){
+            log.error(fileNotFoundException.getMessage() + ", File not found");
+        } catch (IOException ioException) {
+            log.error(ioException.getMessage());
+        } finally {
+            log.debug("toJson method started");
         }
     }
 
@@ -121,8 +122,12 @@ public class Eventlist implements Saveable {
 
             return temp;
 
-        } catch (IOException e) {
-            log.error("IO Exception");
+        } catch (FileNotFoundException fileNotFoundException) {
+            log.error(fileNotFoundException.getMessage() + ", File not found");
+        } catch (IOException ioException){
+            log.error(ioException.getMessage());
+        }finally {
+            log.debug("fromJson method ended");
         }
         return null;
     }
@@ -136,12 +141,13 @@ public class Eventlist implements Saveable {
    public void addEvent(String eventName, Category eventCategory){
        log.debug("addEvent method started");
        if(this.events.stream().anyMatch(event -> event.getName().equals(eventName))){
+           //todo might be a system out (display for the user)
            log.info("There is already an event with the name "  + "\"" + eventName +  "\"" + " in the list " +  "\"" + this.eventlistName +  "\"" + ". Please select another name.");
        } else {
            this.events.add(new Event(eventName,eventCategory));
            log.debug("Event " + "\"" + eventName +  "\"" + " added successfully to the list " + "\"" + this.eventlistName +  "\"");
        }
-
+       log.debug("addEvent method ended");
     }
 
     /**
@@ -172,7 +178,7 @@ public class Eventlist implements Saveable {
      * @param eventDescription -- the description entered by the user
      */
     public void completeEvent(String eventName, String eventImageUrl,String eventDescription, int eventDay, int eventMonth, int eventYear ){
-        //todo when no event found
+        //todo streams
         log.debug("completeEvent method started");
         for (int i = 0; i < this.events.size(); i++) {
             if(this.events.get(i).getName().equals(eventName)){
@@ -190,9 +196,7 @@ public class Eventlist implements Saveable {
         return this.eventlistName;
     }
 
-
     /**
-     *
      * @return the date as a GregorianCalendar Object
      */
     public GregorianCalendar getExpiryDateGregorian(){
