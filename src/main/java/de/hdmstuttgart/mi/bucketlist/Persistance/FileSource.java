@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import de.hdmstuttgart.mi.bucketlist.Exceptions.EmptyDirectoryException;
 import org.apache.commons.io.FileUtils;
 
 import org.apache.logging.log4j.LogManager;
@@ -40,6 +41,7 @@ public class FileSource implements Saver{
         log.debug("updateSource method started");
         try {
             FileUtils.cleanDirectory(new File("Data"));
+            log.debug("directory cleaned");
         } catch (IOException ioException) {
             log.error(ioException.getMessage());
         }
@@ -55,7 +57,13 @@ public class FileSource implements Saver{
     public void readFromSource(ArrayList<Saveable> saveables, Saveable saveable) {
         log.debug("readFromSource method started");
         //List of all Files in the Directory
-        File[] listOfFiles = listDirectory("Data");
+        File[] listOfFiles = new File[0];
+
+        try {
+            listOfFiles = listDirectory("Data");
+        } catch (EmptyDirectoryException e) {
+            log.error(e.getMessage());
+        }
 
         for (int i = 0; i < listOfFiles.length; i++) {
             saveables.add(saveable.fromJson(new File(listOfFiles[i].toString())));
@@ -64,14 +72,20 @@ public class FileSource implements Saver{
 
 
     /**
-     * lists all Files in the given Directory
-     * @return -- list of filenames of the Directory
+     * * lists all Files in the given directory
+     * @param path -- the path to the directory which should be listed
+     * @return -- list of filenames of the directory
+     * @throws EmptyDirectoryException when the directory is empty or not found
      */
-    public File[] listDirectory(String path){
+    public File[] listDirectory(String path) throws EmptyDirectoryException {
         File directory = new File(path);
         File[] files = directory.listFiles();
 
-        return files;
+        if(files == null || files.length == 0){
+            throw new EmptyDirectoryException("The Directory " + path + " is empty or doesn't exist");
+        }else{
+            return files;
+        }
     }
 
 

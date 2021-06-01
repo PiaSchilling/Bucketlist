@@ -49,8 +49,7 @@ public class Main {
         System.out.println(statisticsManager.countCompletedEventsPerList("List2"));
         System.out.println(statisticsManager.calculatePercentageCompletedEventsPerList("List1"));
 
-
-
+        System.out.println(categoryManager.getFilledCatgeoryLists().get(Category.SKILLS));
 
     }
 }

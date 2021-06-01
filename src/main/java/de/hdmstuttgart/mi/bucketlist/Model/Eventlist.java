@@ -2,7 +2,6 @@ package de.hdmstuttgart.mi.bucketlist.Model;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 
 import de.hdmstuttgart.mi.bucketlist.Persistance.Saveable;
@@ -11,14 +10,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+// ObjectMapper parses every attribute (despite of its marked as ignorable)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY )
 public class Eventlist implements Saveable {
 
@@ -31,8 +29,6 @@ public class Eventlist implements Saveable {
 
     @JsonIgnore
     private GregorianCalendar expiryDateGregorian;
-
-
 
     // Constructor without date
     public Eventlist(String eventlistName) {
@@ -47,20 +43,10 @@ public class Eventlist implements Saveable {
         this.expiryDateGregorian = configureExpiryDate(expiryDay, expiryMonth ,expiryYear);
     }
 
-
     /**
      * default constructor for json parsing
      */
     public Eventlist(){
-    }
-
-    /**
-     * returns a copy of the Eventlist
-     * @return -- copy of the eventlist
-     */
-    public ArrayList<Event> getEvents() {
-        ArrayList<Event> copy = new ArrayList<>(this.events);
-        return copy;
     }
 
     /**
@@ -94,19 +80,7 @@ public class Eventlist implements Saveable {
         return gregorianCalendar;
     }
 
-    /**
-     *
-     * @return the expiry date as a String
-     */
-    private String expiryDateView(){
-        // todo return copy?
-        return expiryDateString;
-    }
-
-    @Override
-    public String toString(){
-        return "Eventlistname:" + this.eventlistName + ", " + Arrays.toString(this.events.toArray());
-    }
+   // ------------------------- persitance methods ---------------------------------------------
 
     /**
      * writes the object as a json string to a file
@@ -118,6 +92,7 @@ public class Eventlist implements Saveable {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, this);
+            log.debug("Object parsed successfully");
         }catch(FileNotFoundException fileNotFoundException){
             log.error(fileNotFoundException.getMessage() + ", File not found");
         } catch (IOException ioException) {
@@ -137,21 +112,15 @@ public class Eventlist implements Saveable {
         log.debug("fromJson method started");
 
         ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false); //todo understand why
+        //ignore Event-Attributes
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         try {
             Eventlist temp = objectMapper.readerFor(Eventlist.class).readValue(file);
-
-            this.eventlistName = temp.eventlistName;
-            this.events = temp.getEvents();
-
             if(temp.expiryDateString != null){
-                this.expiryDateString = temp.expiryDateString;
-
                 temp.expiryDateGregorian = configureExpiryDate(Integer.parseInt(temp.expiryDateString.substring(0,2)),Integer.parseInt(temp.expiryDateString.substring(3,5)),Integer.parseInt(temp.expiryDateString.substring(6,10)));
-                this.expiryDateGregorian = configureExpiryDate(Integer.parseInt(temp.expiryDateString.substring(0,2)),Integer.parseInt(temp.expiryDateString.substring(3,5)),Integer.parseInt(temp.expiryDateString.substring(6,10)));
             }
-
+            log.debug("Object parsed successfully");
             return temp;
 
         } catch (FileNotFoundException fileNotFoundException) {
@@ -163,6 +132,8 @@ public class Eventlist implements Saveable {
         }
         return null;
     }
+
+    // -------------------- list manipulation methods -------------------------------------------------------------
 
     /**
      * adds an event to "this" eventlist
@@ -220,9 +191,10 @@ public class Eventlist implements Saveable {
         }
     }
 
+    //-------------------- getter & toString --------------------------------------------
+
     /**
-     * returns the name of the eventlist
-     * @return
+     * @return -- the name of this evenlist
      */
     public String getName(){
         return this.eventlistName;
@@ -234,4 +206,26 @@ public class Eventlist implements Saveable {
     public GregorianCalendar getExpiryDateGregorian(){
         return this.expiryDateGregorian;
     }
+
+    /**
+     * @return the expiry date as a String
+     */
+    private String getExpiryDateString(){
+        return expiryDateString;
+    }
+
+    /**
+     * returns a COPY of the Eventlist
+     * @return -- copy of the eventlist
+     */
+    public ArrayList<Event> getEvents() {
+        ArrayList<Event> copy = new ArrayList<>(this.events);
+        return copy;
+    }
+
+    @Override
+    public String toString(){
+        return "Eventlistname:" + this.eventlistName + ", " + Arrays.toString(this.events.toArray());
+    }
+
 }
