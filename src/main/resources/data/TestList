@@ -1,0 +1,55 @@
+{
+  "events" : [ {
+    "eventName" : "Zebra Reiten",
+    "eventCategory" : "RELATIONSHIP",
+    "eventDateString" : null,
+    "eventImageUrl" : null,
+    "eventDescription" : null,
+    "isCompleted" : false,
+    "name" : "Zebra Reiten"
+  }, {
+    "eventName" : "Romantisches Dinner mit Martin",
+    "eventCategory" : "CULINARY",
+    "eventDateString" : null,
+    "eventImageUrl" : null,
+    "eventDescription" : null,
+    "isCompleted" : false,
+    "name" : "Romantisches Dinner mit Martin"
+  }, {
+    "eventName" : "Über wolken gehen",
+    "eventCategory" : "CULTURE",
+    "eventDateString" : null,
+    "eventImageUrl" : null,
+    "eventDescription" : null,
+    "isCompleted" : false,
+    "name" : "Über wolken gehen"
+  }, {
+    "eventName" : "Mit Papagei sprechen",
+    "eventCategory" : "LIFEGOALS",
+    "eventDateString" : null,
+    "eventImageUrl" : null,
+    "eventDescription" : null,
+    "isCompleted" : false,
+    "name" : "Mit Papagei sprechen"
+  }, {
+    "eventName" : "Eigene Hüpfburg besitzen",
+    "eventCategory" : "LIFEGOALS",
+    "eventDateString" : null,
+    "eventImageUrl" : null,
+    "eventDescription" : null,
+    "isCompleted" : false,
+    "name" : "Eigene Hüpfburg besitzen"
+  }, {
+    "eventName" : "John Lennon treffen",
+    "eventCategory" : "LIFEGOALS",
+    "eventDateString" : null,
+    "eventImageUrl" : null,
+    "eventDescription" : null,
+    "isCompleted" : false,
+    "name" : "John Lennon treffen"
+  } ],
+  "eventlistName" : "TestList",
+  "expiryDateGregorian" : null,
+  "expiryDateString" : null,
+  "name" : "TestList"
+}
