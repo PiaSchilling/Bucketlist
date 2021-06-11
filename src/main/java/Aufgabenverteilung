@@ -23,9 +23,23 @@ custom exception //todo @merve
 
 Sara:
 unit test: modelController, view controller //todo @sara
-arraylist in methode reinziehen und als instanzvariable löschen //todo @sara
+ #done : arraylist in methode reinziehen und als instanzvariable löschen //todo @sara
+
+Controller und FXML und CSS rüberkopieren //todo @sara
+Pane Loader rüber kopieren //todo @sara
+Test rüber kopieren //todo @sara
+Images pushen
+DFefault Bild
+Error Bild
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 edit/delete nur von Eventlist seite. Nicht von Categorylist Seite
+
+
+
+Dokumentation:
+- getEventlist() & getEvents --> copy macht eigentlich kein Sinn, da es auf die gleiche Referenz zeigt. Ergo: Gut gemeint, aber man könnte die Daten doch manipulieren
+
+
 

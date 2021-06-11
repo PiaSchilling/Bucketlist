@@ -124,7 +124,7 @@ public class StatisticsManager {
 
     public String daysLeft (String eventlistName) {
 
-        log.debug("daysLeft method started");      // todo @merve is this correct? I (@sara) copied it from the old method
+        log.debug("daysLeft method started");
         ArrayList<Eventlist> temp = this.listManager.getEventlists();
 
         int days=0;

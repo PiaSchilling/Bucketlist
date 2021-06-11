@@ -16,7 +16,7 @@ public class Main {
         ListManager listManager = new ListManager();
         //gets the listManager handed over, so it can use it too
         CategoryManager categoryManager = new CategoryManager(listManager);
-/*
+
         listManager.createEventlist("List1");
         listManager.createEventlist("List2");
         listManager.createEventlist("List3",4,6,2021);
@@ -36,7 +36,7 @@ public class Main {
 
         listManager.completeEvent("event1","List1","URL","Beschreibung",3,6,2021);
         listManager.completeEvent("event1","List2","URL","Beschreibung",12,12,2021);
-        listManager.completeEvent("event1","List3","URL","Beschreibung",12,12,2021);*/
+        listManager.completeEvent("event1","List3","URL","Beschreibung",12,12,2021);
 
         //listManager.save();
         listManager.load();
