@@ -1,14 +1,22 @@
 package de.hdmstuttgart.mi.bucketlist;
 
+import de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController.MenuController;
 import de.hdmstuttgart.mi.bucketlist.Model.Category;
 import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
 import de.hdmstuttgart.mi.bucketlist.ViewController.CategoryManager;
 import de.hdmstuttgart.mi.bucketlist.ViewController.StatisticsManager;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import static javafx.application.Application.launch;
 
 /**
  * this is going to be the entry point for our application
  */
-public class Main {
+public class Main extends Application {
 
     public static void main(String[] args) {
 
@@ -51,5 +59,24 @@ public class Main {
 
         System.out.println(categoryManager.getFilledCatgeoryLists().get(Category.SKILLS));
 
+
+        // GUI
+        launch(args);
+
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Scenes/menu.fxml"));
+        MenuController menuController = new MenuController();
+        loader.setController(menuController);
+
+        Parent parent = loader.load();
+
+        Scene scene1 = new Scene(parent);
+        stage.setTitle("The Bucketlist");
+        stage.setScene(scene1);
+        stage.show();
     }
 }

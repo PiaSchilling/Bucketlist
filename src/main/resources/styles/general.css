@@ -1,0 +1,40 @@
+#parent{
+    -fx-background-image: url("../images/Dark_Design/Background_Gradient.png");
+    -fx-background-position: left top, center;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover, auto;
+}
+
+.menu{
+    -fx-background-color: transparent;
+
+}
+
+#logoImage{
+    -fx-effect: dropshadow(gaussian, black, 20, 0, 3, 3);
+
+}
+
+#listsButton:hover, #statisticButton:hover, #catButton:hover{
+    -fx-background-color: rgba(93, 198, 166,0.2);
+    -fx-background-radius: 10  ;
+}
+
+#listsButton:focused, #statisticButton:focused, #catButton:focused{
+    -fx-background-color: rgba(93, 198, 166,0.6);
+    -fx-background-radius: 10  ;
+}
+
+#listsButton{
+    -fx-effect: dropshadow(gaussian, black, 20, 0, 3, 3);
+
+}
+
+#catButton{
+    -fx-effect: dropshadow(gaussian, black, 20, 0, 3, 3);
+
+}
+
+#statisticButton{
+    -fx-effect: dropshadow(gaussian, black, 20, 0, 3, 3);
+}

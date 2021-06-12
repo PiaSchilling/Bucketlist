@@ -8,9 +8,13 @@ module gui {
     requires org.apache.commons.io;
 
 
-    opens de.hdmstuttgart.mi.bucketlist to javafx.fxml;
-    exports de.hdmstuttgart.mi.bucketlist;
+    opens de.hdmstuttgart.mi.bucketlist to javafx.fxml, javafx.graphics;
+    exports de.hdmstuttgart.mi.bucketlist ;
+
     opens de.hdmstuttgart.mi.bucketlist.Model to javafx.fxml, com.fasterxml.jackson.databind;
     opens de.hdmstuttgart.mi.bucketlist.Persistance to com.fasterxml.jackson.databind;
+
+    opens de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController to javafx.fxml, javafx.graphics, javafx.controls;
+    exports de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController to javafx.fxml, javafx.graphics, javafx.controls;
 
 }
