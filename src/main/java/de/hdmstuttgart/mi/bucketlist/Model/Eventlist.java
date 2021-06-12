@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 
+import de.hdmstuttgart.mi.bucketlist.Gui.Listener;
 import de.hdmstuttgart.mi.bucketlist.Persistance.Saveable;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -29,6 +30,8 @@ public class Eventlist implements Saveable {
 
     @JsonIgnore
     private GregorianCalendar expiryDateGregorian;
+    @JsonIgnore
+    private final ArrayList<Listener> listeners = new ArrayList<>();
 
     // Constructor without date
     public Eventlist(String eventlistName) {
@@ -47,6 +50,13 @@ public class Eventlist implements Saveable {
      * default constructor for json parsing
      */
     public Eventlist(){
+    }
+
+    /**
+     * @param listener -- the listener which should be added to the list
+     */
+    public void addListener(Listener listener){
+        this.listeners.add(listener);
     }
 
     /**
@@ -135,7 +145,7 @@ public class Eventlist implements Saveable {
 
     // -------------------- list manipulation methods -------------------------------------------------------------
 
-    /**
+    /**todo remove unnecessary if statements for things which can never happen
      * adds an event to "this" eventlist
      * its not possible to add two events with the same name within one list
      * @param eventName -- the name which the event should have
@@ -143,17 +153,21 @@ public class Eventlist implements Saveable {
      */
    public void addEvent(String eventName, Category eventCategory){
        log.debug("addEvent method started");
-       if(this.events.stream().anyMatch(event -> event.getName().equals(eventName))){
+       if(this.events.stream().anyMatch(event -> event.getEventName().equals(eventName))){
            //todo might be a system out (display for the user)
            log.info("There is already an event with the name "  + "\"" + eventName +  "\"" + " in the list " +  "\"" + this.eventlistName +  "\"" + ". Please select another name.");
        } else {
            this.events.add(new Event(eventName,eventCategory));
            log.debug("Event " + "\"" + eventName +  "\"" + " added successfully to the list " + "\"" + this.eventlistName +  "\"");
+
+           //notify the listeners about the change
+           for (int i = 0; i < this.listeners.size(); i++) {
+               listeners.get(i).update();
+           }
        }
-       log.debug("addEvent method ended");
     }
 
-    /**
+    /**todo remove unnecessary if statements for things which can never happen
      * deletes an event from "this" eventlist
      * takes care of the case, when no event with matching name found
      * @param eventName -- the name of the event you want to delete
@@ -161,7 +175,7 @@ public class Eventlist implements Saveable {
     public void deleteEvent(String eventName){
 
         log.debug("deleteEvent method started");
-        List<Event> temp = this.events.stream().filter(event -> event.getName().equals(eventName)).collect(Collectors.toList());
+        List<Event> temp = this.events.stream().filter(event -> event.getEventName().equals(eventName)).collect(Collectors.toList());
 
         if(temp.size() == 0){
             log.error("No event with matching name found");
@@ -171,6 +185,11 @@ public class Eventlist implements Saveable {
         }else{
             this.events.removeAll(temp);
             log.debug("Event " + "\"" + eventName +  "\"" + " deleted successfully from the list " + "\"" + this.eventlistName +  "\"");
+
+            //notify the listeners about the change
+            for (int i = 0; i < this.listeners.size(); i++) {
+                listeners.get(i).update();
+            }
         }
     }
 
@@ -184,43 +203,54 @@ public class Eventlist implements Saveable {
         //todo streams
         log.debug("completeEvent method started");
         for (int i = 0; i < this.events.size(); i++) {
-            if(this.events.get(i).getName().equals(eventName)){
+            if(this.events.get(i).getEventName().equals(eventName)){
                 this.events.get(i).completeEvent(eventImageUrl,eventDescription,eventDay, eventMonth, eventYear);
                 log.debug("Event completed successfully");
+
+                //notify the listeners about the change
+                for (int j = 0; j < this.listeners.size(); j++) {
+                    listeners.get(j).update();
+                }
             }
         }
     }
 
     //-------------------- getter & toString --------------------------------------------
 
-    /**
-     * @return -- the name of this evenlist
-     */
     public String getName(){
         return this.eventlistName;
     }
 
-    /**
-     * @return the date as a GregorianCalendar Object
-     */
     public GregorianCalendar getExpiryDateGregorian(){
         return this.expiryDateGregorian;
     }
 
-    /**
-     * @return the expiry date as a String
-     */
     private String getExpiryDateString(){
         return expiryDateString;
     }
 
-    /**
+    /** todo does not really return a copy of the list (Elements in the list are not copied)
      * returns a COPY of the Eventlist
      * @return -- copy of the eventlist
      */
     public ArrayList<Event> getEvents() {
         ArrayList<Event> copy = new ArrayList<>(this.events);
         return copy;
+    }
+
+    /**
+     * returns the event with the matching name
+     * @param eventname -- the name of the event you want to get
+     * @return -- the event
+     */
+    public Event getEventByName(String eventname){
+        Event event = new Event();
+        for (int i = 0; i < this.events.size(); i++) {
+            if(this.events.get(i).getEventName().equals(eventname)){
+                event = this.events.get(i);
+            }
+        }
+        return event;
     }
 
     @Override

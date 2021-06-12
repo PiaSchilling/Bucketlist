@@ -73,7 +73,7 @@ public class Event {
         return "Eventname:" + this.eventName + ", " + this.eventCategory + ", abgeschlossen:" + this.isCompleted + " Datum " + this.eventDateString;
     }
 
-    public String getName(){
+    public String getEventName(){
         return this.eventName;
     }
 
