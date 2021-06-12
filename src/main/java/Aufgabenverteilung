@@ -1,17 +1,21 @@
 
 
 AKTUELLE DEADLINE:
-4. Juni 2021
+???
 
 //todo threads
 //todo gui
 //todo doku
 //todo check complete event method (man sollte fehler werfen,wenn event completed werden soll, das es nicht gibt)
 
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 Pia:
-unit test: persistance //todo @pia
-Data ordner verschieben //todo @pia
+    # done unit test: persistance
+    # done Data ordner verschieben
 //todo @pia clean fromJson method up
+
+Eventlist Gui // todo @pia
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -19,22 +23,25 @@ Merve:
 unit test: model //todo @merve
 custom exception //todo @merve
 
+Categories Gui // todo @merve
+
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 Sara:
-unit test: modelController, view controller //todo @sara
- #done : arraylist in methode reinziehen und als instanzvariable löschen //todo @sara
+    # done Controller und FXML und CSS rüberkopieren
+    # done Pane Loader rüber kopieren
+    # done Test rüber kopieren
+    # done Images pushen
 
-Controller und FXML und CSS rüberkopieren //todo @sara
-Pane Loader rüber kopieren //todo @sara
-Test rüber kopieren //todo @sara
-Images pushen
-DFefault Bild
+ Statistics Gui // todo @sara
+
+
+Default Bild
 Error Bild
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-edit/delete nur von Eventlist seite. Nicht von Categorylist Seite
+edit/delete nur von Eventlist Seite. Nicht von Categorylist Seite
 
 
 
