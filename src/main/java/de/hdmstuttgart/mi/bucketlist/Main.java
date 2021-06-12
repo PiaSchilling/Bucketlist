@@ -38,8 +38,9 @@ public class Main {
         listManager.completeEvent("event1","List2","URL","Beschreibung",12,12,2021);
         listManager.completeEvent("event1","List3","URL","Beschreibung",12,12,2021);
 
-        //listManager.save();
+        listManager.save();
         listManager.load();
+
 
         StatisticsManager statisticsManager = new StatisticsManager(listManager);
 
