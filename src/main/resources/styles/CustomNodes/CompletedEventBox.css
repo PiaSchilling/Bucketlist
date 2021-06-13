@@ -1,0 +1,24 @@
+#anchorpane{
+    -fx-background-image: url("../../images/Dark_Design/BackgroundImage_Event_Completed.png");
+    -fx-background-size: cover, auto;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left,top,center;
+}
+
+#eventNameLabel{
+    -fx-text-fill:#5DC6A6 ;
+    -fx-font-size: 20;
+    -fx-font-family: Lato-Bold;
+}
+
+#categoryLabel, #completedDateLabel{
+    -fx-text-fill:#ffffff;
+    -fx-font-size: 12;
+    -fx-font-family: Lato-Bold;
+}
+
+#descriptionText{
+    -fx-text-fill:#ffffff;
+    -fx-font-size: 12;
+    -fx-font-family: Lato-Regular;
+}

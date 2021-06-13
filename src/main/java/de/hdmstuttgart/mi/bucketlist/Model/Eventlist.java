@@ -146,7 +146,7 @@ public class Eventlist implements Saveable {
 
     // -------------------- list manipulation methods -------------------------------------------------------------
 
-    /**todo remove unnecessary if statements for things which can never happen
+    /**
      * adds an event to "this" eventlist
      * its not possible to add two events with the same name within one list
      * @param eventName -- the name which the event should have
@@ -154,8 +154,8 @@ public class Eventlist implements Saveable {
      */
    public void addEvent(String eventName, Category eventCategory) throws ElementAlreadyExistsException {
        log.debug("addEvent method started");
-       if(this.events.stream().anyMatch(event -> event.getEventName().equals(eventName))){
-           //todo might be a system out (display for the user)
+       if(this.events.stream()
+               .anyMatch(event -> event.getEventName().equals(eventName))){
            log.info("There is already an event with the name "  + "\"" + eventName +  "\"" + " in the list " +  "\"" + this.eventlistName +  "\"" + ". Please select another name.");
            throw new ElementAlreadyExistsException("There is already an event with the name "  + "\"" + eventName +  "\"" + " in the list " +  "\"" + this.eventlistName +  "\"" + ". Please select another name.");
        } else {
@@ -177,7 +177,9 @@ public class Eventlist implements Saveable {
     public void deleteEvent(String eventName){
 
         log.debug("deleteEvent method started");
-        List<Event> temp = this.events.stream().filter(event -> event.getEventName().equals(eventName)).collect(Collectors.toList());
+        List<Event> temp = this.events.stream()
+                .filter(event -> event.getEventName().equals(eventName))
+                .collect(Collectors.toList());
 
         if(temp.size() == 0){
             log.error("No event with matching name found");
@@ -259,5 +261,45 @@ public class Eventlist implements Saveable {
     public String toString(){
         return "Eventlistname:" + this.eventlistName + ", " + Arrays.toString(this.events.toArray());
     }
+
+    // ------------------------ setter ----------------------------------------
+
+
+    /**
+     * updates the name of an eventlist
+     * @param eventlistNameNew -- the new name for the list
+     */
+    public void updateEventlistName(String eventlistNameNew){
+        this.eventlistName = eventlistNameNew;
+
+        //notify the listeners about the change
+        for (int j = 0; j < this.listeners.size(); j++) {
+            listeners.get(j).update();
+        }
+
+        log.info("Eventlistname updated successfully to " + eventlistNameNew);
+    }
+
+    /**
+     * updates the name of an event in this eventlist
+     * @param eventNameOld -- the current name of the event
+     * @param eventNameNew -- the new name for the event
+     */
+    public void updateEventName(String eventNameOld,String eventNameNew){
+        List<Event> temp = this.events.stream()
+                .filter(event -> event.getEventName().equals(eventNameOld))
+                .collect(Collectors.toList());
+
+        Event event = temp.get(0);
+        event.updateName(eventNameNew);
+
+        //notify the listeners about the change
+        for (int j = 0; j < this.listeners.size(); j++) {
+            listeners.get(j).update();
+        }
+
+        log.info("Eventname updated succeessfully from " + eventNameOld + " to " + eventNameNew);
+    }
+
 
 }

@@ -1,0 +1,28 @@
+#anchorpane{
+    -fx-background-image: url("../../images/Dark_Design/BackgroundImage_Event_Uncompleted.png");
+    -fx-background-size: cover, auto;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left,top,center;
+}
+
+
+#eventNameLabel{
+    -fx-text-fill:#5DC6A6 ;
+    -fx-font-size: 20;
+    -fx-font-family: Lato-Bold;
+}
+
+#categoryLabel{
+    -fx-text-fill:#ffffff;
+    -fx-font-size: 12;
+    -fx-font-family: Lato-Bold;
+}
+
+.checkBox .box{
+    -fx-background-color: #343838;
+    -fx-border-radius: 60;
+}
+
+.checkBox:selected .mark{
+    -fx-background-color: #ffffff;
+}

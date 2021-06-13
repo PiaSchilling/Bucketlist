@@ -1,11 +1,19 @@
 package de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController;
 
+import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 public class MenuController {
+
+    private final ListManager listManager;
+
+    public MenuController(ListManager listManager){
+        this.listManager = listManager;
+    }
+
 
     @FXML
     private BorderPane borderPane;
@@ -20,10 +28,11 @@ public class MenuController {
     private Button viewStatisticButton;
 
 
+
     @FXML
     void showListScene() {
-        EventlistController eventlistController = new EventlistController();
-        AnchorPane anchorPane= PaneLoader.loadAnchorPane(eventlistController, "eventlists");
+        ListsController eventlistController = new ListsController(this.listManager, this.borderPane);
+        AnchorPane anchorPane= PaneLoader.loadAnchorPane(eventlistController, "lists");
         borderPane.setCenter(anchorPane);
     }
 
@@ -32,7 +41,6 @@ public class MenuController {
         StatisticController statisticController = new StatisticController();
         AnchorPane anchorPane= PaneLoader.loadAnchorPane(statisticController, "statistics");
         borderPane.setCenter(anchorPane);
-
     }
 
     @FXML
@@ -42,6 +50,7 @@ public class MenuController {
         borderPane.setCenter(anchorPane);
 
     }
+
 
 
 }

@@ -6,18 +6,20 @@ AKTUELLE DEADLINE:
 //todo threads
 //todo gui
 //todo doku
-//todo check complete event method (man sollte fehler werfen,wenn event completed werden soll, das es nicht gibt)
+
 
 Pia:
 unit test: persistance //todo @pia
-Data ordner verschieben //todo @pia
-//todo @pia clean fromJson method up
-
+listener update methode (dass nicht immer for schleife benötigt wird)  //todo @pia
+save und load beim schließen von fenster (onCloseRequest) //todo @pia
+Redundante Methoden für popUp windows evtl in eine einzige Methode auslagern //todo @pia
+popUpWindow exit button/zurück button //todo @pia
+lists.fxml umbenennen / error.imgae umbennen
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 Merve:
 unit test: model //todo @merve
-custom exception //todo @merve
+custom exception //todo @merve ist glaub erledigt :)
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -31,6 +33,9 @@ Test rüber kopieren //todo @sara
 Images pushen
 DFefault Bild
 Error Bild
+
+unnötige Methoden löschen !!! todo @Gruppensession zusammen machen
+hello.fxml löschen ?
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

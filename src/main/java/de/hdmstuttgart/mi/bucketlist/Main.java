@@ -18,8 +18,10 @@ import static javafx.application.Application.launch;
  */
 public class Main extends Application {
 
-    public static void main(String[] args) {
+    private final ListManager listManager = new ListManager();
 
+    public static void main(String[] args) {
+/*
         //the only listManager that should exist
         ListManager listManager = new ListManager();
         //gets the listManager handed over, so it can use it too
@@ -58,7 +60,7 @@ public class Main extends Application {
         System.out.println(statisticsManager.countCompletedEventsPerList("List2"));
         System.out.println(statisticsManager.calculatePercentageCompletedEventsPerList("List1"));
 
-        System.out.println(categoryManager.getFilledCatgeoryLists().get(Category.SKILLS));
+        System.out.println(categoryManager.getFilledCatgeoryLists().get(Category.SKILLS));*/
 
 
         // GUI
@@ -69,8 +71,12 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
+        this.listManager.createEventlist("Test",12,12,2019);
+        this.listManager.createEventlist("Test1",12,12,2021);
+        this.listManager.createEventlist("Test2");
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Scenes/menu.fxml"));
-        MenuController menuController = new MenuController();
+        MenuController menuController = new MenuController(this.listManager);
         loader.setController(menuController);
 
         Parent parent = loader.load();
