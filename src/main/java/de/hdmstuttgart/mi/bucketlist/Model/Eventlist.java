@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 
+import de.hdmstuttgart.mi.bucketlist.Exceptions.ElementAlreadyExistsException;
 import de.hdmstuttgart.mi.bucketlist.Gui.Listener;
 import de.hdmstuttgart.mi.bucketlist.Persistance.Saveable;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -151,11 +152,12 @@ public class Eventlist implements Saveable {
      * @param eventName -- the name which the event should have
      * @param eventCategory -- the category the event should have
      */
-   public void addEvent(String eventName, Category eventCategory){
+   public void addEvent(String eventName, Category eventCategory) throws ElementAlreadyExistsException {
        log.debug("addEvent method started");
        if(this.events.stream().anyMatch(event -> event.getEventName().equals(eventName))){
            //todo might be a system out (display for the user)
            log.info("There is already an event with the name "  + "\"" + eventName +  "\"" + " in the list " +  "\"" + this.eventlistName +  "\"" + ". Please select another name.");
+           throw new ElementAlreadyExistsException("There is already an event with the name "  + "\"" + eventName +  "\"" + " in the list " +  "\"" + this.eventlistName +  "\"" + ". Please select another name.");
        } else {
            this.events.add(new Event(eventName,eventCategory));
            log.debug("Event " + "\"" + eventName +  "\"" + " added successfully to the list " + "\"" + this.eventlistName +  "\"");
@@ -225,7 +227,7 @@ public class Eventlist implements Saveable {
         return this.expiryDateGregorian;
     }
 
-    private String getExpiryDateString(){
+    public String getExpiryDateString(){
         return expiryDateString;
     }
 

@@ -144,6 +144,41 @@ public class StatisticsManager {
         }return String.valueOf(days) + " days left for " + "'" + eventlistName + "'";
     }
 
+    public int daysLeftAsInt (String eventlistName) {
+        int days=0;
+        long difference;
+
+        GregorianCalendar today = new GregorianCalendar();
+        GregorianCalendar future = new GregorianCalendar();
+
+        for (int i = 0; i < this.listManager.getEventlists().size(); i++) {
+            if (this.listManager.getEventlists().get(i).getName().equals(eventlistName)) {
+                future = this.listManager.getEventlists().get(i).getExpiryDateGregorian();
+                difference = future.getTimeInMillis() - today.getTimeInMillis();
+                days = (int) (difference / (1000 * 60 * 60 * 24));
+            }
+        }return days;
+    }
+
+    /**
+     * count days left form a handed over eventlist
+     * @param eventlist -- the list the day should be counted of
+     * @return -- the number of days left until expiry
+     */
+    public static int daysLeft (Eventlist eventlist) {
+        int days=0;
+        long difference;
+
+        GregorianCalendar today = new GregorianCalendar();
+        GregorianCalendar future = new GregorianCalendar();
+
+        future = eventlist.getExpiryDateGregorian();
+        difference = future.getTimeInMillis() - today.getTimeInMillis();
+        days = (int) (difference / (1000 * 60 * 60 * 24));
+
+        return days;
+    }
+
 
 
 }

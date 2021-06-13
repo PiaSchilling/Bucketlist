@@ -1,6 +1,7 @@
 package de.hdmstuttgart.mi.bucketlist.ModelController;
 
 
+import de.hdmstuttgart.mi.bucketlist.Exceptions.ElementAlreadyExistsException;
 import de.hdmstuttgart.mi.bucketlist.Gui.Listener;
 import de.hdmstuttgart.mi.bucketlist.Model.*;
 import de.hdmstuttgart.mi.bucketlist.Persistance.EventlistRepository;
@@ -43,10 +44,11 @@ public class ListManager {
      * creates new Eventlist
      * @param eventlistName -- the name of the eventlist
      */
-    public void createEventlist(String eventlistName){
+    public void createEventlist(String eventlistName) throws ElementAlreadyExistsException {
         log.debug("createEventlist method started");
         if(this.eventlists.stream().anyMatch(eventlist -> eventlist.getName().equals(eventlistName))){
             log.info("There is already an eventlist with the name " + "\"" + eventlistName + "\"" + " please choose another one");
+            throw new ElementAlreadyExistsException("There is already an eventlist with the name " + "\"" + eventlistName + "\"" + " please choose another one");
         }else{
             this.eventlists.add(new Eventlist(eventlistName));
             log.info( "Eventlist " + "\"" + eventlistName + "\"" + " added successfully");
@@ -111,7 +113,7 @@ public class ListManager {
      * @param eventlistName -- the name of the eventlist where the event should be added
      */
 
-   public void addEventToList(String eventName, Category eventCategory, String eventlistName){
+   public void addEventToList(String eventName, Category eventCategory, String eventlistName) throws ElementAlreadyExistsException {
 
        log.debug("addEventToList method started");
         for (int i = 0; i < this.eventlists.size(); i++) {

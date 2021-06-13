@@ -1,5 +1,6 @@
 package de.hdmstuttgart.mi.bucketlist.Persistance;
 
+import de.hdmstuttgart.mi.bucketlist.Exceptions.ElementAlreadyExistsException;
 import de.hdmstuttgart.mi.bucketlist.Exceptions.EmptyDirectoryException;
 import de.hdmstuttgart.mi.bucketlist.Model.Category;
 import de.hdmstuttgart.mi.bucketlist.Model.Eventlist;
@@ -22,9 +23,14 @@ class FileSourceTest {
     @BeforeAll
     public static void prepareDummyDirectory(){
         ListManager listManager = new ListManager();
-        listManager.createEventlist("Testlist1");
-        listManager.createEventlist("Testlist2");
-        listManager.addEventToList("TestEvent", Category.SKILLS,"Testlist");
+
+        try{
+            listManager.createEventlist("Testlist1");
+            listManager.createEventlist("Testlist2");
+            listManager.addEventToList("TestEvent", Category.SKILLS,"Testlist");
+        }catch (ElementAlreadyExistsException e){
+            e.printStackTrace();
+        }
         listManager.save();
     }
 

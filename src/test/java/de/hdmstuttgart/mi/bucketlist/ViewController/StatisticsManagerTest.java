@@ -1,5 +1,6 @@
 package de.hdmstuttgart.mi.bucketlist.ViewController;
 
+import de.hdmstuttgart.mi.bucketlist.Exceptions.ElementAlreadyExistsException;
 import de.hdmstuttgart.mi.bucketlist.Model.Category;
 import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,23 +24,27 @@ class StatisticsManagerTest {
         ListManager listManager = new ListManager();
         statisticsManagerTest= new StatisticsManager(listManager);
 
-        listManager.createEventlist("TestList1");
-        listManager.createEventlist("TestList2", 16, 6, 2021);
-        listManager.createEventlist("TestList3",5, 5,2055);
+        try{
+            listManager.createEventlist("TestList1");
+            listManager.createEventlist("TestList2", 16, 6, 2021);
+            listManager.createEventlist("TestList3",5, 5,2055);
 
-        listManager.addEventToList("TestEvent1_1", Category.FAMILY, "TestList1");
-        listManager.addEventToList("TestEvent2_1", Category.CULINARY, "TestList1");
+            listManager.addEventToList("TestEvent1_1", Category.FAMILY, "TestList1");
+            listManager.addEventToList("TestEvent2_1", Category.CULINARY, "TestList1");
 
-        listManager.addEventToList("TestEvent1_2", Category.RELATIONSHIP, "TestList2");
-        listManager.addEventToList("TestEvent2_2", Category.CULTURE, "TestList2");
+            listManager.addEventToList("TestEvent1_2", Category.RELATIONSHIP, "TestList2");
+            listManager.addEventToList("TestEvent2_2", Category.CULTURE, "TestList2");
 
-        listManager.addEventToList("TestEvent1_3", Category.TRAVEL, "TestList3");
-        listManager.addEventToList("TestEvent2_3", Category.SPORT, "TestList3");
+            listManager.addEventToList("TestEvent1_3", Category.TRAVEL, "TestList3");
+            listManager.addEventToList("TestEvent2_3", Category.SPORT, "TestList3");
 
-        listManager.completeEvent("TestEvent1_1", "TestList1", "...", "The quick brown fox", 12, 3, 2020);
-        listManager.completeEvent("TestEvent2_1", "TestList1", "...", "The quick yellow fox", 12, 3, 2020);
+            listManager.completeEvent("TestEvent1_1", "TestList1", "...", "The quick brown fox", 12, 3, 2020);
+            listManager.completeEvent("TestEvent2_1", "TestList1", "...", "The quick yellow fox", 12, 3, 2020);
 
-        listManager.completeEvent("TestEvent1_2", "TestList2", "...", "The quick ornage fox", 12, 3, 2020);
+            listManager.completeEvent("TestEvent1_2", "TestList2", "...", "The quick ornage fox", 12, 3, 2020);
+        }catch (ElementAlreadyExistsException e){
+            e.printStackTrace();
+        }
 
         //listManager.load();
     }

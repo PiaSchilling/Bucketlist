@@ -1,5 +1,6 @@
 package de.hdmstuttgart.mi.bucketlist.Model;
 
+import de.hdmstuttgart.mi.bucketlist.Exceptions.ElementAlreadyExistsException;
 import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,18 +28,23 @@ class CategorylistTest {
     @BeforeEach
     public void prepareTestContent(){
 
-        listTest1.createEventlist("TestList1");
-        listTest2.createEventlist("TestList2");
-        listTest3.createEventlist("TestList2");
+        try{
+            listTest1.createEventlist("TestList1");
+            listTest2.createEventlist("TestList2");
+            listTest3.createEventlist("TestList2");
 
-        listTest1.addEventToList("Game night with family", Category.FAMILY,"TestList1");
-        listTest1.addEventToList("Meet Grandma",Category.FAMILY,"TestList1");
+            listTest1.addEventToList("Game night with family", Category.FAMILY,"TestList1");
+            listTest1.addEventToList("Meet Grandma",Category.FAMILY,"TestList1");
 
-        listTest2.addEventToList("Eat at subway",Category.CULINARY,"TestList1");
-        listTest2.addEventToList("Eat sushi",Category.CULINARY,"TestList1");
+            listTest2.addEventToList("Eat at subway",Category.CULINARY,"TestList1");
+            listTest2.addEventToList("Eat sushi",Category.CULINARY,"TestList1");
 
-        listTest3.addEventToList("Explore Asia",Category.TRAVEL,"TestList2");
-        listTest3.addEventToList("Go to Paris",Category.TRAVEL,"TestList2");
+            listTest3.addEventToList("Explore Asia",Category.TRAVEL,"TestList2");
+            listTest3.addEventToList("Go to Paris",Category.TRAVEL,"TestList2");
+        }catch (ElementAlreadyExistsException e){
+            e.printStackTrace();
+        }
+
 
     }
 
