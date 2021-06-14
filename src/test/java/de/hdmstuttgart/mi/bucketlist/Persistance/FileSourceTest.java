@@ -52,8 +52,10 @@ class FileSourceTest {
         File directory = new File("Data");
         File[] files = directory.listFiles();
 
-        assertTrue(Arrays.stream(files).anyMatch(file -> file.getName().equals("writeToSourceTest1")));
-        assertTrue(Arrays.stream(files).anyMatch(file -> file.getName().equals("writeToSourceTest2")));
+        assertTrue(Arrays.stream(files)
+                .anyMatch(file -> file.getName().equals("writeToSourceTest1")));
+        assertTrue(Arrays.stream(files)
+                .anyMatch(file -> file.getName().equals("writeToSourceTest2")));
     }
 
     @DisplayName("After update direcotry should be empty")

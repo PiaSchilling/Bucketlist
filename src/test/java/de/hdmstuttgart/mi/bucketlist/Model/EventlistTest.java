@@ -13,12 +13,24 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class EventlistTest {
 
+    //allgemeine Info: eigentlich sollte in dieser Klasse kein ListManager auftauchen,da alles über die
+    //Klasse Eventlist getestet werden kann (ist vlt etwas verwirrend weil es viele Methoden in der Klasse ListManager
+    //und in der Klasse Eventlist gibt und diese auch noch gleich heißen, das war dumm gemacht von mir sorry)
+    //wir sollten die methoden später aus dem listManager löschen, da sie nicht gebraucht werden, dann werden aber
+    //ein paar Tests hier in der Klasse failen. Das können wir dann aber auch richten wenn es so weit ist, sollte
+    //kein großer umstand sein
+
     private ArrayList<Event> events;
     private String eventlistName;
 
-    Eventlist addTest = new Eventlist();
-    Eventlist addTest2 = new Eventlist();
+    //du hast ausversehen den leeren konstruktor genommen, der nur wegen dem JSON-Parsing zur verfügung steht
+    //Eventlsiten sollten mit dem Konstruktor erstellt werden, der einen Namen (String) oder sogar noch ein Datum (ints) als Parameter verlangt
+    Eventlist addTest = new Eventlist("Learn Spanish");
+    Eventlist addTest2 = new Eventlist("Eat Burger");
+    //Eventlist addTest = new Eventlist();
+    //Eventlist addTest2 = new Eventlist();
 
+    //müssen wir später wahrscheinlich rausmachen
     ListManager listTest1 = new ListManager();
     ListManager listTest2 = new ListManager();
     ListManager listTest3 = new ListManager();
@@ -64,7 +76,8 @@ class EventlistTest {
 
     @Test
     void addEvent() {
-        this.events = new ArrayList<>();
+        //warum erstellst du hier eine ArrayListe, die du dann nie verwendest ?
+        //this.events = new ArrayList<>();
 
         try {
         addTest.addEvent("Learn Spanish",Category.EDUCATION);
@@ -75,12 +88,16 @@ class EventlistTest {
             e.printStackTrace();
         }
 
-        assertEquals(addTest.toString(),addTest2.toString());
+        //hier musst du dann noch get.Events anhängen, da man nicht zwei Listen mit dem gleichen Namen
+        //erstellen kann, kann man nur testen ob der Inhalt der listen gleich ist, nicht aber ob die Listen genau gleich sind
+        assertEquals(addTest.getEvents().toString(),addTest2.getEvents().toString());
+        //assertEquals(addTest.toString(),addTest2.toString());
     }
 
     @Test
     void deleteEvent() {
-        this.events = new ArrayList<>();
+        //wozu ?
+       // this.events = new ArrayList<>();
 
         try {
         addTest.addEvent("Learn Spanish",Category.EDUCATION);
@@ -98,6 +115,7 @@ class EventlistTest {
 
     @Test
     void completeEvent() {
+        //hier wäre es besser die complete Methode direkt in dieser testMethode zu testen und nicht oben in beforeAll
         assertEquals(listTest1.getEventlists().toString(),listCompare1.getEventlists().toString());
         assertEquals(listTest2.getEventlists().toString(),listCompare2.getEventlists().toString());
 
@@ -110,7 +128,8 @@ class EventlistTest {
 
     @Test
     void getName() {
-        this.events = new ArrayList<>();
+        //wozu?
+        //this.events = new ArrayList<>();
 
         assertEquals("Learn Spanish",addTest.getName());
         assertEquals("Eat Burger", addTest2.getName());
@@ -120,17 +139,36 @@ class EventlistTest {
     }
 
     @Test
-    void getEvents() {
-        this.events = new ArrayList<>();
+    void getEvents()  {
 
-        assertEquals("Eventlistname:" + addTest.getName() + ", " + Arrays.toString(this.events.toArray()), addTest.getEvents().toString());
-        assertEquals("Eventlistname:" + addTest2.getName() + ", " + Arrays.toString(this.events.toArray()), addTest2.getEvents().toString());
+       // this.events = new ArrayList<>();
+
+        //du fügst der liste addTest als auch der arrayliste events (this.events) nie Events hinzu, dem entsprechend ist auch das Array aus Events leer
+       // assertEquals("Eventlistname:" + addTest.getName() + ", " + Arrays.toString(this.events.toArray()), addTest.getEvents().toString());
+       // assertEquals("Eventlistname:" + addTest2.getName() + ", " + Arrays.toString(this.events.toArray()), addTest2.getEvents().toString());
+        try{
+            addTest.addEvent("TestEvent",Category.SKILLS);
+            addTest2.addEvent("TestEvent",Category.SKILLS);
+        }catch (ElementAlreadyExistsException e){
+            e.printStackTrace();
+        }
+
+        assertEquals(addTest.getEvents().toString(),addTest2.getEvents().toString());
+
     }
 
     @Test
     void getEventByName() {
-        assertEquals(addTest.getEventByName("Meet friends"), eventNameTest1.getEventName());
-        assertEquals(addTest2.getEventByName("Eat Burger"), eventNameTest2.getEventName());
+        try {
+            addTest.addEvent("Test",Category.SKILLS);
+        } catch (ElementAlreadyExistsException e) {
+            e.printStackTrace();
+        }
+        //prüfen ob Event, das durch getEventByName das gleiche ist, wie wenn man es sich über getEvents geben lässt
+        assertEquals(addTest.getEventByName("Test"),addTest.getEvents().get(0));
+
+        //assertEquals(addTest.getEventByName("Meet friends"), eventNameTest1.getEventName());
+       // assertEquals(addTest2.getEventByName("Eat Burger"), eventNameTest2.getEventName());
     }
 
 }

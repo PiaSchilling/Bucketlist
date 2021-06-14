@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 //todo @pia some more test methods
 class EventlistRepositoryTest {
 
@@ -24,6 +25,7 @@ class EventlistRepositoryTest {
         listManager.completeEvent("Event1","Testlist1","url","desc",12,12,2021);
         listManager.save();
     }
+
     @Test
     void testLoadSaveable() {
         EventlistRepository eventlistRepository = new EventlistRepository(Sourcetype.FILESOURCE);
