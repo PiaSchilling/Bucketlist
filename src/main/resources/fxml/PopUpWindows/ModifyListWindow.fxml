@@ -8,7 +8,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane id="#anchorpane" prefHeight="281.0" prefWidth="415.0" styleClass="anchorpane" stylesheets="@../../styles/PopUpWindows/ModifyListWindow.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="28.0" layoutY="65.0" text="edit name" />
@@ -46,5 +45,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Label fx:id="errorLabel" layoutX="69.0" layoutY="146.0" prefHeight="66.0" prefWidth="324.0" wrapText="true" />
    </children>
 </AnchorPane>

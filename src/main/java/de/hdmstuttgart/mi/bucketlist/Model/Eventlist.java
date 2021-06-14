@@ -20,7 +20,7 @@ import org.apache.logging.log4j.Logger;
 
 // ObjectMapper parses every attribute (despite of its marked as ignorable)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY )
-public class Eventlist implements Saveable {
+public class Eventlist implements Saveable,Narrator {
 
     // initialize Logger
     private static final Logger log = LogManager.getLogger(Eventlist.class);
@@ -49,15 +49,9 @@ public class Eventlist implements Saveable {
 
     /**
      * default constructor for json parsing
+     * Caution: do not use for creating Eventlists ! //todo kann dadruch zu doofen Fehlern kommen da man auch so Eventlisten erstellen kann
      */
     public Eventlist(){
-    }
-
-    /**
-     * @param listener -- the listener which should be added to the list
-     */
-    public void addListener(Listener listener){
-        this.listeners.add(listener);
     }
 
     /**
@@ -73,15 +67,15 @@ public class Eventlist implements Saveable {
         //StringDate needs to have 2 chars for day and month
         StringBuffer stringBuffer = new StringBuffer();
         if(expiryDay < 10){
-            stringBuffer.append("0" + expiryDay + ".");
+            stringBuffer.append("0" + expiryDay + "/");
         }else{
-            stringBuffer.append(expiryDay + ".");
+            stringBuffer.append(expiryDay + "/");
         }
 
         if(expiryMonth < 10){
-            stringBuffer.append("0" + expiryMonth + ".");
+            stringBuffer.append("0" + expiryMonth + "/");
         }else{
-            stringBuffer.append(expiryMonth + ".");
+            stringBuffer.append(expiryMonth + "/");
         }
         stringBuffer.append(expiryYear);
         expiryDateString= stringBuffer.toString();
@@ -103,7 +97,7 @@ public class Eventlist implements Saveable {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, this);
-            log.debug("Object parsed successfully");
+            log.info("Object parsed successfully");
         }catch(FileNotFoundException fileNotFoundException){
             log.error(fileNotFoundException.getMessage() + ", File not found");
         } catch (IOException ioException) {
@@ -131,7 +125,7 @@ public class Eventlist implements Saveable {
             if(temp.expiryDateString != null){
                 temp.expiryDateGregorian = configureExpiryDate(Integer.parseInt(temp.expiryDateString.substring(0,2)),Integer.parseInt(temp.expiryDateString.substring(3,5)),Integer.parseInt(temp.expiryDateString.substring(6,10)));
             }
-            log.debug("Object parsed successfully");
+            log.info("Object parsed successfully");
             return temp;
 
         } catch (FileNotFoundException fileNotFoundException) {
@@ -162,38 +156,23 @@ public class Eventlist implements Saveable {
            this.events.add(new Event(eventName,eventCategory));
            log.debug("Event " + "\"" + eventName +  "\"" + " added successfully to the list " + "\"" + this.eventlistName +  "\"");
 
-           //notify the listeners about the change
-           for (int i = 0; i < this.listeners.size(); i++) {
-               listeners.get(i).update();
-           }
+           informListeners();
        }
     }
 
-    /**todo remove unnecessary if statements for things which can never happen
+    /**
      * deletes an event from "this" eventlist
      * takes care of the case, when no event with matching name found
      * @param eventName -- the name of the event you want to delete
      */
     public void deleteEvent(String eventName){
-
-        log.debug("deleteEvent method started");
-        List<Event> temp = this.events.stream()
-                .filter(event -> event.getEventName().equals(eventName))
-                .collect(Collectors.toList());
-
-        if(temp.size() == 0){
-            log.error("No event with matching name found");
-        }else if(temp.size() > 1){
-            //this should normally never be the case (watch addEvent method, problem already treated there)
-            log.info("Multiple events with matching name found");
+        if(this.events.stream().anyMatch(event -> event.getEventName().equals(eventName))){
+            Event event = getEventByName(eventName);
+            this.events.remove(event);
+            informListeners();
+            log.info("Event deleted successfully");
         }else{
-            this.events.removeAll(temp);
-            log.debug("Event " + "\"" + eventName +  "\"" + " deleted successfully from the list " + "\"" + this.eventlistName +  "\"");
-
-            //notify the listeners about the change
-            for (int i = 0; i < this.listeners.size(); i++) {
-                listeners.get(i).update();
-            }
+            log.error("No Event with matching name found");
         }
     }
 
@@ -204,18 +183,12 @@ public class Eventlist implements Saveable {
      * @param eventDescription -- the description entered by the user
      */
     public void completeEvent(String eventName, String eventImageUrl,String eventDescription, int eventDay, int eventMonth, int eventYear ){
-        //todo streams
-        log.debug("completeEvent method started");
-        for (int i = 0; i < this.events.size(); i++) {
-            if(this.events.get(i).getEventName().equals(eventName)){
-                this.events.get(i).completeEvent(eventImageUrl,eventDescription,eventDay, eventMonth, eventYear);
-                log.debug("Event completed successfully");
-
-                //notify the listeners about the change
-                for (int j = 0; j < this.listeners.size(); j++) {
-                    listeners.get(j).update();
-                }
-            }
+        if(this.events.stream().anyMatch(event -> event.getEventName().equals(eventName))){
+            getEventByName(eventName).completeEvent(eventImageUrl,eventDescription,eventDay,eventMonth,eventYear);
+            informListeners();
+            log.info("Event completed successfully");
+        }else{
+            log.error("No Event with matching name found");
         }
     }
 
@@ -262,8 +235,7 @@ public class Eventlist implements Saveable {
         return "Eventlistname:" + this.eventlistName + ", " + Arrays.toString(this.events.toArray());
     }
 
-    // ------------------------ setter ----------------------------------------
-
+    // ------------------------ modify field methods ----------------------------------------
 
     /**
      * updates the name of an eventlist
@@ -271,34 +243,48 @@ public class Eventlist implements Saveable {
      */
     public void updateEventlistName(String eventlistNameNew){
         this.eventlistName = eventlistNameNew;
-
-        //notify the listeners about the change
-        for (int j = 0; j < this.listeners.size(); j++) {
-            listeners.get(j).update();
-        }
-
+        informListeners(); //todo needed ?
         log.info("Eventlistname updated successfully to " + eventlistNameNew);
     }
 
     /**
      * updates the name of an event in this eventlist
+     * its not possible to update the eventName to a name which is already assigned to an other event
      * @param eventNameOld -- the current name of the event
      * @param eventNameNew -- the new name for the event
      */
-    public void updateEventName(String eventNameOld,String eventNameNew){
-        List<Event> temp = this.events.stream()
-                .filter(event -> event.getEventName().equals(eventNameOld))
-                .collect(Collectors.toList());
+    public void updateEventName(String eventNameOld,String eventNameNew) throws ElementAlreadyExistsException {
+        boolean match = this.events.stream()
+                .anyMatch(event -> event.getEventName().equals(eventNameNew));
+        if(match){
+            log.error("Name change failed. Name already assigned");
+            throw new ElementAlreadyExistsException("There is already an event with the name "  + "\"" + eventNameNew +  "\"" + " in the list " +  "\"" + this.eventlistName +  "\"" + ". Please select another name.");
+        }else{
+            Event event = getEventByName(eventNameOld);
+            event.updateName(eventNameNew);
 
-        Event event = temp.get(0);
-        event.updateName(eventNameNew);
-
-        //notify the listeners about the change
-        for (int j = 0; j < this.listeners.size(); j++) {
-            listeners.get(j).update();
+            informListeners();
+            log.info("Eventname updated succeessfully from " + eventNameOld + " to " + eventNameNew);
         }
+    }
 
-        log.info("Eventname updated succeessfully from " + eventNameOld + " to " + eventNameNew);
+    //---------------------- GUI communication ---------------------------------------------
+    /**
+     * @param listener -- the listener which should be added to the list
+     */
+    @Override
+    public void addListener(Listener listener){
+        this.listeners.add(listener);
+    }
+
+    /**
+     * informs all the Listeners about a change
+     */
+    @Override
+    public void informListeners(){
+        for (Listener listener : this.listeners) {
+            listener.update();
+        }
     }
 
 
