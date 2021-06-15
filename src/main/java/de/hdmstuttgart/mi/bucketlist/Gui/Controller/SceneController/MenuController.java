@@ -2,11 +2,15 @@ package de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController;
 
 import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
-public class MenuController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class MenuController implements Initializable {
 
     private final ListManager listManager;
 
@@ -48,9 +52,11 @@ public class MenuController {
         CategoryController categoryController = new CategoryController();
         AnchorPane anchorPane= PaneLoader.loadAnchorPane(categoryController, "categories");
         borderPane.setCenter(anchorPane);
-
     }
 
 
-
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        showListScene();
+    }
 }

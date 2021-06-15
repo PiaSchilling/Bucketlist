@@ -89,8 +89,10 @@ public class EventlistController implements Initializable, Listener {
       //if there arent any events in the eventlist a picture is loaded
       if(this.eventlist.getEvents().size() == 0){
          ImageView imageView = new ImageView();
-         URL url = this.getClass().getResource("/images/NoEventsCreated.png");
+         URL url = this.getClass().getResource("/images/NoEvent.png");
          Image image = new Image(url.toString());
+         imageView.setFitHeight(645);
+         imageView.setFitWidth(1041);
          imageView.setImage(image);
          this.flowpane.getChildren().add(imageView);
       }

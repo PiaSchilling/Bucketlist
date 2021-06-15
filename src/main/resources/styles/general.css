@@ -7,7 +7,6 @@
 
 .menu{
     -fx-background-color: transparent;
-
 }
 
 #logoImage{
@@ -21,7 +20,7 @@
 }
 
 #listsButton:focused, #statisticButton:focused, #catButton:focused{
-    -fx-background-color: rgba(93, 198, 166,0.6);
+    -fx-background-color: rgba(93, 198, 166, 0.6);
     -fx-background-radius: 10  ;
 }
 

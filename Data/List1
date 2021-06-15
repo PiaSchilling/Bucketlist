@@ -5,24 +5,21 @@
     "eventDateString" : "3.6.2021",
     "eventImageUrl" : "URL",
     "eventDescription" : "Beschreibung",
-    "isCompleted" : true,
-    "name" : "event1"
+    "isCompleted" : true
   }, {
     "eventName" : "event2",
     "eventCategory" : "SKILLS",
     "eventDateString" : null,
     "eventImageUrl" : null,
     "eventDescription" : null,
-    "isCompleted" : false,
-    "name" : "event2"
+    "isCompleted" : false
   }, {
     "eventName" : "event3",
     "eventCategory" : "SKILLS",
     "eventDateString" : null,
     "eventImageUrl" : null,
     "eventDescription" : null,
-    "isCompleted" : false,
-    "name" : "event3"
+    "isCompleted" : false
   } ],
   "eventlistName" : "List1",
   "expiryDateString" : null,

@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.effect.Shadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -108,10 +109,13 @@ public class ListsController implements Initializable, Listener {
         //sets an image if there arent any eventlists created
         if(this.listManager.getEventlists().size() == 0){
             ImageView imageView = new ImageView();
-            URL url = this.getClass().getResource("/images/NoListsCreated.png");
+            URL url = this.getClass().getResource("/images/NoEventlists.png");
             Image image = new Image(url.toString());
+            imageView.setFitHeight(645);
+            imageView.setFitWidth(1041);
             imageView.setImage(image);
             this.flowpane.getChildren().add(imageView);
+            System.out.println(image.errorProperty());
         }
 
         for (int i = 0; i < this.listManager.getEventlists().size(); i++) {

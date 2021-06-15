@@ -24,10 +24,10 @@
                         </ImageView>
                         <Button id="listsButton" fx:id="viewListButton" mnemonicParsing="false" onAction="#showListScene" prefHeight="77.0" prefWidth="100.0" styleClass="menu" stylesheets="@../../styles/general.css">
                             <VBox.margin>
-                                <Insets left="50.0" top="60.0" />
+                                <Insets left="50.0" top="80.0" />
                             </VBox.margin>
                      <graphic>
-                        <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../images/Dark_Design/Icons_White/menu_eventlists.png" />
                            </image>
@@ -36,10 +36,10 @@
                         </Button>
                         <Button id="catButton" fx:id="viewCatButton" mnemonicParsing="false" onAction="#showCatScene" prefHeight="77.0" prefWidth="100.0" styleClass="menu" stylesheets="@../../styles/general.css">
                             <VBox.margin>
-                                <Insets left="50.0" top="60.0" />
+                                <Insets left="50.0" top="80.0" />
                             </VBox.margin>
                      <graphic>
-                        <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="55.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../images/Dark_Design/Icons_White/menu_category.png" />
                            </image>
@@ -48,10 +48,10 @@
                         </Button>
                         <Button id="statisticButton" fx:id="viewStatisticButton" mnemonicParsing="false" onAction="#showStatisticScene" prefHeight="77.0" prefWidth="100.0" styleClass="menu" stylesheets="@../../styles/general.css">
                             <VBox.margin>
-                                <Insets left="50.0" top="60.0" />
+                                <Insets left="50.0" top="80.0" />
                             </VBox.margin>
                      <graphic>
-                        <ImageView fitHeight="68.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="55.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../images/Dark_Design/Icons_White/menu_statistics.png" />
                            </image>
@@ -61,6 +61,7 @@
                     </children>
                 </VBox>
          </left>
+
       </BorderPane>
     </children>
 </AnchorPane>
