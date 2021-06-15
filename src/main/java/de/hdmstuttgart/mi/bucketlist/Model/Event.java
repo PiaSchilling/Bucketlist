@@ -2,15 +2,6 @@ package de.hdmstuttgart.mi.bucketlist.Model;
 
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import de.hdmstuttgart.mi.bucketlist.Persistance.Saveable;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -35,7 +26,7 @@ public class Event {
     }
 
     /**
-     * default constructor for json parsing
+     * default constructor for json parsing //todo needed ?
      */
     public Event(){
 
@@ -73,6 +64,10 @@ public class Event {
         return "Eventname:" + this.eventName + ", " + this.eventCategory + ", abgeschlossen:" + this.isCompleted + " Datum " + this.eventDateString;
     }
 
+    public void updateName(String eventNameNew){
+        this.eventName = eventNameNew;
+    }
+
     public String getEventName(){
         return this.eventName;
     }
@@ -83,6 +78,18 @@ public class Event {
 
     public boolean getIsCompleted() {
         return  this.isCompleted;
+    }
+
+    public String getEventImageUrl(){
+        return this.eventImageUrl;
+    }
+
+    public String getEventDateString(){
+        return this.eventDateString;
+    }
+
+    public String getEventDescription(){
+        return this.eventDescription;
     }
 
 }

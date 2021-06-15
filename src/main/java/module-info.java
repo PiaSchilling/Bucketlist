@@ -17,4 +17,7 @@ module gui {
     opens de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController to javafx.fxml, javafx.graphics, javafx.controls;
     exports de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController to javafx.fxml, javafx.graphics, javafx.controls;
 
+    opens de.hdmstuttgart.mi.bucketlist.Gui.Controller.CustomNodesController  to  javafx.fxml;
+    opens de.hdmstuttgart.mi.bucketlist.Gui.Controller.PopUpController to javafx.fxml;
+
 }

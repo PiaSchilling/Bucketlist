@@ -1,0 +1,19 @@
+
+#anchorpane{
+    -fx-background-image: url("../../images/Dark_Design/BackgroundImage_Eventlists_Eventlist.png");
+    -fx-background-size: cover, auto;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left,top,center;
+}
+
+#nameLabel{
+    -fx-text-fill:#5DC6A6 ;
+    -fx-font-size: 20;
+    -fx-font-family: Lato-Bold;
+}
+
+#expiryDateLabel,#numberOfEventsLabel {
+    -fx-text-fill:#ffffff;
+    -fx-font-size: 12;
+    -fx-font-family: Lato-Regular;
+}

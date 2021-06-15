@@ -1,0 +1,25 @@
+.anchorpane{
+    -fx-background-color: #0c0e2b;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 0.3;
+}
+
+*{
+    -fx-text-fill: #adadad;
+    -fx-font-family: Lato-Regular;
+}
+
+.button{
+    -fx-text-fill: #000000;
+    -fx-background-color: #ffffff;
+    -fx-effect: dropshadow(gaussian, #383838, 25, 0, 3, 3);
+}
+
+.combo-box{
+    -fx-text-fill: #000000;
+    -fx-background-color: #ffffff;
+}
+
+.text-field{
+    -fx-text-fill: #000000;
+}

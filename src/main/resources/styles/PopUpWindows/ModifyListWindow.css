@@ -1,0 +1,43 @@
+.anchorpane{
+    -fx-background-color: #0c0e2b;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 0.3;
+}
+
+*{
+    -fx-text-fill: #adadad;
+    -fx-font-family: Lato-Regular;
+}
+
+#saveButton{
+    -fx-background-color: #ffffff;
+    -fx-opacity: 0.8;
+    -fx-text-fill: black;
+    -fx-effect: dropshadow(gaussian, black, 10, 0, 3, 3);
+}
+
+#saveButton:hover{
+    -fx-opacity: 1;
+    -fx-background-color: rgba(144, 224, 197, 0.6);
+}
+
+.textfield{
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000000;
+}
+
+.textfield:focused{
+    -fx-border-color: #5DC6A699;
+}
+
+.deleteIcon{
+    -fx-opacity: 0.6;
+}
+
+.deleteIcon:hover{
+    -fx-opacity: 1;
+}
+
+/**
+//todo dieses stylesheet kann eigentlich abgeschafft werden, dass es nur noch eins für alle pop ups gibt
+ */
