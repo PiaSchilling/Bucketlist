@@ -71,10 +71,6 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        this.listManager.createEventlist("Test",12,12,2019);
-        this.listManager.createEventlist("Test1",12,12,2021);
-        this.listManager.createEventlist("Test2");
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Scenes/menu.fxml"));
         MenuController menuController = new MenuController(this.listManager);
         loader.setController(menuController);

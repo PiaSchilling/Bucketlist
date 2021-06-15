@@ -24,8 +24,7 @@ public class ListManager implements Narrator {
     private final EventlistRepository eventlistRepository = new EventlistRepository(Sourcetype.FILESOURCE);
     private final ArrayList<Listener> listeners = new ArrayList<>();
 
-
-    //todo is this needed ?
+    //default constructor
     public ListManager(){
     }
 
@@ -33,7 +32,7 @@ public class ListManager implements Narrator {
     //------------------------ model manipulating methods -----------------------------------
 
     /**
-     * creates new Eventlist
+     * creates new Eventlist without expiry Date
      * @param eventlistName -- the name of the eventlist
      */
     public void createEventlist(String eventlistName) throws ElementAlreadyExistsException {
@@ -71,6 +70,7 @@ public class ListManager implements Narrator {
     }
 
     /**todo remove unnecessary if statements for cases which never can happen
+     * todo simplify with getEventlistByName
      * deletes Eventlist
      * @param eventlistName -- the name of the eventlist which should be deleted
      */

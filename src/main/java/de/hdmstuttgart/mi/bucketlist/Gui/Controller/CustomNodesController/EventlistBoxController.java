@@ -91,7 +91,7 @@ public class EventlistBoxController {
      */
     @FXML
     void switchToListScene() {
-            EventlistController eventlistController = new EventlistController(this.eventlistname, this.listManager);
+            EventlistController eventlistController = new EventlistController(this.eventlistname, this.listManager,this.borderPane);
             AnchorPane anchorPane = PaneLoader.loadAnchorPane(eventlistController,"Eventlist");
             this.borderPane.setCenter(anchorPane);
     }
