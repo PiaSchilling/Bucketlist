@@ -13,6 +13,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
@@ -63,6 +65,7 @@ public class ListsController implements Initializable, Listener {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         showLists();
+        this.scrollpane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
     }
 
 
@@ -71,8 +74,8 @@ public class ListsController implements Initializable, Listener {
      */
    public void openCreationWindow()  {
         Stage stage = new Stage();
-       stage.initStyle(StageStyle.UNDECORATED);
-       stage.setOpacity(0.95);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setOpacity(0.95);
         stage.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PopUpWindows/EventlistCreationWindow.fxml"));
 
@@ -101,6 +104,15 @@ public class ListsController implements Initializable, Listener {
 
         //clear and then show all new
         this.flowpane.getChildren().clear();
+
+        //sets an image if there arent any eventlists created
+        if(this.listManager.getEventlists().size() == 0){
+            ImageView imageView = new ImageView();
+            URL url = this.getClass().getResource("/images/NoListsCreated.png");
+            Image image = new Image(url.toString());
+            imageView.setImage(image);
+            this.flowpane.getChildren().add(imageView);
+        }
 
         for (int i = 0; i < this.listManager.getEventlists().size(); i++) {
 
