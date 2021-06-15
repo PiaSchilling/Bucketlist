@@ -15,6 +15,7 @@ save und load beim schließen von fenster (onCloseRequest) //todo @pia
 Redundante Methoden für popUp windows evtl in eine einzige Methode auslagern //todo @pia
 popUpWindow exit button/zurück button //todo @pia
 lists.fxml umbenennen / error.imgae umbennen
+upperCase in eventlisten der name
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 Merve:
