@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
+
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -42,7 +44,7 @@ public class MenuController implements Initializable {
 
     @FXML
     void showStatisticScene() {
-        StatisticController statisticController = new StatisticController();
+        StatisticController statisticController = new StatisticController(this.listManager, this.borderPane);
         AnchorPane anchorPane= PaneLoader.loadAnchorPane(statisticController, "statistics");
         borderPane.setCenter(anchorPane);
     }

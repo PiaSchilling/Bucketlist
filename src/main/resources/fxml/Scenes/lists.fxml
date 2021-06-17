@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="anchorpane" fx:id="anchorpane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1080.0" stylesheets="@../../styles/lists.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="anchorpane" fx:id="anchorpane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1080.0" stylesheets="@../../styles/lists.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ScrollPane id="scrollpane" fx:id="scrollpane" layoutY="91.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="1067.0" style="-fx-background-color: transparent;" AnchorPane.topAnchor="155.0">
+      <ScrollPane id="scrollpane" fx:id="scrollpane" layoutY="91.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="1067.0" stylesheets="@../../styles/lists.css" AnchorPane.topAnchor="155.0">
          <content>
             <FlowPane id="flowpane" fx:id="flowpane" hgap="30.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1283.0" prefWidth="1041.0" vgap="30.0" />
          </content>

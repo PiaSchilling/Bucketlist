@@ -17,3 +17,7 @@
     -fx-font-size: 12;
     -fx-font-family: Lato-Regular;
 }
+
+#optionsButton{
+    -fx-background-color: transparent;
+}

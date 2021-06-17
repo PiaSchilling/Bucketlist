@@ -1,8 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: green;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
-
+<AnchorPane fx:id="anchorPane" prefHeight="800.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ScrollPane id="scrollPane" fx:id="scrollPane" layoutX="526.0" layoutY="155.0" prefHeight="643.0" prefWidth="552.0" stylesheets="@../../styles/CustomNodes/StatisticListBox.css">
+         <content>
+            <FlowPane fx:id="flowPane" prefHeight="1199.0" prefWidth="551.0" vgap="30.0">
+               <padding>
+                  <Insets bottom="30.0" top="30.0" />
+               </padding>
+            </FlowPane>
+         </content>
+      </ScrollPane>
+      <Label layoutY="85.0" text="My Statistics" textFill="WHITE">
+         <font>
+            <Font name="Lato Black" size="32.0" />
+         </font>
+      </Label>
+      <Label layoutX="87.0" layoutY="680.0" prefHeight="15.0" prefWidth="77.0" text="lists created" textFill="WHITE">
+         <font>
+            <Font name="Lato Regular" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="listsCreatedLabel" layoutX="87.0" layoutY="586.0" prefHeight="71.0" prefWidth="146.0" text="-" textFill="WHITE">
+         <font>
+            <Font name="Lato Bold" size="72.0" />
+         </font>
+      </Label>
+      <Label layoutX="325.0" layoutY="680.0" prefHeight="15.0" prefWidth="129.0" text="events completed" textFill="WHITE">
+         <font>
+            <Font name="Lato Regular" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="eventsCompletedLabel" layoutX="325.0" layoutY="586.0" prefHeight="90.0" prefWidth="139.0" text="-" textFill="WHITE">
+         <font>
+            <Font name="Lato Bold" size="72.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>

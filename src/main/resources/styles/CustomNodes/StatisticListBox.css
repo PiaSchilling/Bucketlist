@@ -1,0 +1,11 @@
+#statisticBox{
+    -fx-background-image: url("../../images/Dark_Design/BackgroundImage_Statistic_Liste.png");
+    -fx-background-size: cover, auto;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left,top,center;
+}
+
+#scrollPane{
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}

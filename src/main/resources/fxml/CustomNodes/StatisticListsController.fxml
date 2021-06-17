@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="statisticBox" prefHeight="55.0" prefWidth="530.0" stylesheets="@../../styles/CustomNodes/StatisticListBox.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="eventlistNameLabel" layoutX="241.0" layoutY="15.0" text="Label" textFill="#5dc6a6">
+         <font>
+            <Font name="Lato Bold" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

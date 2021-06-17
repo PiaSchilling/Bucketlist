@@ -16,7 +16,7 @@ public class StatisticsManager {
 
     private final ListManager listManager;
 
-   // ArrayList<Eventlist> eventlists;
+    // ArrayList<Eventlist> eventlists;
 
     private CategoryManager categoryManager;
 
@@ -40,10 +40,10 @@ public class StatisticsManager {
      * Counts the created lists
      * @return the number of the created lists
      */
-    public int countLists(){
+    public String countLists(){
         ArrayList<Eventlist> temp = this.listManager.getEventlists();
 
-        return temp.size();
+        return String.valueOf(temp.size());
     }
 
 
@@ -51,7 +51,7 @@ public class StatisticsManager {
      * counts the completed events in general
      * @return the number of completed events in general
      */
-    public int countCompletedEvents(){
+    public String countCompletedEvents(){
         ArrayList<Eventlist> temp = this.listManager.getEventlists();
 
         int count=0;
@@ -61,7 +61,7 @@ public class StatisticsManager {
                     count++;
                 }
             }
-        } return count;
+        } return String.valueOf(count);
     }
 
     /**
