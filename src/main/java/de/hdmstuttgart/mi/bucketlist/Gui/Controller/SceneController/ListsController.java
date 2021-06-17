@@ -74,7 +74,7 @@ public class ListsController implements Initializable, Listener {
      * opens a new window where a new Eventlist can be added
      */
    public void openCreationWindow()  {
-        Stage stage = new Stage();
+      /*  Stage stage = new Stage();
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setOpacity(0.95);
         stage.initModality(Modality.APPLICATION_MODAL);
@@ -93,8 +93,11 @@ public class ListsController implements Initializable, Listener {
         }
 
         stage.setScene(new Scene(popUp,565,243));
-        stage.show();
-    }
+        stage.show();*/
+       EventlistCreationController eventlistCreationController = new EventlistCreationController(this.listManager);
+       PaneLoader.loadPopUpWindow(eventlistCreationController,"EventlistCreationWindow");
+
+   }
 
     /**
      * shows all the eventlists which are currently created
@@ -115,7 +118,6 @@ public class ListsController implements Initializable, Listener {
             imageView.setFitWidth(1041);
             imageView.setImage(image);
             this.flowpane.getChildren().add(imageView);
-            System.out.println(image.errorProperty());
         }
 
         for (int i = 0; i < this.listManager.getEventlists().size(); i++) {

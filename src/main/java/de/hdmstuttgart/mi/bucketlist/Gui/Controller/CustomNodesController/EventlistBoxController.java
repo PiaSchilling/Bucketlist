@@ -1,25 +1,14 @@
 package de.hdmstuttgart.mi.bucketlist.Gui.Controller.CustomNodesController;
 
-
-import de.hdmstuttgart.mi.bucketlist.Gui.Controller.PopUpController.CompleteEventController;
 import de.hdmstuttgart.mi.bucketlist.Gui.Controller.PopUpController.ModifyListController;
 import de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController.EventlistController;
-import de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController.MenuController;
 import de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController.PaneLoader;
 import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-
-import java.io.IOException;
 
 public class EventlistBoxController {
 
@@ -66,24 +55,9 @@ public class EventlistBoxController {
 
     @FXML //todo rename method (löscht nicht sondern äffnet neues fenster)
     void deleteEventlist() {
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setOpacity(0.95);
-        stage.initModality(Modality.APPLICATION_MODAL);
-
-        Parent popUp;
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PopUpWindows/ModifyListWindow.fxml"));
         ModifyListController modifyListController = new ModifyListController(this.listManager,this.eventlistname);
-        loader.setController(modifyListController);
+        PaneLoader.loadPopUpWindow(modifyListController,"ModifyListWindow");
 
-        try {
-            popUp = loader.load();
-            stage.setScene(new Scene(popUp));
-            stage.show();
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
-        }
     }
 
     /**

@@ -3,6 +3,7 @@ package de.hdmstuttgart.mi.bucketlist.Gui.Controller.CustomNodesController;
 import de.hdmstuttgart.mi.bucketlist.Gui.Controller.PopUpController.CompleteEventController;
 import de.hdmstuttgart.mi.bucketlist.Gui.Controller.PopUpController.ModifyEventController;
 import de.hdmstuttgart.mi.bucketlist.Gui.Controller.PopUpController.ModifyListController;
+import de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController.PaneLoader;
 import de.hdmstuttgart.mi.bucketlist.Model.Eventlist;
 import de.hdmstuttgart.mi.bucketlist.ViewController.StatisticsManager;
 import javafx.fxml.FXML;
@@ -13,11 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -54,23 +51,8 @@ public class UncompletedEventController implements Initializable {
 
     @FXML//todo rename method (löscht nicht sondern äffnet neues fenster)
     public void deleteEvent(){
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setOpacity(0.95);
-        Parent popUp;
-        stage.initModality(Modality.APPLICATION_MODAL);
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PopUpWindows/ModifyListWindow.fxml"));
         ModifyEventController modifyEventController = new ModifyEventController(this.eventlist,this.eventName);
-        loader.setController(modifyEventController);
-
-        try {
-            popUp = loader.load();
-            stage.setScene(new Scene(popUp));
-            stage.show();
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
-        }
+        PaneLoader.loadPopUpWindow(modifyEventController,"ModifyListWindow");
     }
 
     /**
@@ -78,25 +60,9 @@ public class UncompletedEventController implements Initializable {
      */
     @FXML
     void completeEvent() {
-        Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setOpacity(0.95);
-        Parent popUp;
-        stage.initModality(Modality.APPLICATION_MODAL);
-        System.out.println("Test");
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PopUpWindows/CompleteEventWindow.fxml"));
         CompleteEventController completeEventController = new CompleteEventController(this.eventlist, this.eventName);
-        System.out.println("in umcompleted: " + this.eventName);
-        loader.setController(completeEventController);
+        PaneLoader.loadPopUpWindow(completeEventController,"CompleteEventWindow");
 
-        try {
-            popUp = loader.load();
-            stage.setScene(new Scene(popUp));
-            stage.show();
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
-        }
     }
 
     /**

@@ -10,10 +10,7 @@ import de.hdmstuttgart.mi.bucketlist.Model.Eventlist;
 import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
 import de.hdmstuttgart.mi.bucketlist.ViewController.StatisticsManager;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -22,13 +19,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -123,23 +116,8 @@ public class EventlistController implements Initializable, Listener {
     * open a dialogue where the user can create a new event
     */
    public void openCreationWindow(){
-      Stage stage = new Stage();
-      stage.initStyle(StageStyle.UNDECORATED);
-      stage.setOpacity(0.95);
-      Parent popUp;
-      stage.initModality(Modality.APPLICATION_MODAL);
-
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PopUpWindows/EventCreationWindow.fxml"));
       EventCreationController eventCreationController = new EventCreationController(this.eventlist);
-      loader.setController(eventCreationController);
-
-      try {
-         popUp = loader.load();
-         stage.setScene(new Scene(popUp,565,243));
-         stage.show();
-      } catch (IOException ioException) {
-         ioException.printStackTrace();
-      }
+      PaneLoader.loadPopUpWindow(eventCreationController,"EventCreationWindow");
    }
 
    /**
