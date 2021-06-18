@@ -1,5 +1,6 @@
 package de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController;
 
+import de.hdmstuttgart.mi.bucketlist.Gui.Controller.PopUpController.ConfirmationController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -65,7 +66,32 @@ public class PaneLoader {
 
         stage.setScene(new Scene(popUp));
         stage.show();
-        System.out.println("Loaded");
+    }
+
+    public static boolean loadConfirmationWindow(String message){
+
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initStyle(StageStyle.UNDECORATED);
+        FXMLLoader loader = new FXMLLoader(PaneLoader.class.getResource("/fxml/PopUpWindows/ConfirmationWindow.fxml"));
+
+        ConfirmationController confirmationController = new ConfirmationController(message);
+        loader.setController(confirmationController);
+
+        Parent popUp = null;
+
+        try {
+            popUp = loader.load();
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+
+        stage.setScene(new Scene(popUp));
+        stage.showAndWait();
+
+        boolean choice = confirmationController.getChoice();
+
+        return choice;
     }
 
 

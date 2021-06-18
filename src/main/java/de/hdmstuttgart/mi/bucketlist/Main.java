@@ -1,6 +1,7 @@
 package de.hdmstuttgart.mi.bucketlist;
 
 import de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController.MenuController;
+import de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController.PaneLoader;
 import de.hdmstuttgart.mi.bucketlist.Model.Category;
 import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
 import de.hdmstuttgart.mi.bucketlist.ViewController.CategoryManager;
@@ -19,6 +20,7 @@ import static javafx.application.Application.launch;
 public class Main extends Application {
 
     private final ListManager listManager = new ListManager();
+    private Stage window;
 
     public static void main(String[] args) {
 /*
@@ -71,15 +73,35 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
+        this.window = stage;
+        this.listManager.load();
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Scenes/menu.fxml"));
         MenuController menuController = new MenuController(this.listManager);
         loader.setController(menuController);
-
         Parent parent = loader.load();
 
         Scene scene1 = new Scene(parent);
         stage.setTitle("The Bucketlist");
         stage.setScene(scene1);
         stage.show();
+
+        //defines what should happen, when window is closed
+        this.window.setOnCloseRequest(e -> {
+            e.consume();
+            closeProgramm();
+        });
+    }
+
+    /**
+     * opens confimrationbox
+     * if user selects yes -> window will be closed after saving everything
+     * no -> dialogue closes, nothing will happen
+     */
+    private void closeProgramm(){
+        if(PaneLoader.loadConfirmationWindow("Are you sure you want to quit ?")){
+            this.listManager.save();
+            this.window.close();
+        }
     }
 }

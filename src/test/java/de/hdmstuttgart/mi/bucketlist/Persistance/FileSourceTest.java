@@ -5,9 +5,9 @@ import de.hdmstuttgart.mi.bucketlist.Exceptions.EmptyDirectoryException;
 import de.hdmstuttgart.mi.bucketlist.Model.Category;
 import de.hdmstuttgart.mi.bucketlist.Model.Eventlist;
 import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.junit.jupiter.api.*;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -19,6 +19,7 @@ class FileSourceTest {
 
 
     private final FileSource fileSource = new FileSource();
+    private static final Logger log = LogManager.getLogger(FileSourceTest.class);
 
     @BeforeAll
     public static void prepareDummyDirectory(){
@@ -38,11 +39,14 @@ class FileSourceTest {
     public static void cleanUp(){
         FileSource fileSource = new FileSource();
         fileSource.updateSource();
+        log.error("Cleaned up");
     }
 
 
-    @org.junit.jupiter.api.Test
+
+    @Test
     void writeToSource() {
+        log.debug("write source test started");
         Eventlist eventlist = new Eventlist("writeToSourceTest1");
         Eventlist eventlist1 = new Eventlist("writeToSourceTest2");
 
@@ -56,10 +60,11 @@ class FileSourceTest {
                 .anyMatch(file -> file.getName().equals("writeToSourceTest1")));
         assertTrue(Arrays.stream(files)
                 .anyMatch(file -> file.getName().equals("writeToSourceTest2")));
+        log.debug("writeSourceTest ended");
     }
 
     @DisplayName("After update direcotry should be empty")
-    @org.junit.jupiter.api.Test
+    @Test
     void updateSource() {
         fileSource.updateSource();
         File directory = new File("Data");
@@ -67,8 +72,10 @@ class FileSourceTest {
         assertEquals(0,files.length);
     }
 
-    @org.junit.jupiter.api.Test
+
+    @Test
     void readFromSource() {
+        log.debug("Read source test started");
         ArrayList<Saveable> saveables = new ArrayList<>();
         Eventlist eventlist = new Eventlist();
 
@@ -77,9 +84,10 @@ class FileSourceTest {
         assertEquals(2,saveables.size());
         assertEquals("Testlist2",saveables.get(0).getName());
         assertEquals("Testlist1",saveables.get(1).getName());
+        log.debug("read source test ended");
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void listDirectory() {
         try {
             assertEquals(2,fileSource.listDirectory("Data").length);
@@ -91,7 +99,7 @@ class FileSourceTest {
     }
 
     @DisplayName("Invalid directory should throw EmptyDirectoryException")
-    @org.junit.jupiter.api.Test
+    @Test
     void shouldThrowException (){
         fileSource.updateSource();
         Exception exception = assertThrows(EmptyDirectoryException.class, ()-> fileSource.listDirectory("Data"));
