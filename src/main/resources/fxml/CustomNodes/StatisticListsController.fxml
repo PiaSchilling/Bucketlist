@@ -6,7 +6,7 @@
 
 <AnchorPane id="statisticBox" prefHeight="55.0" prefWidth="530.0" stylesheets="@../../styles/CustomNodes/StatisticListBox.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="eventlistNameLabel" layoutX="241.0" layoutY="15.0" text="Label" textFill="#5dc6a6">
+      <Label fx:id="eventlistNameLabel" alignment="CENTER" contentDisplay="CENTER" layoutY="15.0" prefHeight="25.0" prefWidth="530.0" text="Label" textAlignment="CENTER" textFill="#5dc6a6">
          <font>
             <Font name="Lato Bold" size="20.0" />
          </font>

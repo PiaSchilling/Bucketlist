@@ -24,12 +24,7 @@ public class StatisticController implements Listener, Initializable {
     private final StatisticsManager statisticManager;
     private final BorderPane borderPane;
 
-
-    //private VBox vBox;
-
-
-
-    private static final Logger log = LogManager.getLogger(EventlistController.class);
+    private static final Logger log = LogManager.getLogger(StatisticController.class);
 
 
     public StatisticController(ListManager listManager, BorderPane borderPane){
@@ -58,25 +53,27 @@ public class StatisticController implements Listener, Initializable {
 
 
     public void setCreatedListsLabel(){
+        log.debug("setCreatedListsLabel() method started" );
         this.listsCreatedLabel.setText(statisticManager.countLists());
     }
 
+
+
     public void setEventsCompletedLabel(){
+        log.debug("setEventsCompletedLabel() method started" );
         this.eventsCompletedLabel.setText(statisticManager.countCompletedEvents());
     }
 
 
 
-
-
     public void showStatistics(){
-
+        log.debug("showStatistics() has started ");
         this.flowPane.getChildren().clear();
 
         setCreatedListsLabel();
         setEventsCompletedLabel();
+        log.debug("Labels set");
 
-        this.borderPane.setCenter(anchorPane);
 
         for (int i = 0; i < this.listManager.getEventlists().size(); i++) {
 
@@ -85,22 +82,31 @@ public class StatisticController implements Listener, Initializable {
             StatisticListsBox statisticListsBox = new StatisticListsBox(this.listManager, this.borderPane);
             statisticListsBox.getStatisticListsController().setEventlistNameLabel(eventlistname);
 
-
             this.flowPane.getChildren().add(statisticListsBox);
-            this.scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-            this.scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+
+           this.scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+           this.scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+           log.debug("list nr." + i + " finished");
 
         }
+        log.debug("lists set");
+        log.debug("showStatistics() ended ");
     }
 
 
     @Override
     public void update() {
+        log.debug("showStatistics() in update() has started ");
         showStatistics();
     }
 
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        log.debug("showStatistics() in initialize() has started ");
         showStatistics();
     }
+
+
 }

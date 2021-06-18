@@ -35,7 +35,6 @@ public class MenuController implements Initializable {
     @FXML
     private Button viewStatisticButton;
 
-
     @FXML
     void showListScene() {
         ListsController eventlistController = new ListsController(this.listManager, this.borderPane);
