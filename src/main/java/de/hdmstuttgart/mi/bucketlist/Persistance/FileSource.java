@@ -33,7 +33,7 @@ public class FileSource implements Saver{
     }
 
     /**
-     * cleans the directory
+     * cleans the directory and checks if directory exists (if not it will be created)
      * should be used before saving (get rid of outdated files)
      */
     @Override
@@ -44,6 +44,11 @@ public class FileSource implements Saver{
             log.debug("directory cleaned");
         } catch (IOException ioException) {
             log.error(ioException.getMessage());
+        }catch (IllegalArgumentException illegalArgumentException){
+            //if Data Directory doesnt exist, it will be created
+            File dataDirectory = new File("Data");
+            boolean created = dataDirectory.mkdir();
+            log.info("Data directory does not exist. Data directory created: " + created);
         }
     }
 
@@ -62,7 +67,7 @@ public class FileSource implements Saver{
         try {
             listOfFiles = listDirectory("Data");
         } catch (EmptyDirectoryException e) {
-            log.error(e.getMessage());
+            log.error(e.getMessage() + "no Data will be loaded");
         }
 
         for (int i = 0; i < listOfFiles.length; i++) {
@@ -87,6 +92,4 @@ public class FileSource implements Saver{
             return files;
         }
     }
-
-
 }
