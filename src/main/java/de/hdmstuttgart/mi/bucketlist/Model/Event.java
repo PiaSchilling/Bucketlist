@@ -56,7 +56,7 @@ public class Event {
      * @return -- the whole date as a String
      */
     public String closingDate (int eventDay, int eventMonth, int eventYear){
-        return eventDay + "." + eventMonth + "." + eventYear;
+        return eventDay + "/" + eventMonth + "/" + eventYear;
     }
 
     @Override

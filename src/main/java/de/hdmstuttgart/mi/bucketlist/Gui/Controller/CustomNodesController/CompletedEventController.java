@@ -85,7 +85,7 @@ public class CompletedEventController {
     }
 
     public void setEventDateLabel(String date) {
-        this.completedDateLabel.setText(date);
+        this.completedDateLabel.setText("COMPLETED ON  " + date);
     }
 
     public void setEventCatLabel(String category) {

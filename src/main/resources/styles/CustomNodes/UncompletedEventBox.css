@@ -19,7 +19,8 @@
 }
 
 .checkBox .box{
-    -fx-background-color: #343838;
+    -fx-background-color: #ffffff;
+    -fx-opacity: 0.5;
     -fx-border-radius: 60;
 }
 

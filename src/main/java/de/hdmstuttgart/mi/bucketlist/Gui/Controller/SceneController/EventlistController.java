@@ -68,6 +68,9 @@ public class EventlistController implements Initializable, Listener {
    @FXML
    private ImageView backButton;
 
+   @FXML
+   private ImageView expiredImage;
+
 
     /**
     * shows all Events in the Eventlist
@@ -98,8 +101,6 @@ public class EventlistController implements Initializable, Listener {
             box.getUncompletedEventController().setEventcategoryLabel(temp.getEventCategory().toString());
             pane = box;
          }else{
-            System.out.println("name" + temp.getEventName());
-            System.out.println("url" + temp.getEventImageUrl());
             CompletedEventBox box = new CompletedEventBox(this.eventlist);
             box.getEventCompletedController().setEventNameLabel(temp.getEventName());
             box.getEventCompletedController().setEventCatLabel(temp.getEventCategory().toString());
@@ -140,11 +141,18 @@ public class EventlistController implements Initializable, Listener {
    public void initialize(URL location, ResourceBundle resources) {
       this.listNameLabel.setText(this.eventlistName);
       showEvents();
-      //dont show the scrollbar
       this.scrollpane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+      //disable all actions if the list is expired
       if(this.eventlist.getExpiryDateString() != null && StatisticsManager.daysLeft(this.eventlist)<0){
+         log.info("List expired. Actions are disabled");
          this.addEventButton.setDisable(true);
          this.expiredLabel.setText("This list is expired you cant modify anything anymore");
+
+         //todo @sara: einkommentieren und anschauen, sieht iwie doof aus :(
+        /* Image image;
+         URL url = this.getClass().getResource("/images/expired.png");
+         image = new Image(url.toString());
+         this.expiredImage.setImage(image);*/
       }
    }
 
@@ -155,9 +163,6 @@ public class EventlistController implements Initializable, Listener {
    public void update() {
       showEvents();
       log.info("Listview updated");
-      log.info("Events are shown:" + this.eventlist.toString());
-      //todo remove this log
-      log.info("ListManager:" + this.listManager.getEventlists().toString());
    }
 
 }

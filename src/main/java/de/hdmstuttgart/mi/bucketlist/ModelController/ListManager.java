@@ -102,7 +102,7 @@ public class ListManager implements Narrator {
                 .anyMatch(eventlist -> eventlist.getName().equals(eventlistNameNew));
         if(match){
             log.error("Name change failed. Name already assigned");
-            throw new ElementAlreadyExistsException("There is already an eventlist with the name "  + "\"" + eventlistNameNew);
+            throw new ElementAlreadyExistsException("There is already an eventlist with the name "  + "\"" + eventlistNameNew + "\"");
         }else{
             Eventlist eventlist1 = getEventlistByName(eventlistNameOld);
             eventlist1.updateEventlistName(eventlistNameNew);

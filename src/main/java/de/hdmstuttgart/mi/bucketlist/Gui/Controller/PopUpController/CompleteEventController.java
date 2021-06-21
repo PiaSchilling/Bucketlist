@@ -61,6 +61,9 @@ public class CompleteEventController implements Initializable {
     @FXML
     private Label errorLabel;
 
+    @FXML
+    private Button backButton;
+
     /**
      * completes the event (sets date, description and image)
      * description and image are optional (a default image will be set in the eventCompletedController)
@@ -102,6 +105,12 @@ public class CompleteEventController implements Initializable {
             this.imageUrl = null;
             log.debug(nullPointerException.getMessage() + ", no Image chosen, ImageUrl is set to null and a default Image will ne loaded");
         }
+    }
+
+    @FXML
+    void closeWindow() {
+        Stage stage = (Stage) this.backButton.getScene().getWindow();
+        stage.close();
     }
 
     /**

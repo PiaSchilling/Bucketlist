@@ -14,6 +14,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,6 +24,8 @@ public class UncompletedEventController implements Initializable {
 
     private final Eventlist eventlist;
     private String eventName;
+
+    private static final Logger log = LogManager.getLogger(UncompletedEventController.class);
 
     public UncompletedEventController(Eventlist eventlist){
         this.eventlist = eventlist;
@@ -37,7 +41,7 @@ public class UncompletedEventController implements Initializable {
     private Button deleteButton;
 
     @FXML
-    private CheckBox checkbox;
+    private CheckBox checkBox;
 
 
     public void setEventnameLabel(String eventname) {
@@ -72,9 +76,11 @@ public class UncompletedEventController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //disable all actions if the list is expired
         if(this.eventlist.getExpiryDateString() != null && StatisticsManager.daysLeft(this.eventlist)<0){
+            log.info("List expired. Actions are disabled");
             this.deleteButton.setDisable(true);
-            this.checkbox.setDisable(true);
+            this.checkBox.setDisable(true);
         }
     }
 }

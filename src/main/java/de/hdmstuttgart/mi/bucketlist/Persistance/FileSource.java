@@ -47,8 +47,8 @@ public class FileSource implements Saver{
         }catch (IllegalArgumentException illegalArgumentException){
             //if Data Directory doesnt exist, it will be created
             File dataDirectory = new File("Data");
-            boolean created = dataDirectory.mkdir();
-            log.info("Data directory does not exist. Data directory created: " + created);
+            boolean isCreated = dataDirectory.mkdir();
+            log.info("Data directory does not exist. Data directory created: " + isCreated);
         }
     }
 

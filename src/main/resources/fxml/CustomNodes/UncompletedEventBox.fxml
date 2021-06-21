@@ -8,15 +8,14 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane id="anchorpane" prefHeight="100.0" prefWidth="970.0" stylesheets="@../../styles/CustomNodes/UncompletedEventBox.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <CheckBox fx:id="checkBox" layoutX="22.0" layoutY="16.0" mnemonicParsing="false" onAction="#completeEvent" scaleX="2.0" scaleY="2.0" styleClass="checkBox">
+      <CheckBox id="checkBox" fx:id="checkBox" layoutX="33.0" layoutY="40.0" mnemonicParsing="false" onAction="#completeEvent" scaleX="2.0" scaleY="2.0" styleClass="checkBox">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </CheckBox>
-      <Label id="eventNameLabel" fx:id="eventNameLabel" layoutX="67.0" layoutY="23.0" text="Eventname" />
+      <Label id="eventNameLabel" fx:id="eventNameLabel" layoutX="67.0" layoutY="30.0" text="Eventname" />
       <Button id="deleteButton" fx:id="deleteButton" layoutX="898.0" layoutY="27.0" mnemonicParsing="false" onAction="#deleteEvent" prefHeight="47.0" prefWidth="48.0" style="-fx-background-color: transparent;">
          <graphic>
             <ImageView id="deleteIcon" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -26,6 +25,6 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label id="categoryLabel" fx:id="categoryLabel" layoutX="67.0" layoutY="51.0" stylesheets="@../../styles/CustomNodes/UncompletedEventBox.css" text="Category" />
+      <Label id="categoryLabel" fx:id="categoryLabel" layoutX="67.0" layoutY="52.0" stylesheets="@../../styles/CustomNodes/UncompletedEventBox.css" text="Category" />
    </children>
 </AnchorPane>

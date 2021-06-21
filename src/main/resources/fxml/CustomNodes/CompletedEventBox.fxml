@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane id="anchorpane" prefHeight="270.0" prefWidth="970.0" stylesheets="@../../styles/CustomNodes/CompletedEventBox.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <CheckBox id="checkbox" layoutX="39.0" layoutY="37.0" mnemonicParsing="false" />
       <Label id="eventNameLabel" fx:id="eventNameLabel" layoutX="78.0" layoutY="37.0" text="Eventname" />
       <Label id="categoryLabel" fx:id="categoryLabel" layoutX="78.0" layoutY="76.0" text="Category" />
       <Text id="descriptionText" fx:id="descriptionText" fill="WHITE" layoutX="78.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="400.0" />
       <ImageView id="eventImageView" fx:id="eventImageView" fitHeight="216.0" fitWidth="374.0" layoutX="548.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
-      <Label id="completedDateLabel" fx:id="completedDateLabel" layoutX="78.0" layoutY="108.0" text="Category" />
+      <Label id="completedDateLabel" fx:id="completedDateLabel" layoutX="78.0" layoutY="97.0" text="Category" />
    </children>
 </AnchorPane>

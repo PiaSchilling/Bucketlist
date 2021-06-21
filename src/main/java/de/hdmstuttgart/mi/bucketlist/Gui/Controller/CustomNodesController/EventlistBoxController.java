@@ -4,6 +4,7 @@ import de.hdmstuttgart.mi.bucketlist.Gui.Controller.PopUpController.ModifyListCo
 import de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController.EventlistController;
 import de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController.PaneLoader;
 import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
+import de.hdmstuttgart.mi.bucketlist.ViewController.StatisticsManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -14,7 +15,7 @@ public class EventlistBoxController {
 
     private final ListManager listManager;
     private String eventlistname;
-    private BorderPane borderPane;
+    private final BorderPane borderPane;
 
 
     public EventlistBoxController(ListManager listManager, BorderPane borderPane){
@@ -45,13 +46,18 @@ public class EventlistBoxController {
     }
 
     public void setExpiryDate(String expiryDate){
-        if(expiryDate == null){
+        if(expiryDate == null) {
             this.expiryDateLabel.setText("NOT SET");
+        }else if(StatisticsManager.daysLeft(this.listManager.getEventlistByName(this.eventlistname))<0){
+            String temp = this.listManager.getEventlistByName(this.eventlistname).getExpiryDateString();
+            this.expiryDateLabel.setText("EXPIRED SINCE " + temp);
         }else{
             String temp = this.listManager.getEventlistByName(this.eventlistname).getExpiryDateString();
             this.expiryDateLabel.setText("DUE TO " + temp);
         }
     }
+
+
 
     @FXML //todo rename method (löscht nicht sondern äffnet neues fenster)
     void deleteEventlist() {

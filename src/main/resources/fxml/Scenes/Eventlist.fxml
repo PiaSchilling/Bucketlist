@@ -29,7 +29,7 @@
                </image>
             </ImageView>
          </graphic></Button>
-      <Label fx:id="expiredLabel" layoutX="263.0" layoutY="34.0" prefHeight="17.0" prefWidth="643.0" textFill="WHITE" AnchorPane.topAnchor="85.0" />
+      <Label fx:id="expiredLabel" layoutX="263.0" layoutY="34.0" prefHeight="17.0" prefWidth="643.0" styleClass="expired-label" textFill="WHITE" AnchorPane.topAnchor="85.0" />
       <Button fx:id="addEventButton1" layoutX="-22.0" layoutY="85.0" mnemonicParsing="false" onAction="#switchToListsScene" prefHeight="41.0" prefWidth="67.0" style="-fx-background-color: transparent;" AnchorPane.leftAnchor="-22.0">
          <graphic>
             <ImageView fx:id="backButton" fitHeight="31.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
@@ -39,5 +39,6 @@
             </ImageView>
          </graphic>
       </Button>
+      <ImageView fx:id="expiredImage" fitHeight="176.0" fitWidth="533.0" layoutX="252.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

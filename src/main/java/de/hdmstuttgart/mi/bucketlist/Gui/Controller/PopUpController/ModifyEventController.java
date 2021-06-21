@@ -1,6 +1,7 @@
 package de.hdmstuttgart.mi.bucketlist.Gui.Controller.PopUpController;
 
 import de.hdmstuttgart.mi.bucketlist.Exceptions.ElementAlreadyExistsException;
+import de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController.PaneLoader;
 import de.hdmstuttgart.mi.bucketlist.Model.Eventlist;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -39,11 +40,13 @@ public class ModifyEventController {
         stage.close();
     }
 
-    @FXML
+    @FXML //todo rename to deleteEvent
     void deleteList() {
-        this.eventlist.deleteEvent(this.eventName);
-        Stage stage = (Stage) this.backButton.getScene().getWindow();
-        stage.close();
+        if(PaneLoader.loadConfirmationWindow("Are you sure you want to delete the event \" " + this.eventName + " \" ?")){
+            this.eventlist.deleteEvent(this.eventName);
+            Stage stage = (Stage) this.backButton.getScene().getWindow();
+            stage.close();
+        }
     }
 
     @FXML

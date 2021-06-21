@@ -33,3 +33,8 @@
    -fx-background-color: black;
 }
 
+.expired-label{
+    -fx-font-family: Lato-Light;
+    -fx-font-size: 20;
+}
+

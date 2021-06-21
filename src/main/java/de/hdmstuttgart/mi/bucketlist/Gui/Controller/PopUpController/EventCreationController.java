@@ -9,10 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -42,6 +39,9 @@ public class EventCreationController implements Initializable {
     private Button createButton;
 
     @FXML
+    private Button backButton;
+
+    @FXML
     private Label errorLabel;
 
     /**
@@ -65,6 +65,12 @@ public class EventCreationController implements Initializable {
                 this.errorLabel.setText(e.getMessage());
             }
         }
+    }
+
+    @FXML
+    void closeWindow() {
+        Stage stage = (Stage) this.backButton.getScene().getWindow();
+        stage.close();
     }
 
     /**

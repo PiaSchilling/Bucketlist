@@ -13,12 +13,16 @@ public enum Category {
     HOBBY("Hobbies you want to try"),
     FAMILY("Things you want to do with you family"),
     RELATIONSHIP("Things you want to do with your partner"),
-    FRIENDS("Things you want to do with your friends");
+    FRIENDS("Things you want to do with your friends"),
+    NO_CATEGORY("No Category fits");
 
-
-    private String description;
+    private final String description;
 
     Category(String description){
         this.description = description;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 }

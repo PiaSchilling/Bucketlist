@@ -43,6 +43,9 @@ public class EventlistCreationController implements Initializable {
     @FXML
     private Button createButton;
 
+    @FXML
+    private Button backButton;
+
     @FXML //will show an error text if the user tries to create a list without name
     private Label errorLabel;
 
@@ -86,6 +89,12 @@ public class EventlistCreationController implements Initializable {
                 this.errorLabel.setText(exception.getMessage());
             }
         }
+    }
+
+    @FXML
+    void closeWindow() {
+        Stage stage = (Stage) this.backButton.getScene().getWindow();
+        stage.close();
     }
 
     /**
