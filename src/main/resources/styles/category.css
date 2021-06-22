@@ -1,2 +1,15 @@
+.anchorpane{
+    -fx-background-color: transparent;
+}
+
+.flowpane{
+    -fx-background-color: transparent;
+}
+
+#scrollpane{
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+
 
 
