@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tooltip;
 import javafx.scene.effect.Shadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,6 +23,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -59,44 +61,11 @@ public class ListsController implements Initializable, Listener {
 
 
     /**
-     * create all the EventlistBoxes for the already existing Events
-     * @param location -- not used
-     * @param resources -- not used
-     */
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        showLists();
-        this.scrollpane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-    }
-
-
-    /**
      * opens a new window where a new Eventlist can be added
      */
    public void openCreationWindow()  {
-      /*  Stage stage = new Stage();
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setOpacity(0.95);
-        stage.initModality(Modality.APPLICATION_MODAL);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PopUpWindows/EventlistCreationWindow.fxml"));
-
-        //inject the listManager that new Eventlists can be added in the new window
-        EventlistCreationController eventlistCreationController = new EventlistCreationController(this.listManager);
-        loader.setController(eventlistCreationController);
-
-        Parent popUp = null;
-
-        try {
-            popUp = loader.load();
-        } catch (IOException ioException) {
-            ioException.printStackTrace();
-        }
-
-        stage.setScene(new Scene(popUp,565,243));
-        stage.show();*/
        EventlistCreationController eventlistCreationController = new EventlistCreationController(this.listManager);
        PaneLoader.loadPopUpWindow(eventlistCreationController,"EventlistCreationWindow");
-
    }
 
     /**
@@ -151,4 +120,24 @@ public class ListsController implements Initializable, Listener {
         showLists();
     }
 
+    /**
+     * prepare scene: showLists, setTooltips and dont show scrollbar
+     * @param location -- not used
+     * @param resources -- not used
+     */
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        showLists();
+        setTooltips();
+        this.scrollpane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+    }
+
+    /**
+     * sets the Tooltips for the whole scene
+     */
+    private void setTooltips(){
+        Tooltip addListTt = new Tooltip("Add a new eventlist");
+        addListTt.setShowDelay(Duration.millis(100));
+        this.addListButton.setTooltip(addListTt);
+    }
 }

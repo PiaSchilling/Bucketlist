@@ -4,8 +4,10 @@ import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.util.Duration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -64,5 +66,20 @@ public class MenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         showListScene();
+        setTooltips();
+    }
+
+    private void setTooltips(){
+        Tooltip listsButtonTt = new Tooltip("see all eventlists");
+        listsButtonTt.setShowDelay(Duration.millis(100));
+        this.viewListButton.setTooltip(listsButtonTt);
+
+        Tooltip catButtonTt = new Tooltip("see all categories");
+        catButtonTt.setShowDelay(Duration.millis(100));
+        this.viewCatButton.setTooltip(catButtonTt);
+
+        Tooltip statsButtonTt = new Tooltip("see the statistics");
+        statsButtonTt.setShowDelay(Duration.millis(100));
+        this.viewStatisticButton.setTooltip(statsButtonTt);
     }
 }

@@ -14,11 +14,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.util.Duration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -65,7 +67,7 @@ public class EventlistController implements Initializable, Listener {
    @FXML //is shown if the list date is expired
    private Label expiredLabel;
 
-   @FXML
+   @FXML //todo should be a button not an imageview
    private ImageView backButton;
 
    @FXML
@@ -139,9 +141,11 @@ public class EventlistController implements Initializable, Listener {
     */
    @Override
    public void initialize(URL location, ResourceBundle resources) {
+      //prepare the scene
       this.listNameLabel.setText(this.eventlistName);
       showEvents();
       this.scrollpane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+      setTooltips();
       //disable all actions if the list is expired
       if(this.eventlist.getExpiryDateString() != null && StatisticsManager.daysLeft(this.eventlist)<0){
          log.info("List expired. Actions are disabled");
@@ -163,6 +167,15 @@ public class EventlistController implements Initializable, Listener {
    public void update() {
       showEvents();
       log.info("Listview updated");
+   }
+
+   /**
+    * sets the Tooltips for the whole scene
+    */
+   private void setTooltips(){
+     Tooltip addEventTt = new Tooltip("Add a new event");
+     addEventTt.setShowDelay(Duration.millis(100));
+     this.addEventButton.setTooltip(addEventTt);
    }
 
 }

@@ -14,6 +14,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
+import javafx.util.Duration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -66,7 +68,6 @@ public class UncompletedEventController implements Initializable {
     void completeEvent() {
         CompleteEventController completeEventController = new CompleteEventController(this.eventlist, this.eventName);
         PaneLoader.loadPopUpWindow(completeEventController,"CompleteEventWindow");
-
     }
 
     /**
@@ -76,11 +77,25 @@ public class UncompletedEventController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        setTooltips();
         //disable all actions if the list is expired
         if(this.eventlist.getExpiryDateString() != null && StatisticsManager.daysLeft(this.eventlist)<0){
             log.info("List expired. Actions are disabled");
             this.deleteButton.setDisable(true);
             this.checkBox.setDisable(true);
         }
+    }
+
+
+    /**
+     * sets the Tooltips for the whole scene
+     */
+    private void setTooltips(){
+        Tooltip checkBoxTt = new Tooltip("Complete the event");
+        checkBoxTt.setShowDelay(Duration.millis(100));
+        Tooltip deleteButtonTt = new Tooltip("Modify the event");
+        deleteButtonTt.setShowDelay(Duration.millis(100));
+        this.checkBox.setTooltip(checkBoxTt);
+        this.deleteButton.setTooltip(deleteButtonTt);
     }
 }

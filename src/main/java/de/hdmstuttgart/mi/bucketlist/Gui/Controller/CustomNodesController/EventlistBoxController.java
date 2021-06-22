@@ -6,12 +6,18 @@ import de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController.PaneLoader;
 import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
 import de.hdmstuttgart.mi.bucketlist.ViewController.StatisticsManager;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.util.Duration;
 
-public class EventlistBoxController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class EventlistBoxController implements Initializable {
 
     private final ListManager listManager;
     private String eventlistname;
@@ -58,7 +64,6 @@ public class EventlistBoxController {
     }
 
 
-
     @FXML //todo rename method (löscht nicht sondern äffnet neues fenster)
     void deleteEventlist() {
         ModifyListController modifyListController = new ModifyListController(this.listManager,this.eventlistname);
@@ -74,5 +79,19 @@ public class EventlistBoxController {
             EventlistController eventlistController = new EventlistController(this.eventlistname, this.listManager,this.borderPane);
             AnchorPane anchorPane = PaneLoader.loadAnchorPane(eventlistController,"Eventlist");
             this.borderPane.setCenter(anchorPane);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        setTooltips();
+    }
+
+    /**
+     * sets the Tooltips for the whole scene
+     */
+    private void setTooltips(){
+        Tooltip deleteButtonTt = new Tooltip("Modify eventlist");
+        deleteButtonTt.setShowDelay(Duration.millis(100));
+        this.deleteButton.setTooltip(deleteButtonTt);
     }
 }
