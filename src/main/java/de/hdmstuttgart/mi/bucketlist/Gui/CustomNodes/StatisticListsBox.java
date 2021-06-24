@@ -38,3 +38,4 @@ public class StatisticListsBox extends AnchorPane {
         return statisticListsController;
     }
 }
+

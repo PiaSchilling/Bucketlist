@@ -122,6 +122,20 @@ public class StatisticsManager {
         }return percentage + " %";
     }
 
+    public double calculatePercentageCompletedEventsPerListAsDouble(String eventlistName){
+        ArrayList<Eventlist> temp = this.listManager.getEventlists();
+
+        double percentage=0;
+        for (int i = 0; i < temp.size(); i++) {
+            if( temp.get(i).getName().equals(eventlistName)){
+                double numerator= countCompletedEventsPerList(eventlistName);
+                double denominator= countEventsPerList(eventlistName);
+
+                percentage= numerator/denominator * 100;
+            }
+        }return percentage;
+    }
+
     public String daysLeft (String eventlistName) {
 
         log.debug("daysLeft method started");

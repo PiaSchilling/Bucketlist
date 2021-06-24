@@ -1,0 +1,6 @@
+#progressbar{
+    -fx-background: 0.4;
+    -fx-accent: rgba(93, 198, 166, 0.8);
+    -fx-border-radius: 5;
+    -fx-border-color: white;
+}
