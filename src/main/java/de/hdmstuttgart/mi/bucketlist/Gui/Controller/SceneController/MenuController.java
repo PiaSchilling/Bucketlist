@@ -1,6 +1,7 @@
 package de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController;
 
 import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
+import de.hdmstuttgart.mi.bucketlist.ViewController.CategoryManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -56,7 +57,8 @@ public class MenuController implements Initializable {
 
     @FXML
     void showCatScene() {
-        CategoryController categoryController = new CategoryController();
+        CategoryManager categoryManager = new CategoryManager(this.listManager);
+        CategoryController categoryController = new CategoryController(categoryManager);
         AnchorPane anchorPane= PaneLoader.loadAnchorPane(categoryController, "categories");
         borderPane.setCenter(anchorPane);
         log.info("Switched to showCatScene (MenuController");

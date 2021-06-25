@@ -11,5 +11,9 @@
     -fx-background-color: transparent;
 }
 
+#mycategoriesLabel{
+    -fx-font-family: Lato-Black;
+}
+
 
 

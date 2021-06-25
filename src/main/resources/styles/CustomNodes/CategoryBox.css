@@ -1,0 +1,14 @@
+#anchorpane{
+    -fx-background-image: url("../../images/Dark_Design/BackgroundImage_Categories.png");
+    -fx-background-size: cover, auto;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: left,top,center;
+}
+
+#categoryNameLabel{
+    -fx-font-family: Lato-Bold;
+}
+
+#eventCat{
+    -fx-font-family: Lato-Regular;
+}
