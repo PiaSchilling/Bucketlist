@@ -37,7 +37,7 @@ public class CategoryController implements Initializable, Listener {
     private Label mycategoriesLabel;
 
     public void showCategories() {
-        //this.flowpane.getChildren().clear();
+        this.flowpane.getChildren().clear();
 
         AnchorPane pane;
 
@@ -46,7 +46,7 @@ public class CategoryController implements Initializable, Listener {
 
             CategoryBox box = new CategoryBox(categoryManager);
             box.getCategoryBoxController().setCategoryNameLabel(Category.SKILLS.toString());
-            box.getCategoryBoxController().setCategorySKILLSImageView();
+            box.getCategoryBoxController().setCategoryImageView();
             //box.getCategoryBoxController().setEventAmountLabel(temp.size());
             pane = box;
 
