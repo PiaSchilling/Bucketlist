@@ -5,6 +5,7 @@ import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
@@ -42,8 +43,31 @@ public class StatisticsManager {
      */
     public String countLists(){
         ArrayList<Eventlist> temp = this.listManager.getEventlists();
-
         return String.valueOf(temp.size());
+    }
+
+    public int countEvents(){
+        ArrayList<Eventlist> temp = this.listManager.getEventlists();
+
+        int count = 0;
+
+        for (int i = 0; i < temp.size(); i++) {
+            count = count + temp.get(i).getEvents().size();
+        }
+        System.out.println(count);
+        return count;
+    }
+
+    public String countEventsAString(){
+        ArrayList<Eventlist> temp = this.listManager.getEventlists();
+
+        int count = 0;
+
+        for (int i = 0; i < temp.size(); i++) {
+            count = count + temp.get(i).getEvents().size();
+        }
+        System.out.println(count);
+        return String.valueOf(count);
     }
 
 
@@ -100,11 +124,13 @@ public class StatisticsManager {
                     }
                 }
             }
-        } return count;
+        }
+        return count;
     }
-
     /**
-     * Calculates the process of the completed events in a choosen list
+     * Calculates the process of the completed events in a choosen list.
+     * Returns the result without the positions after the decimal point when its an integer.
+     * Otherwise it returns the formatted String with two decimal places.
      * @param eventlistName
      * @return String with the calculates percentage
      */
@@ -119,7 +145,14 @@ public class StatisticsManager {
 
                 percentage= numerator/denominator * 100;
             }
-        }return percentage + " %";
+        }
+        if(percentage==(int)percentage){
+            return (int)percentage +" %";
+        }
+        String format = "0.00";
+        DecimalFormat formatter = new DecimalFormat(format);
+        String formattedPercentage = formatter.format(percentage);
+        return formattedPercentage + " %";
     }
 
     public double calculatePercentageCompletedEventsPerListAsDouble(String eventlistName){
@@ -131,10 +164,12 @@ public class StatisticsManager {
                 double numerator= countCompletedEventsPerList(eventlistName);
                 double denominator= countEventsPerList(eventlistName);
 
-                percentage= numerator/denominator * 100;
+                percentage= numerator/denominator;
             }
         }return percentage;
     }
+
+
 
     public String daysLeft (String eventlistName) {
 
@@ -157,6 +192,8 @@ public class StatisticsManager {
 
         }return String.valueOf(days) + " days left for " + "'" + eventlistName + "'";
     }
+
+
 
     public int daysLeftAsInt (String eventlistName) {
         int days=0;

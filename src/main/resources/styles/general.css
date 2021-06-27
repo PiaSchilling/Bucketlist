@@ -11,12 +11,14 @@
 
 #logoImage{
     -fx-effect: dropshadow(gaussian, black, 20, 0, 3, 3);
-
 }
 
 #listsButton:hover, #statisticButton:hover, #catButton:hover{
-    -fx-background-color: rgba(93, 198, 166,0.2);
+    -fx-background-color: rgba(93, 198, 166, 0.2);
     -fx-background-radius: 10  ;
+    -fx-border-color: white;
+    -fx-border-radius:  10;
+    -fx-border-width: 0.5;
 }
 
 #listsButton:focused, #statisticButton:focused, #catButton:focused{

@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="800.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="eventlistNameLabel" layoutY="200.0" prefHeight="40.0" prefWidth="1000.0" text="Hello" textFill="#5dc6a6">
@@ -40,7 +39,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label layoutX="604.0" layoutY="684.0" prefHeight="15.0" prefWidth="155.0" text="EVENTS COMPLETED" textFill="WHITE">
+      <Label layoutX="604.0" layoutY="684.0" prefHeight="15.0" prefWidth="155.0" text="EVENTS  CREATED" textFill="WHITE">
          <font>
             <Font name="Lato Regular" size="12.0" />
          </font>
@@ -50,17 +49,17 @@
             <Font name="Lato Regular" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="listDate" layoutX="800.0" layoutY="328.0" prefHeight="76.0" prefWidth="155.0" text="DD/MM/YYYY" textFill="WHITE">
+      <Label fx:id="listDateLabel" layoutX="800.0" layoutY="328.0" prefHeight="76.0" prefWidth="155.0" text="DD/MM/YYYY" textFill="WHITE">
          <font>
             <Font name="Lato Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="800.0" layoutY="315.0" prefHeight="15.0" prefWidth="155.0" text="ON THE " textFill="WHITE">
+      <Label fx:id="listDateTextLabel1" layoutX="800.0" layoutY="315.0" prefHeight="15.0" prefWidth="155.0" text="ON THE " textFill="WHITE">
          <font>
             <Font name="Lato Regular" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="listsCompletedEventsPerList" layoutX="600.0" layoutY="585.0" prefHeight="71.0" prefWidth="146.0" text="-" textFill="WHITE">
+      <Label fx:id="listsCreatedEventsLabel" layoutX="600.0" layoutY="585.0" prefHeight="71.0" prefWidth="146.0" text="-" textFill="WHITE">
          <font>
             <Font name="Lato Bold" size="72.0" />
          </font>
@@ -70,12 +69,26 @@
             <Font name="Lato Bold" size="72.0" />
          </font>
       </Label>
-      <Label layoutX="800.0" layoutY="403.0" prefHeight="15.0" prefWidth="155.0" text="THE EVENTLIST IS DUE" textFill="WHITE">
+      <Label fx:id="listDateTextLabel2" layoutX="800.0" layoutY="403.0" prefHeight="15.0" prefWidth="155.0" text="THE EVENTLIST IS DUE" textFill="WHITE">
          <font>
             <Font name="Lato Regular" size="12.0" />
          </font>
       </Label>
-      <ProgressBar id="progressbar" fx:id="progressProgressBar" layoutX="73.0" layoutY="600.0" prefHeight="100.0" prefWidth="435.0" progress="0.89" stylesheets="@../../styles/statistic.css" />
-      <ProgressBar id="progressbar" fx:id="progressProgressBar1" layoutX="73.0" layoutY="317.0" prefHeight="100.0" prefWidth="435.0" progress="0.89" stylesheets="@../../styles/statistic.css" />
+      <ProgressBar id="progressbar" fx:id="progressProgressBar" layoutX="73.0" layoutY="600.0" prefHeight="100.0" prefWidth="435.0" progress="0.0" stylesheets="@../../styles/statistic.css" />
+      <Label layoutX="800.0" layoutY="684.0" prefHeight="15.0" prefWidth="155.0" text="EVENTS COMPLETED" textFill="WHITE">
+         <font>
+            <Font name="Lato Regular" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="listsCompletedEventsPerList" layoutX="800.0" layoutY="585.0" prefHeight="71.0" prefWidth="146.0" text="-" textFill="WHITE">
+         <font>
+            <Font name="Lato Bold" size="72.0" />
+         </font>
+      </Label>
+      <Label fx:id="listPercentageLabel" alignment="CENTER" layoutX="85.0" layoutY="635.0" prefHeight="31.0" prefWidth="412.0" text="Label" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Lato Regular" size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

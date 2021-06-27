@@ -36,7 +36,7 @@ public class CategoryBoxController {
 
         String urlBase = "/images/Dark_Design/Categories_dark/";
         String postfix = ".png";
-        String completedUrl = urlBase + category.toString() + postfix;
+        String completedUrl = urlBase + category.toString().toLowerCase() + postfix;
         System.out.println(completedUrl);
 
         URL url = this.getClass().getResource(completedUrl);

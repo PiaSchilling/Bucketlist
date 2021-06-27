@@ -1,10 +1,10 @@
 package de.hdmstuttgart.mi.bucketlist.Model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Categorylist {
 
@@ -44,6 +44,10 @@ public class Categorylist {
      */
     public Category getListCategory(){
         return this.listCategory;
+    }
+
+    public ArrayList<Event> getEvents(){
+        return this.events;
     }
 
     @Override

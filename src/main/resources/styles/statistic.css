@@ -1,6 +1,28 @@
+
+
+
 #progressbar{
-    -fx-background: 0.4;
-    -fx-accent: rgba(93, 198, 166, 0.8);
+    -fx-control-inner-background: #0c0e2b;
+    -fx-accent: #5dc6a6;
     -fx-border-radius: 5;
     -fx-border-color: white;
+    -fx-border-width: 0.5;
 }
+
+.chart-pie{
+    -fx-border-width: 0;
+}
+
+.chart-pie-label{
+    -fx-fill:#ffffff;
+}
+
+
+.default-color5.chart-pie { -fx-pie-color: #003f5c; }
+.default-color0.chart-pie { -fx-pie-color:#2f4b7c; }
+.default-color1.chart-pie { -fx-pie-color: #665191; }
+.default-color2.chart-pie { -fx-pie-color:#a05195; }
+.default-color3.chart-pie { -fx-pie-color: #d45087; }
+.default-color4.chart-pie { -fx-pie-color: #f95d6a; }
+.default-color6.chart-pie { -fx-pie-color: #ff7c43; }
+.default-color7.chart-pie { -fx-pie-color: #ffa600; }
