@@ -39,18 +39,23 @@ public class CategoryController implements Initializable, Listener {
     public void showCategories() {
         this.flowpane.getChildren().clear();
 
-        AnchorPane pane;
+      //  AnchorPane pane;
 
        // for (int i = 0; i < this.categoryManager.getFilledCatgeoryLists().size(); i++) {
-            HashMap<Category, Categorylist> temp = this.categoryManager.getFilledCatgeoryLists();
+           // HashMap<Category, Categorylist> temp = this.categoryManager.getFilledCatgeoryLists();
 
+        for (int i = 0; i < Category.values().length; i++) {
             CategoryBox box = new CategoryBox(categoryManager);
-            box.getCategoryBoxController().setCategoryNameLabel(Category.SKILLS.toString());
-            box.getCategoryBoxController().setCategoryImageView();
-            //box.getCategoryBoxController().setEventAmountLabel(temp.size());
-            pane = box;
+            box.getCategoryBoxController().setCategoryNameLabel(Category.values()[i].toString());
+            box.getCategoryBoxController().setCategoryImageView(Category.values()[i]);
+            this.flowpane.getChildren().add(box);
+        }
 
-            this.flowpane.getChildren().add(pane);
+
+            //box.getCategoryBoxController().setEventAmountLabel(temp.size());
+           // pane = box;
+
+           // this.flowpane.getChildren().add(pane);
         //}
     }
 
@@ -65,6 +70,7 @@ public class CategoryController implements Initializable, Listener {
     public void update() {
         showCategories();
     }
+
 
 }
 

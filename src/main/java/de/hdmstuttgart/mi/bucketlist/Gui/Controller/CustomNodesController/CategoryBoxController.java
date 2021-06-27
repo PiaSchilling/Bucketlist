@@ -32,8 +32,29 @@ public class CategoryBoxController {
     @FXML
     private ImageView categoryImage;
 
-    public void setCategoryImageView() {
-        URL url = this.getClass().getResource("/images/Dark_Design/Categories_dark/SKILLS.png");
+    public void setCategoryImageView(Category category) {
+
+        String urlBase = "/images/Dark_Design/Categories_dark/";
+        String postfix = ".png";
+        String completedUrl;
+
+        switch (category){
+            case SKILLS:
+                completedUrl = urlBase + "SKILLS" + postfix;
+                break;
+            case TRAVEL:
+                completedUrl = urlBase + "TRAVEL" + postfix;
+            //todo insert the other ones
+            default:
+                //todo remove default oder set dino error bild
+                completedUrl = urlBase + "CULTURE" + postfix;
+        }
+
+        URL url = this.getClass().getResource(completedUrl);
+        Image image = new Image(url.toString());
+        this.categoryImage.setImage(image);
+
+   /*     URL url = this.getClass().getResource("/images/Dark_Design/Categories_dark/SKILLS.png");
         Image image = new Image(url.toString());
 
         URL url2 = this.getClass().getResource("/images/Dark_Design/Categories_dark/TRAVEL.png");
@@ -67,9 +88,9 @@ public class CategoryBoxController {
         Image image11 = new Image(url11.toString());
 
         URL url12 = this.getClass().getResource("/images/Dark_Design/Categories_dark/FRIENDS.png");
-        Image image12 = new Image(url12.toString());
+        Image image12 = new Image(url12.toString());*/
 
-        switch (category) {
+      /*  switch (category) {
             case SKILLS : this.categoryImage.setImage(image); break;
 
             case TRAVEL :  this.categoryImage.setImage(image2); break;
@@ -93,7 +114,7 @@ public class CategoryBoxController {
             case RELATIONSHIP :  this.categoryImage.setImage(image11); break;
 
             case FRIENDS :  this.categoryImage.setImage(image12); break;
-        }
+        }*/
 
     }
 

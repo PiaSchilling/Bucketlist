@@ -56,11 +56,12 @@ public class ListManager implements Narrator {
      * @param expiryMonth -- month of the expiry date
      * @param expiryYear -- year of the expiry date
      */
-    public void createEventlist(String eventlistName, int expiryDay, int expiryMonth, int expiryYear){
+    public void createEventlist(String eventlistName, int expiryDay, int expiryMonth, int expiryYear) throws ElementAlreadyExistsException {
         log.debug("createEventlist method started");
         if(this.eventlists.stream()
                 .anyMatch(eventlist -> eventlist.getName().equals(eventlistName))){
             log.info("There is already an eventlist with the name " + "\"" + eventlistName + "\"" + " please choose another one");
+            throw new ElementAlreadyExistsException("There is already an eventlist with the name " + "\"" + eventlistName + "\"" + " please choose another one");
         }else{
             this.eventlists.add(new Eventlist(eventlistName, expiryDay, expiryMonth, expiryYear));
             log.info( "Eventlist " + "\"" + eventlistName + "\"" + " added successfully");

@@ -80,11 +80,11 @@ public class EventlistCreationController implements Initializable {
                     int monthInt = this.monthBox.getValue();
                     int yearInt = this.yearBox.getValue();
                     this.listManager.createEventlist(eventlistname,dayInt,monthInt,yearInt);
-                    log.debug("Eventlist with expiry Date is created");
+                    log.debug("GUI - Eventlist with expiry Date is created");
                 }
                 Stage stage = (Stage) this.createButton.getScene().getWindow();
                 stage.close();
-                log.debug("Event added to GUI");
+                log.debug("GUI - Event added to GUI");
             }catch (ElementAlreadyExistsException exception){
                 this.errorLabel.setText(exception.getMessage());
             }
