@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="200.0" stylesheets="@../../styles/CustomNodes/CategoryBox.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="272.0" prefWidth="200.0" stylesheets="@../../styles/CustomNodes/CategoryBox.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <Label id="categoryNameLabel" fx:id="categoryNameLabel" alignment="CENTER" layoutX="61.0" layoutY="14.0" text="Category" textAlignment="CENTER" textFill="WHITE">
             <font>
