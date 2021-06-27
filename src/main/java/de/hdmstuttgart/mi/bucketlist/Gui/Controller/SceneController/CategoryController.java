@@ -39,7 +39,7 @@ public class CategoryController implements Initializable, Listener {
     public void showCategories() {
         this.flowpane.getChildren().clear();
 
-      //  AnchorPane pane;
+
 
        // for (int i = 0; i < this.categoryManager.getFilledCatgeoryLists().size(); i++) {
            // HashMap<Category, Categorylist> temp = this.categoryManager.getFilledCatgeoryLists();
@@ -53,9 +53,7 @@ public class CategoryController implements Initializable, Listener {
 
 
             //box.getCategoryBoxController().setEventAmountLabel(temp.size());
-           // pane = box;
 
-           // this.flowpane.getChildren().add(pane);
         //}
     }
 
