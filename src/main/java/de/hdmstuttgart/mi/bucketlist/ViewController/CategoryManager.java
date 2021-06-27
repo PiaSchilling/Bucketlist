@@ -32,6 +32,7 @@ public class CategoryManager {
         this.categoryListHashMap.put(Category.FAMILY,new Categorylist(Category.FAMILY));
         this.categoryListHashMap.put(Category.RELATIONSHIP,new Categorylist(Category.RELATIONSHIP));
         this.categoryListHashMap.put(Category.FRIENDS,new Categorylist(Category.FRIENDS));
+        this.categoryListHashMap.put(Category.NO_CATEGORY,new Categorylist(Category.NO_CATEGORY));
     }
 
     /**

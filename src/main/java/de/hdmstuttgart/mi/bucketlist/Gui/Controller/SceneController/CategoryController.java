@@ -40,11 +40,18 @@ public class CategoryController implements Initializable, Listener {
         this.flowpane.getChildren().clear();
 
         for (int i = 0; i < Category.values().length; i++) {
-            HashMap<Category, Categorylist> categorylistHashMap = categoryManager.getFilledCatgeoryLists();
+            HashMap<Category, Categorylist> map = categoryManager.getFilledCatgeoryLists();
             CategoryBox box = new CategoryBox(categoryManager);
+
             box.getCategoryBoxController().setCategoryNameLabel(Category.values()[i].toString());
             box.getCategoryBoxController().setCategoryImageView(Category.values()[i]);
-       //     box.getCategoryBoxController().setEventAmountLabel(categorylistHashMap.get(Category.values()[i]).getEvents().size() + " Events");
+
+            try {
+                box.getCategoryBoxController().setEventAmountLabel(map.get(Category.values()[i]).getEvents().size() + " Events");
+            }
+            catch (NullPointerException e) {
+                System.out.println("O Events");
+            }
             this.flowpane.getChildren().add(box);
         }
 
