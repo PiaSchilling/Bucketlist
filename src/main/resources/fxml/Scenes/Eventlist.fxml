@@ -11,9 +11,9 @@
 
 <AnchorPane id="anchorpane" fx:id="anchorpane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1080.0" stylesheets="@../../styles/lists.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ScrollPane id="scrollpane" fx:id="scrollpane" layoutY="91.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="709.0" prefWidth="1067.0" style="-fx-background-color: transparent;" AnchorPane.topAnchor="155.0">
+      <ScrollPane id="scrollpane" fx:id="scrollpane" layoutY="91.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="644.0" prefWidth="1067.0" style="-fx-background-color: transparent;" AnchorPane.topAnchor="155.0">
          <content>
-            <FlowPane id="flowpane" fx:id="flowpane" hgap="30.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1283.0" prefWidth="1041.0" vgap="30.0" />
+            <FlowPane id="flowpane" fx:id="flowpane" hgap="30.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="642.0" prefWidth="1041.0" vgap="30.0" />
          </content>
       </ScrollPane>
       <Label fx:id="listNameLabel" layoutX="33.0" layoutY="86.0" text="MY LISTS" textFill="WHITE" AnchorPane.leftAnchor="33.0" AnchorPane.topAnchor="86.0">

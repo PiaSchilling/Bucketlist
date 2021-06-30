@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.Observable;
 import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,14 +23,14 @@ public class ListManager implements Narrator {
     // initialize Logger
     private static final Logger log = LogManager.getLogger(ListManager.class);
 
-    private ArrayList<Eventlist> eventlists = new ArrayList<>();
+    //private ArrayList<Eventlist> eventlists = new ArrayList<>();
+    private ObservableList<Eventlist> eventlists = FXCollections.observableArrayList();
     private final EventlistRepository eventlistRepository = new EventlistRepository(Sourcetype.FILESOURCE);
     private final ArrayList<Listener> listeners = new ArrayList<>();
 
     //default constructor
     public ListManager(){
     }
-
 
     //------------------------ model manipulating methods -----------------------------------
 
@@ -45,7 +48,7 @@ public class ListManager implements Narrator {
             this.eventlists.add(new Eventlist(eventlistName));
             log.info( "Eventlist " + "\"" + eventlistName + "\"" + " added successfully");
 
-            informListeners();
+           // informListeners();
         }
     }
 
@@ -66,7 +69,7 @@ public class ListManager implements Narrator {
             this.eventlists.add(new Eventlist(eventlistName, expiryDay, expiryMonth, expiryYear));
             log.info( "Eventlist " + "\"" + eventlistName + "\"" + " added successfully");
 
-            informListeners();
+            //informListeners();
         }
     }
 
@@ -88,7 +91,7 @@ public class ListManager implements Narrator {
             this.eventlists.removeAll(temp);
             log.info("Eventlist " + "\"" + eventlistName + "\"" + " deleted successfully");
 
-           informListeners();
+           //informListeners();
         }
     }
 
@@ -170,6 +173,7 @@ public class ListManager implements Narrator {
      * saves the eventlists
      */
     public void save(){
+        log.debug("Save Method in listManager started");
         this.eventlistRepository.writeSaveable(this.eventlists);
     }
 
@@ -177,7 +181,11 @@ public class ListManager implements Narrator {
      * loads the eventlists which have been saved
      */
     public void load(){
-        this.eventlists = this.eventlistRepository.loadSaveable();
+        log.debug("Load Method in listManager started");
+        //create temp list and set all Items to this.eventlists because otherwise no change report is fired
+        ArrayList<Eventlist> temp = this.eventlistRepository.loadSaveable();
+        this.eventlists.setAll(temp);
+        log.debug("Lists in listManager loaded " + this.eventlists.toString());
     }
 
     // ------------------------ getter ----------------------------
@@ -223,6 +231,15 @@ public class ListManager implements Narrator {
         for (Listener listener : this.listeners) {
             listener.update();
         }
+    }
+
+    /**
+     * register a listener to the observable list
+     * @param listener -- class/object which wants to get informed about changes in the list
+     */
+    public void addListListener(ListChangeListener<Eventlist> listener){
+        this.eventlists.addListener(listener);
+        log.debug("Listener added");
     }
 
 }

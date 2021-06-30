@@ -75,4 +75,8 @@ public class EventlistBoxController {
             AnchorPane anchorPane = PaneLoader.loadAnchorPane(eventlistController,"Eventlist");
             this.borderPane.setCenter(anchorPane);
     }
+
+    public String getEventlistname(){
+        return this.eventlistname;
+    }
 }

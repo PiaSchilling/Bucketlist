@@ -80,6 +80,7 @@ public class EventlistController implements Initializable, Listener {
     */
    public void showEvents(){
 
+      setScrollBehavior();
       this.flowpane.getChildren().clear();
 
       AnchorPane pane;
@@ -128,9 +129,24 @@ public class EventlistController implements Initializable, Listener {
     */
    @FXML
    void switchToListsScene(){
-      ListsController listsController = new ListsController(this.listManager,this.borderPane);
+      ListsController listsController = new ListsController(this.listManager);
+      listsController.injectBorderPane(this.borderPane);
       AnchorPane anchorPane = PaneLoader.loadAnchorPane(listsController,"lists");
       this.borderPane.setCenter(anchorPane);
+   }
+
+   /**
+    * computes the height of the flowpane according to the number of boxes so
+    * the scrollpane will be scrollable if there are many boxes
+    */
+   private void setScrollBehavior(){
+      double height = this.eventlist.getEvents().size() * 130;
+      for (int i = 0; i < this.eventlist.getEvents().size(); i++) {
+         if(this.eventlist.getEvents().get(i).getIsCompleted()){
+            height += 190;
+         }
+      }
+      this.flowpane.setPrefHeight(height);
    }
 
     /**
@@ -144,7 +160,6 @@ public class EventlistController implements Initializable, Listener {
       //prepare the scene
       this.listNameLabel.setText(this.eventlistName);
       showEvents();
-      this.scrollpane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
       setTooltips();
       //disable all actions if the list is expired
       if(this.eventlist.getExpiryDateString() != null && StatisticsManager.daysLeft(this.eventlist)<0){

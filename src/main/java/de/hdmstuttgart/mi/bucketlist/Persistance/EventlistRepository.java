@@ -4,6 +4,7 @@ import de.hdmstuttgart.mi.bucketlist.Model.Eventlist;
 
 import java.util.ArrayList;
 
+import javafx.collections.ObservableList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -30,10 +31,12 @@ public class EventlistRepository {
 
     /**
      * uses the saver to write to a source
-     * @param eventlists -- list of eventlists which should be saved
+     * @param eventlistsObservable -- list of eventlists which should be saved
      */
-    public void writeSaveable(ArrayList<Eventlist> eventlists){
+    public void writeSaveable(ObservableList<Eventlist> eventlistsObservable){
         log.debug("writeSaveable method started");
+
+        ArrayList<Eventlist> eventlists = new ArrayList<>(eventlistsObservable);
 
         //prepares the source (old data is deleted)
         this.saver.updateSource();

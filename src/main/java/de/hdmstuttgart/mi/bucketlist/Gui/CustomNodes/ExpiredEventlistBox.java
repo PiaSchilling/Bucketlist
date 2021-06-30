@@ -9,7 +9,7 @@ import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
 
-public class ExpiredEventlistBox extends AnchorPane {
+public class ExpiredEventlistBox extends AnchorPane implements Box{
 
     EventlistBoxController eventlistBoxController;
 
@@ -28,7 +28,7 @@ public class ExpiredEventlistBox extends AnchorPane {
         }
     }
 
-    public EventlistBoxController getEventlistBoxController() {
+    public EventlistBoxController getController() {
         return eventlistBoxController;
     }
 }

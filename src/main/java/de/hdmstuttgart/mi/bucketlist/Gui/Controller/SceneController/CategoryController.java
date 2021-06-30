@@ -61,7 +61,6 @@ public class CategoryController implements Initializable, Listener {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         this.scrollpane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         showCategories();
-
     }
 
     @Override

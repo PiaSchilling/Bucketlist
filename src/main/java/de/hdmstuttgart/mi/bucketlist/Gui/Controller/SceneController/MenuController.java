@@ -19,10 +19,12 @@ import java.util.ResourceBundle;
 public class MenuController implements Initializable {
 
     private final ListManager listManager;
+    private final ListsController listsController;
     private static final Logger log = LogManager.getLogger(MenuController.class);
 
     public MenuController(ListManager listManager){
         this.listManager = listManager;
+        this.listsController = new ListsController(this.listManager);
     }
 
 
@@ -40,10 +42,12 @@ public class MenuController implements Initializable {
 
     @FXML
     void showListScene() {
-        ListsController eventlistController = new ListsController(this.listManager, this.borderPane);
-        AnchorPane anchorPane= PaneLoader.loadAnchorPane(eventlistController, "lists");
+        log.debug("Started showListScene");
+        AnchorPane anchorPane= PaneLoader.loadAnchorPane(listsController, "lists");
+        //the borderpane is null when the constructor is called, so it can not be injected to the listsController IN the constructor while instancing the listsController
+        this.listsController.injectBorderPane(this.borderPane);
         borderPane.setCenter(anchorPane);
-        log.info("Switched to showListScene (MenuController");
+        log.debug("Ended showListScene");
     }
 
     @FXML

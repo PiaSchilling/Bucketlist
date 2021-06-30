@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * custom node which displays an eventlist
  */
-public class EventlistBox extends AnchorPane {
+public class EventlistBox extends AnchorPane implements Box{
 
     EventlistBoxController eventlistBoxController;
 
@@ -31,7 +31,7 @@ public class EventlistBox extends AnchorPane {
         }
     }
 
-    public EventlistBoxController getEventlistBoxController() {
+    public EventlistBoxController getController() {
         return eventlistBoxController;
     }
 }

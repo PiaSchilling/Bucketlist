@@ -4,6 +4,7 @@ import de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController.MenuControll
 import de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController.PaneLoader;
 import de.hdmstuttgart.mi.bucketlist.Model.Category;
 import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
+import de.hdmstuttgart.mi.bucketlist.Threads.PersistenceRunnable;
 import de.hdmstuttgart.mi.bucketlist.ViewController.CategoryManager;
 import de.hdmstuttgart.mi.bucketlist.ViewController.StatisticsManager;
 import javafx.application.Application;
@@ -74,7 +75,11 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
 
         this.window = stage;
-        this.listManager.load();
+        //this.listManager.load();
+
+        PersistenceRunnable persistenceRunnable = new PersistenceRunnable(this.listManager);
+        Thread persistenceThread = new Thread(persistenceRunnable,"Persistence");
+        persistenceThread.start();
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Scenes/menu.fxml"));
         MenuController menuController = new MenuController(this.listManager);
