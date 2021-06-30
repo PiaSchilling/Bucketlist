@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="#anchorpane" prefHeight="244.0" prefWidth="297.0" styleClass="anchorpane" stylesheets="@../../styles/PopUpWindows/popUpWindow.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="#anchorpane" prefHeight="244.0" prefWidth="297.0" styleClass="anchorpane" stylesheets="@../../styles/PopUpWindows/popUpWindow.css" xmlns="http://javafx.com/javafx/14.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="28.0" layoutY="65.0" text="edit name" />
       <TextField id="#textfield" fx:id="editNameField" layoutX="25.0" layoutY="93.0" styleClass="textfield" />

@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="anchorpane" prefHeight="100.0" prefWidth="970.0" stylesheets="@../../styles/CustomNodes/UncompletedEventBox.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="anchorpane" prefHeight="100.0" prefWidth="970.0" stylesheets="@../../styles/CustomNodes/UncompletedEventBox.css" xmlns="http://javafx.com/javafx/14.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <CheckBox id="checkBox" fx:id="checkBox" layoutX="33.0" layoutY="40.0" mnemonicParsing="false" onAction="#completeEvent" scaleX="2.0" scaleY="2.0" styleClass="checkBox">
          <cursor>

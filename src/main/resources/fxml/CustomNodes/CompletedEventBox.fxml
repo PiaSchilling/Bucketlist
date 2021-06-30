@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="anchorpane" prefHeight="270.0" prefWidth="970.0" stylesheets="@../../styles/CustomNodes/CompletedEventBox.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="anchorpane" prefHeight="270.0" prefWidth="970.0" stylesheets="@../../styles/CustomNodes/CompletedEventBox.css" xmlns="http://javafx.com/javafx/14.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label id="eventNameLabel" fx:id="eventNameLabel" layoutX="78.0" layoutY="37.0" text="Eventname" />
       <Label id="categoryLabel" fx:id="categoryLabel" layoutX="78.0" layoutY="76.0" text="Category" />

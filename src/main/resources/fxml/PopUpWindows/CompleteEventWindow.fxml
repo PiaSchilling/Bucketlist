@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="405.0" prefWidth="361.0" styleClass="anchorpane" stylesheets="@../../styles/PopUpWindows/popUpWindow.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="405.0" prefWidth="361.0" styleClass="anchorpane" stylesheets="@../../styles/PopUpWindows/popUpWindow.css" xmlns="http://javafx.com/javafx/14.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ComboBox fx:id="dayComboBox" layoutX="24.0" layoutY="259.0" prefHeight="27.0" prefWidth="95.0" promptText="day" styleClass="combo-box">
          <cursor>

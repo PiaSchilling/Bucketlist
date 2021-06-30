@@ -9,7 +9,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="243.0" prefWidth="565.0" styleClass="anchorpane" stylesheets="@../../styles/PopUpWindows/popUpWindow.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="243.0" prefWidth="565.0" styleClass="anchorpane" stylesheets="@../../styles/PopUpWindows/popUpWindow.css" xmlns="http://javafx.com/javafx/14.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="28.0" layoutY="66.0" text="Name" />
       <TextField fx:id="listNameField" layoutX="25.0" layoutY="93.0" promptText="please enter Eventlistname" />

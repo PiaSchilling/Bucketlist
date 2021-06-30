@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="158.0" prefWidth="264.0" styleClass="anchorpane" stylesheets="@../../styles/PopUpWindows/popUpWindow.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="158.0" prefWidth="264.0" styleClass="anchorpane" stylesheets="@../../styles/PopUpWindows/popUpWindow.css" xmlns="http://javafx.com/javafx/14.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="9.0" layoutY="39.0" prefHeight="51.0" prefWidth="242.0" text="Label" wrapText="true" />
       <Button fx:id="yesButton" layoutX="81.0" layoutY="99.0" mnemonicParsing="false" onAction="#setYes" text="yes" />
