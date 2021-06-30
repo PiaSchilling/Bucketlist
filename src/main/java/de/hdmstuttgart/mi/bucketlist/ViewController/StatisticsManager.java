@@ -206,9 +206,11 @@ public class StatisticsManager {
 
         for (int i = 0; i < this.listManager.getEventlists().size(); i++) {
             if (this.listManager.getEventlists().get(i).getName().equals(eventlistName)) {
-                future = this.listManager.getEventlists().get(i).getExpiryDateGregorian();
-                difference = future.getTimeInMillis() - today.getTimeInMillis();
-                days = (int) (difference / (1000 * 60 * 60 * 24));
+                if (this.listManager.getEventlists().get(i).getExpiryDateGregorian() != null) {
+                    future = this.listManager.getEventlists().get(i).getExpiryDateGregorian();
+                    difference = future.getTimeInMillis() - today.getTimeInMillis();
+                    days = (int) (difference / (1000 * 60 * 60 * 24));
+                }
             }
         }return days;
     }

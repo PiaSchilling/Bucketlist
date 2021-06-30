@@ -134,13 +134,12 @@ public class StatisticEventlistController implements Initializable, Listener {
     }
 
     public void setLeftDays() {
-
-        ArrayList<Eventlist> temp = this.listManager.getEventlists();
-
-        log.debug("###" + statisticManager.daysLeft(this.eventlistName));
-
-
+        log.debug("daysLeft() set on "+ statisticManager.daysLeft(this.eventlistName));
         this.listsLeftDays.setText(statisticManager.daysLeft(this.eventlistName));
+
+        if(statisticManager.daysLeftAsInt(this.eventlistName) < 0){
+            this.listsLeftDays.setStyle("-fx-text-fill: #ffa766");
+        }
 
 
     }
