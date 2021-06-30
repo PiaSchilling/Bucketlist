@@ -5,8 +5,6 @@
     -fx-control-inner-background: #0c0e2b;
     -fx-accent: #5dc6a6;
     -fx-border-radius: 5;
-    -fx-border-color: white;
-    -fx-border-width: 0.5;
 }
 
 .chart-pie{

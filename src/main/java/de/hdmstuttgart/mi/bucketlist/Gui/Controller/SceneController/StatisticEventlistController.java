@@ -16,6 +16,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class StatisticEventlistController implements Initializable, Listener {
@@ -125,11 +126,26 @@ public class StatisticEventlistController implements Initializable, Listener {
             this.listDateLabel.setText(eventlist.getExpiryDateString());
             this.listDateTextLabel2.setText("THE EVENTLIST IS DUE");
         }else {
-            this.listDateTextLabel1.setText("' " + this.eventlistName.toUpperCase() + " ' EXPIRY DATE");
+            this.listDateTextLabel1.setText("EXPIRY DATE FOR '" + this.eventlistName.toUpperCase() + "'");
             this.listDateLabel.setText("IS NOT SET.");
             this.listDateTextLabel2.setText("");
         }
+
     }
+
+    public void setLeftDays() {
+
+        ArrayList<Eventlist> temp = this.listManager.getEventlists();
+
+        log.debug("###" + statisticManager.daysLeft(this.eventlistName));
+
+
+        this.listsLeftDays.setText(statisticManager.daysLeft(this.eventlistName));
+
+
+    }
+
+
 
 
 
@@ -157,6 +173,7 @@ public class StatisticEventlistController implements Initializable, Listener {
         setCompletedEventsPerListLabel();
         setCreatedEventsPerListLabel();
         setPercentageLabel();
+        setLeftDays();
         log.debug("labels set");
 
         setProgressProgressBar();

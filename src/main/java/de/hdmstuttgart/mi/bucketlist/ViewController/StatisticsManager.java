@@ -184,13 +184,15 @@ public class StatisticsManager {
 
         for (int i = 0; i < temp.size(); i++) {
             if (temp.get(i).getName().equals(eventlistName)) {
-                future = temp.get(i).getExpiryDateGregorian();
-                difference = future.getTimeInMillis() - today.getTimeInMillis();
-                days = (int) (difference / (1000 * 60 * 60 * 24));
+                if (temp.get(i).getExpiryDateGregorian() != null) {
+                    future = temp.get(i).getExpiryDateGregorian();
+                    difference = future.getTimeInMillis() - today.getTimeInMillis();
+                    days = (int) (difference / (1000 * 60 * 60 * 24));
+                    return String.valueOf(days);
+                }
             }
+        } return "-";
 
-
-        }return String.valueOf(days) + " days left for " + "'" + eventlistName + "'";
     }
 
 
