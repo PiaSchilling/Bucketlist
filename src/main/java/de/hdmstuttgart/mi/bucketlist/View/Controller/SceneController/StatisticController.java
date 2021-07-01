@@ -36,10 +36,10 @@ public class StatisticController implements Listener, Initializable {
     private static final Logger log = LogManager.getLogger(StatisticController.class);
 
 
-    public StatisticController(ListManager listManager, BorderPane borderPane){
+    public StatisticController(ListManager listManager, BorderPane borderPane) {
         this.listManager = listManager;
         this.borderPane = borderPane;
-        this.statisticManager= new StatisticsManager(listManager);
+        this.statisticManager = new StatisticsManager(listManager);
 
         this.listManager.addListener(this);
     }
@@ -68,57 +68,65 @@ public class StatisticController implements Listener, Initializable {
 
 
     /**
-     * sets the text to show how many lists the user already created
+     * sets the text to show how many LISTS the user already CREATED
      */
-    public void setCreatedListsLabel(){
-        log.debug("setCreatedListsLabel() method started" );
+    public void setCreatedListsLabel() {
+        log.debug("setCreatedListsLabel() method started");
         this.listsCreatedLabel.setText(statisticManager.countListsAsString());
     }
 
 
     /**
-     * sets the text to show how many events the user already completed
+     * sets the text to show how many EVENTS the user already COMPLETED
      */
-    public void setEventsCompletedLabel(){
-        log.debug("setEventsCompletedLabel() method started" );
+    public void setEventsCompletedLabel() {
+        log.debug("setEventsCompletedLabel() method started");
         this.eventsCompletedLabel.setText(statisticManager.countCompletedEventsAsString());
     }
 
-    public void setCountEvents(){
+
+    /**
+     * sets the text to show how many EVENTS the user already CREATED
+     */
+    public void setCountEvents() {
+        log.debug("setCountEvents() method started");
         this.listCountEvents.setText(statisticManager.countEventsAString());
     }
 
 
+    /**
+     * sets Pie Chart and displays how many EVENTS the user CREATED in the available categories
+     */
+    public void setPieChart() {
+        log.debug("setPieChart() method started");
+        CategoryManager categoryManager = new CategoryManager(this.listManager);
 
-
-    public void setPieChart(){
-        CategoryManager categoryManager= new CategoryManager(this.listManager);
-        HashMap<Category, Categorylist> map= categoryManager.getFilledCatgeoryLists();
-
-        for (Map.Entry<Category,Categorylist> entry: map.entrySet()) {
-            if(entry.getValue().getEvents().size()!=0){
+        // Pie Chart gets filled with Data which hasn't got the value 0
+        HashMap<Category, Categorylist> map = categoryManager.getFilledCatgeoryLists();
+        for (Map.Entry<Category, Categorylist> entry : map.entrySet()) {
+            if (entry.getValue().getEvents().size() != 0) {
                 this.pieChart.getData().add(new PieChart.Data(entry.getValue().getListCategory().toString(), entry.getValue().getEvents().size()));
             }
         }
-
-            this.pieChart.setLegendVisible(false);
-            this.pieChart.setStartAngle(90);
-            this.pieChart.setLabelLineLength(30);
+        //Styling
+        this.pieChart.setLegendVisible(false);
+        this.pieChart.setStartAngle(90);
+        this.pieChart.setLabelLineLength(30);
 
 
         this.pieChart.getData().forEach(data -> {
-            // zeigt dann die korrekte Zahlen an, wenn das Programm richtig läuft
-            String percentage = String.format("%.2f%%", (data.getPieValue() / statisticManager.countEvents())*100);
+            // shows the correct formatted percentage values as String
+            String percentage = String.format("%.2f%%", (data.getPieValue() / statisticManager.countEvents()) * 100);
             Tooltip toolTip = new Tooltip(percentage);
             Tooltip.install(data.getNode(), toolTip);
         });
-
-
     }
 
 
-
-    public void showStatistics(){
+    /**
+     * shows Statistics
+     */
+    public void showStatistics() {
         log.debug("showStatistics() has started ");
         this.flowPane.getChildren().clear();
 
@@ -128,33 +136,32 @@ public class StatisticController implements Listener, Initializable {
         log.debug("Labels set");
 
         setPieChart();
+        log.debug("Pie Chart set");
 
 
         for (int i = 0; i < this.listManager.getEventlists().size(); i++) {
 
             String eventlistname = this.listManager.getEventlists().get(i).getName();
-            //System.out.println(eventlistname);
             StatisticListsBox statisticListsBox = new StatisticListsBox(this.listManager, this.borderPane);
             statisticListsBox.getStatisticListsController().setEventlistNameLabel(eventlistname);
 
             this.flowPane.getChildren().add(statisticListsBox);
 
-           this.scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-           this.scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-           log.debug("list " + eventlistname + " finished");
-
+            this.scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+            this.scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         }
         log.debug("lists set");
         log.debug("showStatistics() ended ");
     }
 
-
+    /**
+     * updates the statistic scene if any changes occurs
+     */
     @Override
     public void update() {
         log.debug("showStatistics() in update() has started ");
         showStatistics();
     }
-
 
 
     @Override

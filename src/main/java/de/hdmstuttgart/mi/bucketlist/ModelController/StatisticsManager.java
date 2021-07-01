@@ -16,11 +16,8 @@ public class StatisticsManager {
 
     private final ListManager listManager;
 
-    // ArrayList<Eventlist> eventlists;
-
     private CategoryManager categoryManager;
 
-    // initialize Logger
     private static final Logger log = LogManager.getLogger(StatisticsManager.class);
 
 
@@ -31,23 +28,29 @@ public class StatisticsManager {
      */
     public StatisticsManager(ListManager listManager){
         this.listManager = listManager;
-        //this.eventlists= this.listManager.getEventlists();
         this.categoryManager= new CategoryManager(listManager);
     }
 
 
     /**
      * Counts the created lists
-     * @return the number of the created lists
+     * @return the number of the created lists as String
      */
     public String countListsAsString(){
+        log.debug("countListsAsString() method started");
         ArrayList<Eventlist> temp = this.listManager.getEventlists();
         return String.valueOf(temp.size());
     }
 
-    public int countEvents(){
-        ArrayList<Eventlist> temp = this.listManager.getEventlists();
 
+    /**
+     * Counts the created events
+     * @return the number of the created lists
+     */
+    public int countEvents(){
+        log.debug("countEvents() method started");
+
+        ArrayList<Eventlist> temp = this.listManager.getEventlists();
         int count = 0;
 
         for (int i = 0; i < temp.size(); i++) {
@@ -57,7 +60,15 @@ public class StatisticsManager {
         return count;
     }
 
+
+
+    /**
+     * counts the created events
+     * @return the number of the created lists as String
+     */
     public String countEventsAString(){
+        log.debug("countEventsAString() method started");
+
         ArrayList<Eventlist> temp = this.listManager.getEventlists();
 
         int count = 0;
@@ -72,9 +83,11 @@ public class StatisticsManager {
 
     /**
      * counts the completed events in general
-     * @return the number of completed events in general
+     * @return the number of completed events in general as String
      */
     public String countCompletedEventsAsString(){
+        log.debug("countCompletedEventsAsString() method started");
+
         ArrayList<Eventlist> temp = this.listManager.getEventlists();
 
         int count=0;
@@ -87,12 +100,16 @@ public class StatisticsManager {
         } return String.valueOf(count);
     }
 
+
+
     /**
      * Counts the events in a specific List, ignoring the fact if it's completed or not
      * @param eventlistName
-     * @return the number of events
+     * @return the number of events as int
      */
     public int countEventsPerList(String eventlistName) {
+        log.debug("countEventsPerList() method started");
+
         ArrayList<Eventlist> temp = this.listManager.getEventlists();
 
         int count = 0;
@@ -108,9 +125,11 @@ public class StatisticsManager {
     /**
      * Counts just the completed events in a specific List
      * @param eventlistName
-     * @return the number of completed events
+     * @return the number of completed events as int
      */
     public int countCompletedEventsPerList(String eventlistName){
+        log.debug("countCompletedEventsPerList() method started");
+
         ArrayList<Eventlist> temp = this.listManager.getEventlists();
 
         int count=0;
@@ -136,6 +155,8 @@ public class StatisticsManager {
      * @return String with the calculates percentage
      */
     public String calculatePercentageCompletedEventsPerListAsString(String eventlistName){
+        log.debug("calculatePercentageCompletedEventsPerListAsString() method started");
+
         ArrayList<Eventlist> temp = this.listManager.getEventlists();
 
         double percentage=-1;
@@ -156,7 +177,16 @@ public class StatisticsManager {
         return formattedPercentage + " %";
     }
 
+
+
+    /**
+     * Calculates the process of the completed events in a choosen list.
+     * @param eventlistName
+     * @return double with the calculated percentage
+     */
     public double calculatePercentageCompletedEventsPerList(String eventlistName){
+        log.debug("calculatePercentageCompletedEventsPerList() method started");
+
         ArrayList<Eventlist> temp = this.listManager.getEventlists();
 
         double percentage=0;
@@ -172,9 +202,14 @@ public class StatisticsManager {
 
 
 
+    /**
+     * Calculates the days which are left until the expiry date from the handed over eventlist
+     * If the expiry date is not set, the method will return a default String
+     * @param eventlistName
+     * @return the date or the default value
+     */
     public String daysLeftAsString(String eventlistName) {
-
-        log.debug("daysLeft method started");
+        log.debug("daysLeftAsString() method started");
         ArrayList<Eventlist> temp = this.listManager.getEventlists();
 
         int days=0;
@@ -193,12 +228,18 @@ public class StatisticsManager {
                 }
             }
         } return "-";
-
     }
 
 
 
+    /**
+     * Calculates the days which are left until the expiry date from the handed over eventlist
+     * @param eventlistName
+     * @return the date or the default value
+     */
     public int daysLeftAsInt (String eventlistName) {
+        log.debug("daysLeftAsInt() method started");
+
         int days=0;
         long difference;
 
@@ -216,12 +257,15 @@ public class StatisticsManager {
         }return days;
     }
 
+
     /**
      * count days left form a handed over eventlist
      * @param eventlist -- the list the day should be counted of
      * @return -- the number of days left until expiry
      */
     public static int daysLeft (Eventlist eventlist) {
+        log.debug("daysLeft() static method started");
+
         int days=0;
         long difference;
 

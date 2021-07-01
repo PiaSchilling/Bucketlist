@@ -28,15 +28,23 @@ public class StatisticListsController {
         this.borderPane = borderPane;
     }
 
-
+    /**
+     * sets the Headline in the 2nd Statistic Scene and displays the name of the handed over eventlist
+     * @param eventlistName
+     */
     public void setEventlistNameLabel(String eventlistName){
-        log.debug("setEventlistNameLabel() for a statistic list has started ");
+        log.debug("setEventlistNameLabel() method has started ");
         this.eventlistName = eventlistName;
         this.eventlistNameLabel.setText(eventlistName.toUpperCase());
     }
 
+    /**
+     * makes it switch to the 2nd Statistic Scene
+     */
     @FXML
     public void switchToStatisticListScene() {
+        log.debug("switchToStatisticListScene() in StatisticListsController has started");
+
         StatisticEventlistController statisticEventlistController= new StatisticEventlistController(this.listManager, this.eventlistName,this.borderPane);
         AnchorPane anchorPane = PaneLoader.loadAnchorPane(statisticEventlistController,"statisticEventlist");
         this.borderPane.setCenter(anchorPane);
