@@ -14,10 +14,10 @@ module gui {
     opens de.hdmstuttgart.mi.bucketlist.Model to javafx.fxml, com.fasterxml.jackson.databind;
     opens de.hdmstuttgart.mi.bucketlist.Persistance to com.fasterxml.jackson.databind;
 
-    opens de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController to javafx.fxml, javafx.graphics, javafx.controls;
-    exports de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController to javafx.fxml, javafx.graphics, javafx.controls;
+    opens de.hdmstuttgart.mi.bucketlist.View.Controller.SceneController to javafx.fxml, javafx.graphics, javafx.controls;
+    exports de.hdmstuttgart.mi.bucketlist.View.Controller.SceneController to javafx.fxml, javafx.graphics, javafx.controls;
 
-    opens de.hdmstuttgart.mi.bucketlist.Gui.Controller.CustomNodesController  to  javafx.fxml;
-    opens de.hdmstuttgart.mi.bucketlist.Gui.Controller.PopUpController to javafx.fxml;
+    opens de.hdmstuttgart.mi.bucketlist.View.Controller.CustomNodesController  to  javafx.fxml;
+    opens de.hdmstuttgart.mi.bucketlist.View.Controller.PopUpController to javafx.fxml;
 
 }

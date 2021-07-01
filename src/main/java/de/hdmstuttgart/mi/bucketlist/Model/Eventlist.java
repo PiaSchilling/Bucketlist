@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 
 import de.hdmstuttgart.mi.bucketlist.Exceptions.ElementAlreadyExistsException;
-import de.hdmstuttgart.mi.bucketlist.Gui.Listener;
+import de.hdmstuttgart.mi.bucketlist.View.Listener;
 import de.hdmstuttgart.mi.bucketlist.Persistance.Saveable;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -13,7 +13,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

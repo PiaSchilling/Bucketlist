@@ -1,14 +1,13 @@
 package de.hdmstuttgart.mi.bucketlist.ModelController;
 
 import de.hdmstuttgart.mi.bucketlist.Exceptions.ElementAlreadyExistsException;
-import de.hdmstuttgart.mi.bucketlist.Gui.Listener;
+import de.hdmstuttgart.mi.bucketlist.View.Listener;
 import de.hdmstuttgart.mi.bucketlist.Model.*;
 import de.hdmstuttgart.mi.bucketlist.Persistance.EventlistRepository;
 import de.hdmstuttgart.mi.bucketlist.Persistance.Sourcetype;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;

@@ -1,6 +1,6 @@
 package de.hdmstuttgart.mi.bucketlist.Model;
 
-import de.hdmstuttgart.mi.bucketlist.Gui.Listener;
+import de.hdmstuttgart.mi.bucketlist.View.Listener;
 
 /**
  * similar to Observable Interface (Observable is deprecated this is why we made our own)

@@ -6,7 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY )
-public class Event {
+public abstract class Event implements Narrator {
 
     // initialize Logger
     private static final Logger log = LogManager.getLogger(Event.class);

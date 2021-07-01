@@ -3,50 +3,62 @@
 AKTUELLE DEADLINE:
 4. Juni 2021
 
-//todo threads
-//todo gui
-//todo doku
+DOKU://todo doku
+    -Merve
+ -Screenshots
+ -Video
+ -vollstämdiges UML
+
+ Dokumentation:
+ - getEventlist() & getEvents --> copy macht eigentlich kein Sinn, da es auf die gleiche Referenz zeigt. Ergo: Gut gemeint, aber man könnte die Daten doch manipulieren
+ - listener umsetzung ist scheisse (zwei verschiedene) hätten wir im nachhinein anderst gemacht aber zeit reicht nicht mehr
+ - kein singleton deswegen sehr umständliche dependency injection (evtl unnötig kompliziert)
+ - getter gibt es nur wegen GUI !!!
+
+- - - - - - - - - - - --------------------------------------------------------------------
+
+//todo javadoc bei jeder methode und jeder klasse
+
+//todo ladebalken --> wann werd ich implementiert ?
+
+//todo unnötige Methoden löschen !!! todo @Gruppensession zusammen machen
 
 
 Pia:
-unit test: persistance //todo @pia
-lists.fxml umbenennen / error.imgae umbennen
 upperCase in eventlisten der name
-Logging
 Warnings abschaffen
 completedEvent delete Button
 Kommentare ausbauen
 
 //todo @pia popUp widnow bei modify eventlist anpassen, liste kann nicht mehr umbenannt werden !!!
+//todo .json
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 Merve:
-unit test: model //todo @merve
-custom exception //todo @merve ist glaub erledigt :)
+//todo category scene
+//todo logging in GUI
+//todo fxml version anpassen
+//todo parallel Stream
+//todo category scene schneller
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 Sara:
 unit test: modelController, view controller //todo @sara
- #done : arraylist in methode reinziehen und als instanzvariable löschen //todo @sara
+//todo fxml version anpassen
+//todo schrift in resourcers und in css verlinken
+//todo neues error image
+//todo default als png
+//todo icon
+//todo sysout entfernen, logging und kommis
+//todo video --> wird in doku verlinkt
 
-Controller und FXML und CSS rüberkopieren //todo @sara
-Pane Loader rüber kopieren //todo @sara
-Test rüber kopieren //todo @sara
-Images pushen
-Error Bild
 
-unnötige Methoden löschen !!! todo @Gruppensession zusammen machen
-hello.fxml löschen ?
+
 
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-edit/delete nur von Eventlist seite. Nicht von Categorylist Seite
 
-
-
-Dokumentation:
-- getEventlist() & getEvents --> copy macht eigentlich kein Sinn, da es auf die gleiche Referenz zeigt. Ergo: Gut gemeint, aber man könnte die Daten doch manipulieren
 
 
 

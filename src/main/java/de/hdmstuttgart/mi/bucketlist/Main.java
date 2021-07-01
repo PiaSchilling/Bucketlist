@@ -1,12 +1,9 @@
 package de.hdmstuttgart.mi.bucketlist;
 
-import de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController.MenuController;
-import de.hdmstuttgart.mi.bucketlist.Gui.Controller.SceneController.PaneLoader;
-import de.hdmstuttgart.mi.bucketlist.Model.Category;
+import de.hdmstuttgart.mi.bucketlist.View.Controller.SceneController.MenuController;
+import de.hdmstuttgart.mi.bucketlist.View.Controller.SceneController.PaneLoader;
 import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
 import de.hdmstuttgart.mi.bucketlist.Threads.PersistenceRunnable;
-import de.hdmstuttgart.mi.bucketlist.ViewController.CategoryManager;
-import de.hdmstuttgart.mi.bucketlist.ViewController.StatisticsManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
