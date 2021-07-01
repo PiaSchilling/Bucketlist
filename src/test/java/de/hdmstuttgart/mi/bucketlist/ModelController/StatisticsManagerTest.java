@@ -2,8 +2,6 @@ package de.hdmstuttgart.mi.bucketlist.ModelController;
 
 import de.hdmstuttgart.mi.bucketlist.Exceptions.ElementAlreadyExistsException;
 import de.hdmstuttgart.mi.bucketlist.Model.Category;
-import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
-import de.hdmstuttgart.mi.bucketlist.ModelController.StatisticsManager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -55,13 +53,13 @@ class StatisticsManagerTest {
     @Test
     @DisplayName("testCountLists should work")
     void testCountLists() {
-        assertEquals(3, statisticsManagerTest.countLists());
+        assertEquals(3, statisticsManagerTest.countListsAsString());
     }
 
     @Test
     @DisplayName("testCountCompletedEvents should work")
     void testCountCompletedEvents() {
-        assertEquals(3, statisticsManagerTest.countCompletedEvents());
+        assertEquals(3, statisticsManagerTest.countCompletedEventsAsString());
     }
 
     @Test
@@ -85,12 +83,12 @@ class StatisticsManagerTest {
     @DisplayName("testCalculatePercentageCompletedEventsPerList should work")
     void testCalculatePercentageCompletedEventsPerList() {
         // test when mulitiple or all events in a list are completed
-        assertEquals("100.0 %" , statisticsManagerTest.calculatePercentageCompletedEventsPerList("TestList1"));
-        assertEquals("50.0 %" , statisticsManagerTest.calculatePercentageCompletedEventsPerList("TestList2"));
+        assertEquals("100.0 %" , statisticsManagerTest.calculatePercentageCompletedEventsPerListAsString("TestList1"));
+        assertEquals("50.0 %" , statisticsManagerTest.calculatePercentageCompletedEventsPerListAsString("TestList2"));
         // test when theres no event completed
-        assertEquals("0.0 %", statisticsManagerTest.calculatePercentageCompletedEventsPerList("TestList3"));
+        assertEquals("0.0 %", statisticsManagerTest.calculatePercentageCompletedEventsPerListAsString("TestList3"));
         // test when theres the wrong list is choosen
-        assertEquals("-1.0 %", statisticsManagerTest.calculatePercentageCompletedEventsPerList("TestListXX"));
+        assertEquals("-1.0 %", statisticsManagerTest.calculatePercentageCompletedEventsPerListAsString("TestListXX"));
 
     }
 
@@ -104,7 +102,7 @@ class StatisticsManagerTest {
         int testDays2=0;
         difference2 = testDate1.getTimeInMillis() - today.getTimeInMillis();
         testDays2 = (int) (difference2/(1000*60*60*24));
-        assertEquals(testDays2 + " days left for 'TestList2'", statisticsManagerTest.daysLeft("TestList2"));
+        assertEquals(testDays2 + " days left for 'TestList2'", statisticsManagerTest.daysLeftAsString("TestList2"));
 
         //test TestList3
         GregorianCalendar testDate2= new GregorianCalendar(2055, 5-1, 5+1);
@@ -112,7 +110,7 @@ class StatisticsManagerTest {
         int testDays3=0;
         difference3 = testDate2.getTimeInMillis() - today.getTimeInMillis();
         testDays3 = (int) (difference3/(1000*60*60*24));
-        assertEquals(testDays3 +" days left for 'TestList3'", statisticsManagerTest.daysLeft("TestList3"));
+        assertEquals(testDays3 +" days left for 'TestList3'", statisticsManagerTest.daysLeftAsString("TestList3"));
 
 
         //test TestList1 (no date stated)

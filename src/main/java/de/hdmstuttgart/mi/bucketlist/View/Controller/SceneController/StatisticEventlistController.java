@@ -89,7 +89,7 @@ public class StatisticEventlistController implements Initializable, Listener {
      * sets the values for the progress bar
      */
     public void setProgressProgressBar(){
-        this.progressProgressBar.progressProperty().set(statisticManager.calculatePercentageCompletedEventsPerListAsDouble(this.eventlistName));
+        this.progressProgressBar.progressProperty().set(statisticManager.calculatePercentageCompletedEventsPerList(this.eventlistName));
     }
 
     /**
@@ -110,10 +110,10 @@ public class StatisticEventlistController implements Initializable, Listener {
      * sets the label and displays how much of the list is completed in percent.
      */
     public void setPercentageLabel(){
-        if(String.valueOf(statisticManager.calculatePercentageCompletedEventsPerList(this.eventlistName)).equals("NaN %")){
+        if(String.valueOf(statisticManager.calculatePercentageCompletedEventsPerListAsString(this.eventlistName)).equals("NaN %")){
             this.listPercentageLabel.setText("no events set or completed yet");
         }else{
-            this.listPercentageLabel.setText(String.valueOf((statisticManager.calculatePercentageCompletedEventsPerList(this.eventlistName))));
+            this.listPercentageLabel.setText(String.valueOf((statisticManager.calculatePercentageCompletedEventsPerListAsString(this.eventlistName))));
 
         }
     }
@@ -133,8 +133,8 @@ public class StatisticEventlistController implements Initializable, Listener {
     }
 
     public void setLeftDays() {
-        log.debug("daysLeft() set on "+ statisticManager.daysLeft(this.eventlistName));
-        this.listsLeftDays.setText(statisticManager.daysLeft(this.eventlistName));
+        log.debug("daysLeft() set on "+ statisticManager.daysLeftAsString(this.eventlistName));
+        this.listsLeftDays.setText(statisticManager.daysLeftAsString(this.eventlistName));
 
         if(statisticManager.daysLeftAsInt(this.eventlistName) < 0){
             this.listsLeftDays.setStyle("-fx-text-fill: #ffa766");

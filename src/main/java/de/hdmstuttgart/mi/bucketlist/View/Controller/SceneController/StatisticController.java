@@ -72,7 +72,7 @@ public class StatisticController implements Listener, Initializable {
      */
     public void setCreatedListsLabel(){
         log.debug("setCreatedListsLabel() method started" );
-        this.listsCreatedLabel.setText(statisticManager.countLists());
+        this.listsCreatedLabel.setText(statisticManager.countListsAsString());
     }
 
 
@@ -81,7 +81,7 @@ public class StatisticController implements Listener, Initializable {
      */
     public void setEventsCompletedLabel(){
         log.debug("setEventsCompletedLabel() method started" );
-        this.eventsCompletedLabel.setText(statisticManager.countCompletedEvents());
+        this.eventsCompletedLabel.setText(statisticManager.countCompletedEventsAsString());
     }
 
     public void setCountEvents(){

@@ -40,7 +40,7 @@ public class StatisticsManager {
      * Counts the created lists
      * @return the number of the created lists
      */
-    public String countLists(){
+    public String countListsAsString(){
         ArrayList<Eventlist> temp = this.listManager.getEventlists();
         return String.valueOf(temp.size());
     }
@@ -74,7 +74,7 @@ public class StatisticsManager {
      * counts the completed events in general
      * @return the number of completed events in general
      */
-    public String countCompletedEvents(){
+    public String countCompletedEventsAsString(){
         ArrayList<Eventlist> temp = this.listManager.getEventlists();
 
         int count=0;
@@ -126,6 +126,8 @@ public class StatisticsManager {
         }
         return count;
     }
+
+
     /**
      * Calculates the process of the completed events in a choosen list.
      * Returns the result without the positions after the decimal point when its an integer.
@@ -133,7 +135,7 @@ public class StatisticsManager {
      * @param eventlistName
      * @return String with the calculates percentage
      */
-    public String calculatePercentageCompletedEventsPerList(String eventlistName){
+    public String calculatePercentageCompletedEventsPerListAsString(String eventlistName){
         ArrayList<Eventlist> temp = this.listManager.getEventlists();
 
         double percentage=-1;
@@ -154,7 +156,7 @@ public class StatisticsManager {
         return formattedPercentage + " %";
     }
 
-    public double calculatePercentageCompletedEventsPerListAsDouble(String eventlistName){
+    public double calculatePercentageCompletedEventsPerList(String eventlistName){
         ArrayList<Eventlist> temp = this.listManager.getEventlists();
 
         double percentage=0;
@@ -170,7 +172,7 @@ public class StatisticsManager {
 
 
 
-    public String daysLeft (String eventlistName) {
+    public String daysLeftAsString(String eventlistName) {
 
         log.debug("daysLeft method started");
         ArrayList<Eventlist> temp = this.listManager.getEventlists();
