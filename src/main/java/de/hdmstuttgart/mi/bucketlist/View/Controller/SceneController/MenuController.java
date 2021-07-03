@@ -68,6 +68,8 @@ public class MenuController implements Initializable {
         log.info("Switched to showCatScene (MenuController");
     }
 
+    
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

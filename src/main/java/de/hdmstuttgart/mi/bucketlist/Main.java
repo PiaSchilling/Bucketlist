@@ -8,7 +8,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+import java.net.URL;
 
 import static javafx.application.Application.launch;
 
@@ -84,7 +87,15 @@ public class Main extends Application {
         Parent parent = loader.load();
 
         Scene scene1 = new Scene(parent);
+
+        URL url = this.getClass().getResource("/images/Logo_TitleBar.png");
+        Image image=new Image(url.toString());
+        //com.apple.eawt.Application.getApplication().setDockIconImage(image);
+        stage.getIcons().add(image);
+
+
         stage.setTitle("The Bucketlist");
+
         stage.setScene(scene1);
         stage.show();
 

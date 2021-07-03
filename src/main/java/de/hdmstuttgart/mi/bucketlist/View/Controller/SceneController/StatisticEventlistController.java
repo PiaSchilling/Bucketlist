@@ -82,44 +82,60 @@ public class StatisticEventlistController implements Initializable, Listener {
      * sets the Subheadline with the correct eventlist name
      */
     public void setEventlistNameLabel() {
+        log.debug("setEventlistNameLabel() has started");
         this.eventlistNameLabel.setText(this.eventlistName.toUpperCase());
     }
+
+
 
     /**
      * sets the values for the progress bar
      */
     public void setProgressProgressBar(){
-        this.progressProgressBar.progressProperty().set(statisticManager.calculatePercentageCompletedEventsPerListAsDouble(this.eventlistName));
+        log.debug("setProgressProgressBar() has started");
+        this.progressProgressBar.progressProperty().set(statisticManager.calculatePercentageCompletedEventsPerList(this.eventlistName));
     }
+
+
 
     /**
      * sets the label and displays how many events are created in this list
      */
     public void setCreatedEventsPerListLabel(){
+        log.debug("setCreatedEventsPerListLabel() has started");
         this.listsCreatedEventsLabel.setText(String.valueOf((statisticManager.countEventsPerList(this.eventlistName))));
     }
+
+
 
     /**
      * sets the label and displays how many events are completed in this list
      */
     public void setCompletedEventsPerListLabel(){
+        log.debug("setCompletedEventsPerListLabel() has started");
         this.listsCompletedEventsPerList.setText(String.valueOf((statisticManager.countCompletedEventsPerList(this.eventlistName))));
     }
+
 
     /**
      * sets the label and displays how much of the list is completed in percent.
      */
     public void setPercentageLabel(){
-        if(String.valueOf(statisticManager.calculatePercentageCompletedEventsPerList(this.eventlistName)).equals("NaN %")){
+        log.debug("setPercentageLabel() has started");
+        if(String.valueOf(statisticManager.calculatePercentageCompletedEventsPerListAsString(this.eventlistName)).equals("NaN %")){
             this.listPercentageLabel.setText("no events set or completed yet");
         }else{
-            this.listPercentageLabel.setText(String.valueOf((statisticManager.calculatePercentageCompletedEventsPerList(this.eventlistName))));
-
+            this.listPercentageLabel.setText(String.valueOf((statisticManager.calculatePercentageCompletedEventsPerListAsString(this.eventlistName))));
         }
     }
 
 
+    /**
+     * sets the label and displays when the EVENTLIST is due.
+     * if the exipry date is not set for the eventlist, the other labels change as well.
+     */
     public void setDateLabel() {
+        log.debug("setDateLabel() has started");
         if (eventlist.getExpiryDateString() != null) {
             this.listDateTextLabel1.setText("ON THE");
             this.listDateLabel.setText(eventlist.getExpiryDateString());
@@ -129,25 +145,21 @@ public class StatisticEventlistController implements Initializable, Listener {
             this.listDateLabel.setText("IS NOT SET.");
             this.listDateTextLabel2.setText("");
         }
-
     }
 
+
+    /**
+     * sets the label and displays how many days the user got to fullfill his goal to complete a bucketlist
+     * if the date is due, the text color changes from white to orange and is displayed as negative value
+     */
     public void setLeftDays() {
-        log.debug("daysLeft() set on "+ statisticManager.daysLeft(this.eventlistName));
-        this.listsLeftDays.setText(statisticManager.daysLeft(this.eventlistName));
+        log.debug("daysLeft() set on "+ statisticManager.daysLeftAsString(this.eventlistName));
+        this.listsLeftDays.setText(statisticManager.daysLeftAsString(this.eventlistName));
 
         if(statisticManager.daysLeftAsInt(this.eventlistName) < 0){
             this.listsLeftDays.setStyle("-fx-text-fill: #ffa766");
         }
-
-
     }
-
-
-
-
-
-
 
 
     /**
@@ -163,7 +175,9 @@ public class StatisticEventlistController implements Initializable, Listener {
 
 
 
-
+    /**
+     * shows the StatisticEventlist
+     */
     public void showStatisticEventlist(){
         log.debug("showStatisticsEventlist() has started ");
 
@@ -180,16 +194,20 @@ public class StatisticEventlistController implements Initializable, Listener {
         setDateLabel();
         log.debug("set date label method ended");
 
-
         log.debug("showStatisticEventlist() method ended");
-
     }
 
+
+    /**
+     * updates the statisticEventlist scene if any changes occurs
+     */
     @Override
     public void update() {
         log.debug("showStatisticEventlist() in update() has started ");
         showStatisticEventlist();
     }
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
