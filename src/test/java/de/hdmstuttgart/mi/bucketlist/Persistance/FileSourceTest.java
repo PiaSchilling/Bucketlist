@@ -15,6 +15,9 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * not good: tests work only because they are in a particular order (tests should not depend on other tests)
+ */
 class FileSourceTest {
 
 
