@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="anchorpane" fx:id="anchorpane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1080.0" stylesheets="@../../styles/lists.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="anchorpane" fx:id="anchorpane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1080.0" stylesheets="@../../styles/lists.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ScrollPane id="scrollpane" fx:id="scrollpane" layoutY="91.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="644.0" prefWidth="1067.0" style="-fx-background-color: transparent;" AnchorPane.topAnchor="155.0">
          <content>
             <FlowPane id="flowpane" fx:id="flowpane" hgap="30.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="642.0" prefWidth="1041.0" vgap="30.0" />
          </content>
       </ScrollPane>
-      <Label fx:id="listNameLabel" layoutX="33.0" layoutY="86.0" text="MY LISTS" textFill="WHITE" AnchorPane.leftAnchor="33.0" AnchorPane.topAnchor="86.0">
+      <Label fx:id="listNameLabel" layoutX="40.0" layoutY="81.0" styleClass="h1" stylesheets="@../../styles/general.css" text="MY LISTS" textFill="WHITE" AnchorPane.leftAnchor="33.0" AnchorPane.topAnchor="86.0">
          <font>
             <Font size="32.0" />
          </font>
@@ -30,7 +30,7 @@
             </ImageView>
          </graphic></Button>
       <Label fx:id="expiredLabel" layoutX="263.0" layoutY="34.0" prefHeight="17.0" prefWidth="643.0" styleClass="expired-label" textFill="WHITE" AnchorPane.topAnchor="85.0" />
-      <Button fx:id="addEventButton1" layoutX="-22.0" layoutY="85.0" mnemonicParsing="false" onAction="#switchToListsScene" prefHeight="41.0" prefWidth="67.0" style="-fx-background-color: transparent;" AnchorPane.leftAnchor="-22.0">
+      <Button fx:id="addEventButton1" layoutX="-22.0" layoutY="88.0" mnemonicParsing="false" onAction="#switchToListsScene" prefHeight="41.0" prefWidth="67.0" style="-fx-background-color: transparent;" AnchorPane.leftAnchor="-22.0">
          <graphic>
             <ImageView fx:id="backButton" fitHeight="31.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                <image>

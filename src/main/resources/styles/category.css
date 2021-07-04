@@ -11,10 +11,6 @@
     -fx-background-color: transparent;
 }
 
-#mycategoriesLabel{
-    -fx-font-family: Lato-Black;
-}
-
 .progress-bar > .track{
     -fx-accent: #5dc6a6;
     -fx-border-radius: 5;

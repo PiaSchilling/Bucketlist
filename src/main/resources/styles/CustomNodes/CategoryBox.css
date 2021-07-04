@@ -5,10 +5,10 @@
     -fx-background-position: left,top,center;
 }
 
-#categoryNameLabel{
-    -fx-font-family: Lato-Bold;
-}
-
-#eventCat{
-    -fx-font-family: Lato-Regular;
+#anchorpane:hover{
+    -fx-background-radius: 10  ;
+    -fx-border-color: white;
+    -fx-border-radius:  10;
+    -fx-border-width: 0.5;
+    -fx-effect: dropshadow(gaussian, black, 20, 0, 3, 3);
 }

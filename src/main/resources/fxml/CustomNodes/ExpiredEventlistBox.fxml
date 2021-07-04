@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -10,11 +11,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="anchorpane" fx:id="anchorpane" onMouseClicked="#switchToListScene" prefHeight="100.0" prefWidth="500.0" stylesheets="@../../styles/CustomNodes/ExpiredEventlistBox.css" xmlns="http://javafx.com/javafx/14.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="anchorpane" fx:id="anchorpane" onMouseClicked="#switchToListScene" prefHeight="100.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="CENTER" layoutX="43.0" prefHeight="100.0" prefWidth="412.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label id="nameLabel" fx:id="nameLabel" alignment="CENTER" contentDisplay="CENTER" text="Eventlistname" textAlignment="CENTER">
+            <Label id="nameLabel" fx:id="nameLabel" alignment="CENTER" contentDisplay="CENTER" styleClass="h2" text="Eventlistname" textAlignment="CENTER">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
@@ -22,12 +23,12 @@
                   <Font name="Impact" size="13.0" />
                </font>
             </Label>
-            <Label id="numberOfEventsLabel" fx:id="numberOfEventsLabel" alignment="CENTER" contentDisplay="CENTER" text="Test">
+            <Label id="numberOfEventsLabel" fx:id="numberOfEventsLabel" alignment="CENTER" contentDisplay="CENTER" styleClass="h3" text="Test">
                <VBox.margin>
                   <Insets bottom="5.0" />
                </VBox.margin>
             </Label>
-            <Label id="expiryDateLabel" fx:id="expiryDateLabel" alignment="CENTER" contentDisplay="CENTER" text="Test" />
+            <Label id="expiryDateLabel" fx:id="expiryDateLabel" alignment="CENTER" contentDisplay="CENTER" styleClass="h3" text="Test" />
          </children>
       </VBox>
       <Button fx:id="deleteButton" layoutX="431.0" layoutY="26.0" mnemonicParsing="false" onAction="#deleteEventlist" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: transparnet;">
@@ -46,4 +47,8 @@
          </cursor>
       </Button>
    </children>
+   <stylesheets>
+      <URL value="@../../styles/CustomNodes/ExpiredEventlistBox.css" />
+      <URL value="@../../styles/general.css" />
+   </stylesheets>
 </AnchorPane>

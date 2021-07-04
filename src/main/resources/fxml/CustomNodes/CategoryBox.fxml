@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="272.0" prefWidth="200.0" stylesheets="@../../styles/CustomNodes/CategoryBox.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="272.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label id="categoryNameLabel" fx:id="categoryNameLabel" alignment="CENTER" layoutX="-1.0" layoutY="14.0" prefHeight="30.0" prefWidth="200.0" text="Category" textAlignment="CENTER" textFill="WHITE">
+        <Label id="categoryNameLabel" fx:id="categoryNameLabel" alignment="CENTER" layoutY="25.0" prefHeight="30.0" prefWidth="201.0" styleClass="h2" text="Category" textAlignment="CENTER" textFill="WHITE">
             <font>
                 <Font size="20.0" />
             </font>
         </Label>
-        <Label id="eventCat" fx:id="eventCat" alignment="CENTER" layoutX="-1.0" layoutY="223.0" prefHeight="18.0" prefWidth="200.0" text="Events" textFill="WHITE" />
-        <ImageView id="categoryImage" fx:id="categoryImage" fitHeight="150.0" fitWidth="200.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" />
+        <Label id="eventCat" fx:id="eventCat" alignment="CENTER" layoutY="232.0" prefHeight="18.0" prefWidth="200.0" styleClass="h3" text="Events" textFill="WHITE" />
+        <ImageView id="categoryImage" fx:id="categoryImage" fitHeight="139.0" fitWidth="181.0" layoutX="11.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true" />
     </children>
+   <stylesheets>
+      <URL value="@../../styles/CustomNodes/CategoryBox.css" />
+      <URL value="@../../styles/general.css" />
+   </stylesheets>
 </AnchorPane>

@@ -158,7 +158,7 @@ public class EventlistController implements Initializable, Listener {
    @Override
    public void initialize(URL location, ResourceBundle resources) {
       //prepare the scene
-      this.listNameLabel.setText(this.eventlistName);
+      this.listNameLabel.setText(this.eventlistName.toUpperCase());
       showEvents();
       setTooltips();
       //disable all actions if the list is expired
@@ -166,12 +166,6 @@ public class EventlistController implements Initializable, Listener {
          log.info("List expired. Actions are disabled");
          this.addEventButton.setDisable(true);
          this.expiredLabel.setText("This list is expired you cant modify anything anymore");
-
-         //todo @sara: einkommentieren und anschauen, sieht iwie doof aus :(
-        /* Image image;
-         URL url = this.getClass().getResource("/images/expired.png");
-         image = new Image(url.toString());
-         this.expiredImage.setImage(image);*/
       }
    }
 

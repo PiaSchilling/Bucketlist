@@ -1,11 +1,27 @@
 
 
 
-#progressbar{
+/*#progressbar{
     -fx-control-inner-background: #0c0e2b;
     -fx-accent: #5dc6a6;
     -fx-border-radius: 5;
 }
+
+ */
+
+
+
+.progress-bar > .track{
+-fx-border-radius: 5;
+-fx-control-inner-background: #0c0e2b;
+-fx-background-insets: 0;
+-fx-border-color: white;
+}
+
+.progress-bar {
+-fx-accent: #5dc6a6;
+}
+
 
 .chart-pie{
     -fx-border-width: 0;
