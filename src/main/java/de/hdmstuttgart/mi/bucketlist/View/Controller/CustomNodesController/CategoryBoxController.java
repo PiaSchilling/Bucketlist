@@ -47,7 +47,11 @@ public class CategoryBoxController {
         this.categoryNameLabel.setText(category);
     }
 
-    public void setEventAmountLabel(String eventAmount2) {
-        this.eventCat.setText(eventAmount2);
+    public void setEventAmountLabel(int amount) {
+        if(amount == 1){
+            this.eventCat.setText(amount + " Event");
+        }else{
+            this.eventCat.setText(amount + " Events");
+        }
     }
 }

@@ -8,7 +8,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class CategoryBox extends AnchorPane {
+public class CategoryBox extends AnchorPane implements Box{
 
     CategoryBoxController categoryBoxController;
 
@@ -26,7 +26,7 @@ public class CategoryBox extends AnchorPane {
         }
     }
 
-    public CategoryBoxController getCategoryBoxController() {
+    public CategoryBoxController getController() {
         return this.categoryBoxController;
     }
 
