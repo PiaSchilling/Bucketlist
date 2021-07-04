@@ -15,5 +15,13 @@
     -fx-font-family: Lato-Black;
 }
 
+.progress-bar > .track{
+    -fx-accent: #5dc6a6;
+    -fx-border-radius: 5;
+    -fx-control-inner-background: #0c0e2b;
+    -fx-background-insets: 0;
+}
 
-
+.progress-bar {
+    -fx-accent: #5dc6a6;
+}

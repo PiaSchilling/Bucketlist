@@ -15,6 +15,8 @@ DOKU://todo doku
  - kein singleton deswegen sehr umständliche dependency injection (evtl unnötig kompliziert)
  - getter gibt es nur wegen GUI !!!
  - unnötige Methoden
+ - Threads --> loadLists evtl auch einfach durch Service anstatt Task, so kann man einfacher Ladebalken etc machen
+ - sourceFactory recht unnötige weil eh JSON gemappt wird und ein File übergeben wird
 
 - - - - - - - - - - - --------------------------------------------------------------------
 
@@ -27,7 +29,6 @@ Warnings abschaffen
 completedEvent delete Button
 Kommentare ausbauen
 
-//todo @pia popUp widnow bei modify eventlist anpassen, liste kann nicht mehr umbenannt werden !!!
 //todo .json
 //todo noLists image am anfang nicht !
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

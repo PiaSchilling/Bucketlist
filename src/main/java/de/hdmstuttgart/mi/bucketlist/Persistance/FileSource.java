@@ -27,7 +27,7 @@ public class FileSource implements Saver{
     @Override
     public void writeToSource(Saveable saveable) {
         String filename = saveable.getName();
-        String filepath = "Data/" + filename;
+        String filepath = "Data/" + filename + ".json";
         File outputfile = new File(filepath);
         saveable.toJson(outputfile);
     }

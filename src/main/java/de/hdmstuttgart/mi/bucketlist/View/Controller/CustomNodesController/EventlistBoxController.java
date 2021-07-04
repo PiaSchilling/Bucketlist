@@ -8,6 +8,7 @@ import de.hdmstuttgart.mi.bucketlist.ModelController.StatisticsManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
@@ -57,13 +58,11 @@ public class EventlistBoxController {
         }
     }
 
-
-
-    @FXML //todo rename method (löscht nicht sondern äffnet neues fenster)
+    @FXML
     void deleteEventlist() {
-        ModifyListController modifyListController = new ModifyListController(this.listManager,this.eventlistname);
-        PaneLoader.loadPopUpWindow(modifyListController,"ModifyListWindow");
-
+        if(PaneLoader.loadConfirmationWindow("Are you sure you want to delete the list ?")){
+            this.listManager.deleteEventlist(this.eventlistname);
+        }
     }
 
     /**
@@ -79,4 +78,5 @@ public class EventlistBoxController {
     public String getEventlistname(){
         return this.eventlistname;
     }
+
 }

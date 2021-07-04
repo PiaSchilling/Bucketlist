@@ -17,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * not good: tests work only because they are in a particular order (tests should not depend on other tests)
+ * test maybe should not touch the real Data directory but work in a own Test-directory (design problem of the fileSource because there the directory name it coded hard)
  */
 class FileSourceTest {
 
@@ -60,9 +61,9 @@ class FileSourceTest {
         File[] files = directory.listFiles();
 
         assertTrue(Arrays.stream(files)
-                .anyMatch(file -> file.getName().equals("writeToSourceTest1")));
+                .anyMatch(file -> file.getName().equals("writeToSourceTest1.json")));
         assertTrue(Arrays.stream(files)
-                .anyMatch(file -> file.getName().equals("writeToSourceTest2")));
+                .anyMatch(file -> file.getName().equals("writeToSourceTest2.json")));
         log.debug("writeSourceTest ended");
     }
 
@@ -94,8 +95,8 @@ class FileSourceTest {
     void listDirectory() {
         try {
             assertEquals(2,fileSource.listDirectory("Data").length);
-            assertEquals("Data/Testlist2",fileSource.listDirectory("Data")[0].toString());
-            assertEquals("Data/Testlist1",fileSource.listDirectory("Data")[1].toString());
+            assertEquals("Data/Testlist2.json",fileSource.listDirectory("Data")[0].toString());
+            assertEquals("Data/Testlist1.json",fileSource.listDirectory("Data")[1].toString());
         } catch (EmptyDirectoryException e) {
             e.printStackTrace();
         }
