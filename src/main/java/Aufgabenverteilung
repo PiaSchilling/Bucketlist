@@ -15,21 +15,25 @@ DOKU://todo doku
  - kein singleton deswegen sehr umständliche dependency injection (evtl unnötig kompliziert)
  - getter gibt es nur wegen GUI !!!
  - unnötige Methoden
- - Threads --> loadLists evtl auch einfach durch Service anstatt Task, so kann man einfacher Ladebalken etc machen
+ - Threads --> loadLists evtl auch einfach durch Service anstatt Thread, so kann man einfacher Ladebalken etc machen
  - sourceFactory recht unnötige weil eh JSON gemappt wird und ein File übergeben wird
+ - Model-view-controller
+ - Interfaces
+ - Threads
+ - Exceptions
 
 - - - - - - - - - - - --------------------------------------------------------------------
 
 //todo javadoc bei jeder methode und jeder klasse
+//todo parallelStream !!!
+
 
 
 Pia:
 upperCase in eventlisten der name
 Warnings abschaffen
-completedEvent delete Button
 Kommentare ausbauen
 
-//todo .json
 //todo noLists image am anfang nicht !
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
