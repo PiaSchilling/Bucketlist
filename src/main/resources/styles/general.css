@@ -19,6 +19,7 @@
     -fx-border-color: white;
     -fx-border-radius:  10;
     -fx-border-width: 0.5;
+    -fx-effect: dropshadow(gaussian, black, 20, 0, 3, 3);
 }
 
 #listsButton:focused, #statisticButton:focused, #catButton:focused{
@@ -39,3 +40,29 @@
 #statisticButton{
     -fx-effect: dropshadow(gaussian, black, 20, 0, 3, 3);
 }
+
+
+/*-----------  Font Implementation ------------------*/
+
+.h1,.h2,.h3,.numbers{
+    -fx-font-family:  "Segoe UI", sans-serif;
+
+}
+.h1{
+    -fx-font-size: 32;
+}
+
+.h2{
+    -fx-font-size: 20;
+}
+
+.h3{
+    -fx-font-size: 12;
+}
+
+.numbers{
+    -fx-font-size: 72;
+    -fx-font-family: "Segeo UI Bold";
+}
+
+

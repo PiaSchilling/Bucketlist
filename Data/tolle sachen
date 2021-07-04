@@ -13,6 +13,13 @@
     "eventImageUrl" : "/Users/piaschilling/Documents/Privat/Fotos/Lieblingsfotos/20200303_010136.jpg",
     "eventDescription" : "es war toll",
     "isCompleted" : true
+  }, {
+    "eventName" : "s Vooles",
+    "eventCategory" : "SPORT",
+    "eventDateString" : null,
+    "eventImageUrl" : null,
+    "eventDescription" : null,
+    "isCompleted" : false
   } ],
   "eventlistName" : "tolle sachen",
   "expiryDateString" : null,

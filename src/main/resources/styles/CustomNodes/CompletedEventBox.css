@@ -5,20 +5,25 @@
     -fx-background-position: left,top,center;
 }
 
+#anchorpane:hover{
+    -fx-background-radius: 10  ;
+    -fx-border-color: white;
+    -fx-border-radius:  10;
+    -fx-border-width: 0.5;
+    -fx-effect: dropshadow(gaussian, black, 20, 0, 3, 3);
+}
+
 #eventNameLabel{
     -fx-text-fill:#5DC6A6 ;
     -fx-font-size: 20;
-    -fx-font-family: Lato-Bold;
 }
 
 #categoryLabel, #completedDateLabel{
     -fx-text-fill:#ffffff;
     -fx-font-size: 12;
-    -fx-font-family: Lato-Bold;
 }
 
 #descriptionText{
     -fx-text-fill:#ffffff;
     -fx-font-size: 15;
-    -fx-font-family: Lato-Regular;
 }

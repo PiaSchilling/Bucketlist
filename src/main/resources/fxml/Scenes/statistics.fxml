@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="800.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorPane" prefHeight="800.0" prefWidth="1080.0" stylesheets="@../../styles/general.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ScrollPane id="scrollPane" fx:id="scrollPane" layoutX="650.0" layoutY="155.0" prefHeight="643.0" prefWidth="400.0" stylesheets="@../../styles/CustomNodes/StatisticListBox.css">
          <content>
@@ -19,37 +19,37 @@
             </FlowPane>
          </content>
       </ScrollPane>
-      <Label layoutY="85.0" text="MY STATISTICS" textFill="WHITE">
+      <Label layoutY="85.0" styleClass="h1" text="MY STATISTICS" textFill="WHITE">
          <font>
             <Font name="Lato Black" size="32.0" />
          </font>
       </Label>
-      <Label layoutY="711.0" prefHeight="15.0" prefWidth="114.0" text="LISTS CREATED" textFill="WHITE">
+      <Label layoutY="711.0" prefHeight="15.0" prefWidth="114.0" styleClass="h3" text="LISTS CREATED" textFill="WHITE">
          <font>
             <Font name="Lato Regular" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="listsCreatedLabel" layoutY="617.0" prefHeight="71.0" prefWidth="146.0" text="-" textFill="WHITE">
+      <Label fx:id="listsCreatedLabel" layoutY="620.0" prefHeight="71.0" prefWidth="146.0" styleClass="numbers" text="-" textFill="WHITE">
          <font>
             <Font name="Lato Bold" size="72.0" />
          </font>
       </Label>
-      <Label layoutX="394.0" layoutY="711.0" prefHeight="15.0" prefWidth="129.0" text="EVENTS COMPLETED" textFill="WHITE">
+      <Label layoutX="394.0" layoutY="711.0" prefHeight="15.0" prefWidth="129.0" styleClass="h3" text="EVENTS COMPLETED" textFill="WHITE">
          <font>
             <Font name="Lato Regular" size="12.0" />
          </font>
       </Label>
-      <Label fx:id="eventsCompletedLabel" layoutX="394.0" layoutY="617.0" prefHeight="90.0" prefWidth="139.0" text="-" textFill="WHITE">
+      <Label fx:id="eventsCompletedLabel" layoutX="394.0" layoutY="620.0" prefHeight="90.0" prefWidth="139.0" styleClass="numbers" text="-" textFill="WHITE">
          <font>
             <Font name="Lato Bold" size="72.0" />
          </font>
       </Label>
       <PieChart fx:id="pieChart" layoutX="1.0" layoutY="155.0" prefHeight="454.0" prefWidth="660.0" styleClass="pie-chart" stylesheets="@../../styles/statistic.css" />
-      <Label fx:id="listCountEvents" layoutX="188.0" layoutY="617.0" onDragDetected="#setCountEvents" prefHeight="90.0" prefWidth="107.0" text="-" textFill="WHITE">
+      <Label fx:id="listCountEvents" layoutX="188.0" layoutY="620.0" onDragDetected="#setCountEvents" prefHeight="90.0" prefWidth="107.0" styleClass="numbers" text="-" textFill="WHITE">
          <font>
             <Font name="Lato Bold" size="72.0" />
          </font></Label>
-      <Label layoutX="188.0" layoutY="711.0" prefHeight="15.0" prefWidth="129.0" text="EVENTS CREATED" textFill="WHITE">
+      <Label layoutX="188.0" layoutY="711.0" prefHeight="15.0" prefWidth="129.0" styleClass="h3" text="EVENTS CREATED" textFill="WHITE">
          <font>
             <Font name="Lato Regular" size="12.0" />
          </font>
