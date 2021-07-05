@@ -60,7 +60,9 @@ public class ListManager implements Narrator {
      */
     public void createEventlist(String eventlistName, int expiryDay, int expiryMonth, int expiryYear) throws ElementAlreadyExistsException {
         log.debug("createEventlist method started");
-        if(this.eventlists.stream()
+        if(this.eventlists
+                .stream()
+                .parallel()
                 .anyMatch(eventlist -> eventlist.getName().equals(eventlistName))){
             log.info("There is already an eventlist with the name " + "\"" + eventlistName + "\"" + " please choose another one");
             throw new ElementAlreadyExistsException("There is already an eventlist with the name " + "\"" + eventlistName + "\"" + " please choose another one");
@@ -101,7 +103,8 @@ public class ListManager implements Narrator {
      * @param eventlistNameNew -- the new name of the list
      */
     public void updateEventlistName(String eventlistNameOld, String eventlistNameNew) throws ElementAlreadyExistsException {
-        boolean match = this.eventlists.stream()
+        boolean match = this.eventlists
+                .stream()
                 .anyMatch(eventlist -> eventlist.getName().equals(eventlistNameNew));
         if(match){
             log.error("Name change failed. Name already assigned");

@@ -25,8 +25,7 @@ DOKU://todo doku
 - - - - - - - - - - - --------------------------------------------------------------------
 
 //todo javadoc bei jeder methode und jeder klasse
-//todo parallelStream !!!
-
+todo Thread läuft ohne sleep nicht
 
 
 Pia:
@@ -35,10 +34,11 @@ Warnings abschaffen
 Kommentare ausbauen
 
 //todo noLists image am anfang nicht !
+//todo updateEventlistname kann gelöscht werden
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 Merve:
-//todo category scene
+
 //todo logging in GUI
 //todo fxml version anpassen
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
