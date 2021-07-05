@@ -4,7 +4,6 @@ import de.hdmstuttgart.mi.bucketlist.View.Controller.PopUpController.EventlistCr
 import de.hdmstuttgart.mi.bucketlist.View.CustomNodes.Box;
 import de.hdmstuttgart.mi.bucketlist.View.CustomNodes.EventlistBox;
 import de.hdmstuttgart.mi.bucketlist.View.CustomNodes.ExpiredEventlistBox;
-import de.hdmstuttgart.mi.bucketlist.View.Listener;
 import de.hdmstuttgart.mi.bucketlist.Model.Eventlist;
 import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
 import de.hdmstuttgart.mi.bucketlist.ModelController.StatisticsManager;
@@ -36,7 +35,7 @@ import java.util.ResourceBundle;
 /**
  * EventlistsController called listsController because otherwise it would be to similar to EvenlistController
  */
-public class ListsController implements Initializable, Listener, ListChangeListener<Eventlist> {
+public class ListsController implements Initializable, ListChangeListener<Eventlist> {
 
     private final ListManager listManager;
     private final StatisticsManager statisticManager;
@@ -52,28 +51,25 @@ public class ListsController implements Initializable, Listener, ListChangeListe
         this.listManager = listManager;
         this.statisticManager = new StatisticsManager(listManager);
 
-        this.listManager.addListener(this); //todo reomove
 
         //add this class as a listener to the observable-list in the listManager, so the GUI updates after changes to the list
         this.listManager.addListListener(this);
 
         //add a listener to the boxContainer so the GUI can update itself after boxes have been created/removed
-        boxContainer.addListener(new ListChangeListener<Box>() {
-            @Override
-            public void onChanged(Change<? extends Box> change) {
-                log.debug("GUI - BoxContainer-onChanged received a change");
+        boxContainer.addListener((ListChangeListener<Box>) change -> {
 
-                //avoid concurrentModifyException (otherwise addedSubList would be used twice at the same time)
-                List<Box> temp = new ArrayList<>();
-                while(change.next()){
-                    if(change.wasAdded()){
-                        for(Box box: change.getAddedSubList()){
-                            temp.add(box);
-                        }
-                        showBoxes(temp);
-                    }else if(change.wasRemoved()){
-                        unshowBoxes(change.getRemoved());
+            log.debug("GUI - BoxContainer-onChanged received a change");
+
+            //avoid concurrentModifyException (otherwise addedSubList would be used twice at the same time)
+            List<Box> temp = new ArrayList<>();
+            while(change.next()){
+                if(change.wasAdded()){
+                    for(Box box: change.getAddedSubList()){
+                        temp.add(box);
                     }
+                    showBoxes(temp);
+                }else if(change.wasRemoved()){
+                    unshowBoxes(change.getRemoved());
                 }
             }
         });
@@ -143,17 +139,17 @@ public class ListsController implements Initializable, Listener, ListChangeListe
      */
     private void createBoxes(List<? extends Eventlist> eventlists){
 
-        for (int i = 0; i < eventlists.size(); i++) {
-            String eventlistname = eventlists.get(i).getName();
+        for (Eventlist eventlist : eventlists) {
+            String eventlistname = eventlist.getName();
             String eventCount = String.valueOf(this.statisticManager.countEventsPerList(eventlistname));
-            String expiryDate = eventlists.get(i).getExpiryDateString();
+            String expiryDate = eventlist.getExpiryDateString();
 
             //if expiry date is in the past, expired box will be loaded
             if (expiryDate != null && this.statisticManager.daysLeftAsInt(eventlistname) < 0) {
-                createExpiredEventlistBox(eventlistname,eventCount,expiryDate);
+                createExpiredEventlistBox(eventlistname, eventCount, expiryDate);
                 log.debug("GUI - createExpiredEventlistBox called for " + eventlistname);
             } else {
-                createEventlistBox(eventlistname,eventCount,expiryDate);
+                createEventlistBox(eventlistname, eventCount, expiryDate);
                 log.debug("GUI - createEventlistBox called for " + eventlistname);
             }
         }
@@ -249,14 +245,6 @@ public class ListsController implements Initializable, Listener, ListChangeListe
         imageView.setFitWidth(1041);
         imageView.setImage(image);
         this.noListsView = imageView;
-    }
-
-    /**
-     * does whatever should happen after a model class has been modified
-     */
-    @Override
-    public void update() {
-        log.error("NOT IMPLEMENTED YET");
     }
 
     /**

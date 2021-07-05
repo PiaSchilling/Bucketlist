@@ -1,6 +1,8 @@
 package de.hdmstuttgart.mi.bucketlist.ModelController;
 
 import de.hdmstuttgart.mi.bucketlist.Model.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableMap;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +16,8 @@ public class CategoryManager {
 
     private final ListManager listManager;
 
-    private HashMap<Category,Categorylist> categoryListHashMap = new HashMap<>();
+    private final HashMap<Category,Categorylist> categoryListHashMap = new HashMap<>();
+
 
     public CategoryManager(ListManager listManager){
         this.listManager = listManager;

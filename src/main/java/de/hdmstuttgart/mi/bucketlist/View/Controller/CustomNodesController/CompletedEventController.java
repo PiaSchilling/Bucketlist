@@ -1,5 +1,6 @@
 package de.hdmstuttgart.mi.bucketlist.View.Controller.CustomNodesController;
 
+import de.hdmstuttgart.mi.bucketlist.Model.Event;
 import de.hdmstuttgart.mi.bucketlist.Model.Eventlist;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,13 +16,18 @@ import java.net.URL;
 
 public class CompletedEventController {
 
-    private final Eventlist eventlist;
+    private Eventlist eventlist;
     private String eventName;
+    private Event event;
 
     private static final Logger log = LogManager.getLogger(CompletedEventController.class);
 
     public CompletedEventController(Eventlist eventlist){
         this.eventlist = eventlist;
+    }
+
+    public CompletedEventController(Event event){
+        this.event = event;
     }
 
     @FXML

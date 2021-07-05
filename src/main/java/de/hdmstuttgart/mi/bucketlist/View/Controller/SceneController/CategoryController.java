@@ -25,6 +25,9 @@ import javafx.scene.layout.FlowPane;
 import java.net.URL;
 import java.util.*;
 
+/**
+ * the controller for the scene which shows an overview of the categories
+ */
 public class CategoryController implements Initializable {
     private final CategoryManager categoryManager;
     //holds the filled categoryLists
@@ -38,9 +41,10 @@ public class CategoryController implements Initializable {
     private double counter = 0;
 
 
-    public CategoryController(CategoryManager categoryManager) {
+    public CategoryController(CategoryManager categoryManager, BorderPane borderPane) {
         this.categoryManager = categoryManager;
-        map = this.categoryManager.getFilledCatgeoryLists();
+        this.borderPane = borderPane;
+        this.map = this.categoryManager.getFilledCatgeoryLists();
     }
 
     @FXML
@@ -67,14 +71,15 @@ public class CategoryController implements Initializable {
     public void createCategoryBoxes() {
         this.flowpane.getChildren().clear();
         Arrays.stream(Category.values()).forEach(category -> {
-            CategoryBox box = new CategoryBox(categoryManager, borderPane);
+            Categorylist categorylist = this.map.get(category);
+            CategoryBox box = new CategoryBox(categorylist, this.borderPane, this.categoryManager);
             box.getController().setCategoryNameLabel(category.toString());
             box.getController().setCategoryImageView(category);
             box.getController().setEventAmountLabel(map.get(category).getEvents().size());
 
             //the progress shows how many boxes are already created
             this.boxContainer.add(box);
-            counter = (double) this.boxContainer.size()/13;
+            this.counter = (double) this.boxContainer.size() / 13;
             this.counterProperty.set(counter);
         });
     }
@@ -89,7 +94,7 @@ public class CategoryController implements Initializable {
         Service<Object> loaderService = new Service<>() {
             @Override
             protected Task<Object> createTask() {
-                return new Task<> () {
+                return new Task<>() {
                     @Override
                     protected Object call() throws Exception {
                         createCategoryBoxes();
@@ -113,12 +118,13 @@ public class CategoryController implements Initializable {
         //unshow the progressbar und remove the gif
         loaderService.setOnSucceeded(event -> {
             this.flowpane.setAlignment(Pos.TOP_LEFT);
-            this.flowpane.getChildren().clear();
-            this.flowpane.getChildren().addAll(this.boxContainer);
             this.progressBar.setVisible(false);
             this.loadingLabel.setVisible(false);
+            this.flowpane.getChildren().clear();
+            this.flowpane.getChildren().addAll(this.boxContainer);
         });
     }
+
 
     public void injectBorderPane(BorderPane borderPane) {
         this.borderPane = borderPane;

@@ -1,10 +1,12 @@
 package de.hdmstuttgart.mi.bucketlist.View.Controller.CustomNodesController;
 
 import de.hdmstuttgart.mi.bucketlist.Model.Category;
+import de.hdmstuttgart.mi.bucketlist.Model.Categorylist;
 import de.hdmstuttgart.mi.bucketlist.ModelController.CategoryManager;
 import de.hdmstuttgart.mi.bucketlist.View.Controller.SceneController.CategorylistController;
 import de.hdmstuttgart.mi.bucketlist.View.Controller.SceneController.PaneLoader;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,18 +14,19 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
 
-public class CategoryBoxController {
+public class CategoryBoxController implements Initializable {
 
+    private final Categorylist categorylist;
     private final CategoryManager categoryManager;
-    private String categoryName;
-    private String eventAmount;
-    private Category category;
     private final BorderPane borderPane;
 
-    public CategoryBoxController(CategoryManager categoryManager, BorderPane borderPane) {
-        this.categoryManager = categoryManager;
+    public CategoryBoxController(Categorylist categorylist, BorderPane borderPane, CategoryManager categoryManager) {
+        this.categorylist = categorylist;
         this.borderPane = borderPane;
+        this.categoryManager = categoryManager;
     }
 
     @FXML
@@ -60,10 +63,20 @@ public class CategoryBoxController {
             this.eventCat.setText(amount + " Events");
         }
     }
+
+    /**
+     * switches in the categoryListScene
+     */
     @FXML
     void switchToCatlistScene() {
-        CategorylistController categorylistController = new CategorylistController(this.categoryManager, this.borderPane);
-        AnchorPane anchorPane = PaneLoader.loadAnchorPane(categorylistController,"categorylists");
+        CategorylistController categorylistController = new CategorylistController(this.categorylist, this.borderPane,this.categoryManager);
+        AnchorPane anchorPane = PaneLoader.loadAnchorPane(categorylistController,"categorylist");
         this.borderPane.setCenter(anchorPane);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        this.categoryNameLabel.setText(this.categorylist.getListCategory().toString());
+        this.eventCat.setText(this.categorylist.getEvents().size() + " Events");
     }
 }

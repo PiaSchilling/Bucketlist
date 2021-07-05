@@ -62,7 +62,7 @@ public class MenuController implements Initializable {
     @FXML
     void showCatScene() {
         CategoryManager categoryManager = new CategoryManager(this.listManager);
-        CategoryController categoryController = new CategoryController(categoryManager);
+        CategoryController categoryController = new CategoryController(categoryManager,this.borderPane);
         AnchorPane anchorPane= PaneLoader.loadAnchorPane(categoryController, "categories");
         borderPane.setCenter(anchorPane);
         log.info("Switched to showCatScene (MenuController");

@@ -16,12 +16,14 @@ public class PersistenceRunnable implements Runnable{
     @Override
     public void run() {
         log.debug("PersistenceRunnable - Run method started");
+
         //only for testing
         try {
-            Thread.sleep(6000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
         this.listManager.load();
         log.info("PersistenceRunnable - Run method ended");
     }

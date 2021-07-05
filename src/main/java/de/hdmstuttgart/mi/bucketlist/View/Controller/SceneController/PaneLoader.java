@@ -8,6 +8,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
@@ -15,13 +17,7 @@ import java.io.IOException;
 
 public class PaneLoader {
 
-
-    //private BorderPane borderPane;
-
-
-
-
-    // "/fxml/eventlist.fxml"));
+    private static final Logger log = LogManager.getLogger(PaneLoader.class);
 
     public static AnchorPane loadAnchorPane(Object controller, String fxmlFile) {
 
@@ -32,11 +28,13 @@ public class PaneLoader {
         FXMLLoader loader = new FXMLLoader(PaneLoader.class.getResource(filePath));
 
         loader.setController(controller);
+        System.out.println(fxmlFile);
 
         try {
             anchorPane= loader.load();
         }catch (IOException ioException){
-            ioException.printStackTrace();
+            log.error(ioException.getMessage());
+
         }
 
         return anchorPane;
@@ -60,7 +58,7 @@ public class PaneLoader {
         try {
             popUp = loader.load();
         } catch (IOException ioException) {
-            ioException.printStackTrace();
+            log.error(ioException.getMessage());
         }
 
         stage.setScene(new Scene(popUp));
@@ -82,7 +80,7 @@ public class PaneLoader {
         try {
             popUp = loader.load();
         } catch (IOException ioException) {
-            ioException.printStackTrace();
+            log.error(ioException.getMessage());
         }
 
         stage.setScene(new Scene(popUp));

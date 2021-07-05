@@ -1,5 +1,6 @@
 package de.hdmstuttgart.mi.bucketlist.View.Controller.CustomNodesController;
 
+import de.hdmstuttgart.mi.bucketlist.Model.Event;
 import de.hdmstuttgart.mi.bucketlist.View.Controller.PopUpController.CompleteEventController;
 import de.hdmstuttgart.mi.bucketlist.View.Controller.PopUpController.ModifyEventController;
 import de.hdmstuttgart.mi.bucketlist.View.Controller.SceneController.PaneLoader;
@@ -20,13 +21,20 @@ import java.util.ResourceBundle;
 
 public class UncompletedEventController implements Initializable {
 
-    private final Eventlist eventlist;
+    private Eventlist eventlist;
     private String eventName;
+    private Event event;
 
     private static final Logger log = LogManager.getLogger(UncompletedEventController.class);
 
+    //this constructor is used by the eventlistScene
     public UncompletedEventController(Eventlist eventlist){
         this.eventlist = eventlist;
+    }
+
+    //this constructor is used by the categoryListScene
+    public UncompletedEventController(Event event){
+        this.event = event;
     }
 
     @FXML
@@ -74,14 +82,18 @@ public class UncompletedEventController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         setTooltips();
-        //disable all actions if the list is expired
-        if(this.eventlist.getExpiryDateString() != null && StatisticsManager.daysLeft(this.eventlist)<0){
+
+        if(this.eventlist == null){
+            //disable the actions if the eventlist is null (this is the case when the class is used in the CategorylistScene)
+            this.deleteButton.setDisable(true);
+            this.checkBox.setDisable(true);
+        } else if(this.eventlist.getExpiryDateString() != null && StatisticsManager.daysLeft(this.eventlist)<0){
+            //disable all actions if the list is expired
             log.info("List expired. Actions are disabled");
             this.deleteButton.setDisable(true);
             this.checkBox.setDisable(true);
         }
     }
-
 
     /**
      * sets the Tooltips for the whole scene

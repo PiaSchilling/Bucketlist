@@ -29,18 +29,12 @@ import java.util.ResourceBundle;
 
 public class EventlistController implements Initializable, Listener {
 
-
-
    private final ListManager listManager;
-   // private final StatisticManager statisticManager;
-
    private final Eventlist eventlist;
    private final String eventlistName;
-
    private final BorderPane borderPane;
 
    private static final Logger log = LogManager.getLogger(EventlistController.class);
-
 
    public EventlistController(String eventlistName,ListManager listManager,BorderPane borderPane){
       this.listManager = listManager;

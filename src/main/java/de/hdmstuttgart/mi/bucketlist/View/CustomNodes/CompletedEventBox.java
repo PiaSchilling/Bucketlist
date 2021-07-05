@@ -1,5 +1,6 @@
 package de.hdmstuttgart.mi.bucketlist.View.CustomNodes;
 
+import de.hdmstuttgart.mi.bucketlist.Model.Event;
 import de.hdmstuttgart.mi.bucketlist.View.Controller.CustomNodesController.CompletedEventController;
 import de.hdmstuttgart.mi.bucketlist.Model.Eventlist;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +19,20 @@ public class CompletedEventBox extends AnchorPane {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CustomNodes/CompletedEventBox.fxml"));
             completedEventController = new CompletedEventController(eventlist);
+            loader.setController(completedEventController);
+            Node node = loader.load();
+            this.getChildren().add(node);
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+    }
+
+    public CompletedEventBox(Event event){
+        super();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CustomNodes/CompletedEventBox.fxml"));
+            completedEventController = new CompletedEventController(event);
             loader.setController(completedEventController);
             Node node = loader.load();
             this.getChildren().add(node);
