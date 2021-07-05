@@ -19,6 +19,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 
 import java.net.URL;
@@ -30,6 +31,7 @@ public class CategoryController implements Initializable {
     private final HashMap<Category, Categorylist> map;
     //holds the gui-boxes
     private final List<Node> boxContainer = new ArrayList<>();
+    private BorderPane borderPane;
 
     //for the progressbar
     private final DoubleProperty counterProperty = new SimpleDoubleProperty();
@@ -65,7 +67,7 @@ public class CategoryController implements Initializable {
     public void createCategoryBoxes() {
         this.flowpane.getChildren().clear();
         Arrays.stream(Category.values()).forEach(category -> {
-            CategoryBox box = new CategoryBox(categoryManager);
+            CategoryBox box = new CategoryBox(categoryManager, borderPane);
             box.getController().setCategoryNameLabel(category.toString());
             box.getController().setCategoryImageView(category);
             box.getController().setEventAmountLabel(map.get(category).getEvents().size());
@@ -117,6 +119,11 @@ public class CategoryController implements Initializable {
             this.loadingLabel.setVisible(false);
         });
     }
+
+    public void injectBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
+    }
 }
+
 
 
