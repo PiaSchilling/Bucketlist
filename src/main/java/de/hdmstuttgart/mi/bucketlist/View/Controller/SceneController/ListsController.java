@@ -7,6 +7,7 @@ import de.hdmstuttgart.mi.bucketlist.View.CustomNodes.ExpiredEventlistBox;
 import de.hdmstuttgart.mi.bucketlist.Model.Eventlist;
 import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
 import de.hdmstuttgart.mi.bucketlist.ModelController.StatisticsManager;
+import de.hdmstuttgart.mi.bucketlist.View.Listener;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -50,7 +51,6 @@ public class ListsController implements Initializable, ListChangeListener<Eventl
     public ListsController(ListManager listManager) {
         this.listManager = listManager;
         this.statisticManager = new StatisticsManager(listManager);
-
 
         //add this class as a listener to the observable-list in the listManager, so the GUI updates after changes to the list
         this.listManager.addListListener(this);
@@ -106,8 +106,7 @@ public class ListsController implements Initializable, ListChangeListener<Eventl
      * @param expiryDate -- expiry date of the eventlist
      */
     private void createEventlistBox (String eventlistname, String eventCount, String expiryDate){
-        EventlistBox eventlistBox = new EventlistBox(this.listManager, this.borderPane);
-        System.out.println(this.borderPane);
+        EventlistBox eventlistBox = new EventlistBox(this.listManager, this.borderPane,eventlistname);
         eventlistBox.getController().setEventlistname(eventlistname);
         eventlistBox.getController().setNumberOfEvents(eventCount);
         eventlistBox.getController().setExpiryDate(expiryDate);
@@ -123,7 +122,7 @@ public class ListsController implements Initializable, ListChangeListener<Eventl
      * @param expiryDate -- expiry date of the eventlist
      */
     private void createExpiredEventlistBox (String eventlistname, String eventCount, String expiryDate){
-        ExpiredEventlistBox expiredEventlistBox = new ExpiredEventlistBox(this.listManager, this.borderPane);
+        ExpiredEventlistBox expiredEventlistBox = new ExpiredEventlistBox(this.listManager, this.borderPane,eventlistname);
         expiredEventlistBox.getController().setEventlistname(eventlistname);
         expiredEventlistBox.getController().setNumberOfEvents(eventCount);
         expiredEventlistBox.getController().setExpiryDate(expiryDate);
@@ -298,4 +297,5 @@ public class ListsController implements Initializable, ListChangeListener<Eventl
     public void injectBorderPane(BorderPane borderPane) {
         this.borderPane = borderPane;
     }
+
 }

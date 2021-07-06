@@ -14,6 +14,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,6 +30,8 @@ public class Eventlist implements Saveable,Narrator {
     private String eventlistName;
     private String expiryDateString;
 
+    @JsonIgnore
+    private final StringProperty listSize = new SimpleStringProperty();
     @JsonIgnore
     private GregorianCalendar expiryDateGregorian;
     @JsonIgnore
@@ -84,7 +88,7 @@ public class Eventlist implements Saveable,Narrator {
         return gregorianCalendar;
     }
 
-   // ------------------------- persitance methods ---------------------------------------------
+   // ------------------------- persistence methods ---------------------------------------------
 
     /**
      * writes the object as a json string to a file
@@ -153,6 +157,7 @@ public class Eventlist implements Saveable,Narrator {
            throw new ElementAlreadyExistsException("There is already an event with the name "  + "\"" + eventName +  "\"" + " in the list " +  "\"" + this.eventlistName +  "\"" + ". Please select another name.");
        } else {
            this.events.add(new Event(eventName,eventCategory));
+           this.listSize.set(this.events.size() + " EVENTS");
            log.debug("Event " + "\"" + eventName +  "\"" + " added successfully to the list " + "\"" + this.eventlistName +  "\"");
 
            informListeners();
@@ -169,6 +174,7 @@ public class Eventlist implements Saveable,Narrator {
             Event event = getEventByName(eventName);
             this.events.remove(event);
             informListeners();
+            this.listSize.set(this.events.size() + " EVENTS");
             log.info("Event deleted successfully");
         }else{
             log.error("No Event with matching name found");
@@ -190,50 +196,6 @@ public class Eventlist implements Saveable,Narrator {
             log.error("No Event with matching name found");
         }
     }
-
-    //-------------------- getter & toString --------------------------------------------
-
-    public String getName(){
-        return this.eventlistName;
-    }
-
-    public GregorianCalendar getExpiryDateGregorian(){
-        return this.expiryDateGregorian;
-    }
-
-    public String getExpiryDateString(){
-        return expiryDateString;
-    }
-
-    /** todo does not really return a copy of the list (Elements in the list are not copied)
-     * returns a COPY of the Eventlist
-     * @return -- copy of the eventlist
-     */
-    public ArrayList<Event> getEvents() {
-        ArrayList<Event> copy = new ArrayList<>(this.events);
-        return copy;
-    }
-
-    /**
-     * returns the event with the matching name
-     * @param eventname -- the name of the event you want to get
-     * @return -- the event
-     */
-    public Event getEventByName(String eventname){
-        Event event = new Event();
-        for (int i = 0; i < this.events.size(); i++) {
-            if(this.events.get(i).getEventName().equals(eventname)){
-                event = this.events.get(i);
-            }
-        }
-        return event;
-    }
-
-    @Override
-    public String toString(){
-        return "Eventlistname:" + this.eventlistName + ", " + Arrays.toString(this.events.toArray());
-    }
-
     // ------------------------ modify field methods ----------------------------------------
 
     /**
@@ -267,7 +229,56 @@ public class Eventlist implements Saveable,Narrator {
         }
     }
 
+
+    //-------------------- getter & toString --------------------------------------------
+
+    public String getName(){
+        return this.eventlistName;
+    }
+
+    public GregorianCalendar getExpiryDateGregorian(){
+        return this.expiryDateGregorian;
+    }
+
+    public String getExpiryDateString(){
+        return expiryDateString;
+    }
+
+    public StringProperty getListSizeProperty(){
+        return this.listSize;
+    }
+
+    /** todo does not really return a copy of the list (Elements in the list are not copied)
+     * returns a COPY of the Eventlist
+     * @return -- copy of the eventlist
+     */
+    public ArrayList<Event> getEvents() {
+        ArrayList<Event> copy = new ArrayList<>(this.events);
+        return copy;
+    }
+
+    /**
+     * returns the event with the matching name
+     * @param eventname -- the name of the event you want to get
+     * @return -- the event
+     */
+    public Event getEventByName(String eventname){
+        Event event = new Event();
+        for (int i = 0; i < this.events.size(); i++) {
+            if(this.events.get(i).getEventName().equals(eventname)){
+                event = this.events.get(i);
+            }
+        }
+        return event;
+    }
+
+    @Override
+    public String toString(){
+        return "Eventlistname:" + this.eventlistName + ", " + Arrays.toString(this.events.toArray());
+    }
+
     //---------------------- GUI communication ---------------------------------------------
+
     /**
      * @param listener -- the listener which should be added to the list
      */

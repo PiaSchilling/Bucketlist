@@ -13,13 +13,13 @@ public class ExpiredEventlistBox extends AnchorPane implements Box{
 
     EventlistBoxController eventlistBoxController;
 
-    public ExpiredEventlistBox(ListManager listManager, BorderPane borderPane){
+    public ExpiredEventlistBox(ListManager listManager, BorderPane borderPane, String eventlistname){
 
         super();
 
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CustomNodes/ExpiredEventlistBox.fxml"));
-            eventlistBoxController = new EventlistBoxController(listManager,borderPane);
+            eventlistBoxController = new EventlistBoxController(listManager,borderPane,eventlistname);
             loader.setController(eventlistBoxController);
             Node node = loader.load();
             this.getChildren().add(node);

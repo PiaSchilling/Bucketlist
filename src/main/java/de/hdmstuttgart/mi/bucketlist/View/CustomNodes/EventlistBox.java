@@ -16,13 +16,13 @@ public class EventlistBox extends AnchorPane implements Box{
 
     EventlistBoxController eventlistBoxController;
 
-    public EventlistBox(ListManager listManager, BorderPane borderPane){
+    public EventlistBox(ListManager listManager, BorderPane borderPane, String eventlistname){
 
         super();
 
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CustomNodes/EventlistBox.fxml"));
-            eventlistBoxController = new EventlistBoxController(listManager,borderPane);
+            eventlistBoxController = new EventlistBoxController(listManager,borderPane,eventlistname);
             loader.setController(eventlistBoxController);
             Node node = loader.load();
             this.getChildren().add(node);
