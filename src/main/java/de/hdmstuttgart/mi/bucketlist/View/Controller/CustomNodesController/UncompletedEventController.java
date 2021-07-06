@@ -85,8 +85,9 @@ public class UncompletedEventController implements Initializable {
 
         if(this.eventlist == null){
             //disable the actions if the eventlist is null (this is the case when the class is used in the CategorylistScene)
-            this.deleteButton.setDisable(true);
-            this.checkBox.setDisable(true);
+            // --> modifications to events are only allowed in the eventlistscene not in categorylist scene
+            this.deleteButton.setVisible(false);
+            this.checkBox.setVisible(false);
         } else if(this.eventlist.getExpiryDateString() != null && StatisticsManager.daysLeft(this.eventlist)<0){
             //disable all actions if the list is expired
             log.info("List expired. Actions are disabled");
