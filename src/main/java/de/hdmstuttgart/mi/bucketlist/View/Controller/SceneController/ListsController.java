@@ -7,7 +7,6 @@ import de.hdmstuttgart.mi.bucketlist.View.CustomNodes.ExpiredEventlistBox;
 import de.hdmstuttgart.mi.bucketlist.Model.Eventlist;
 import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
 import de.hdmstuttgart.mi.bucketlist.ModelController.StatisticsManager;
-import de.hdmstuttgart.mi.bucketlist.View.Listener;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;

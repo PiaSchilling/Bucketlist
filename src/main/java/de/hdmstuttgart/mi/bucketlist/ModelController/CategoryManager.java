@@ -1,8 +1,6 @@
 package de.hdmstuttgart.mi.bucketlist.ModelController;
 
 import de.hdmstuttgart.mi.bucketlist.Model.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableMap;
 
 import java.util.ArrayList;
 import java.util.HashMap;

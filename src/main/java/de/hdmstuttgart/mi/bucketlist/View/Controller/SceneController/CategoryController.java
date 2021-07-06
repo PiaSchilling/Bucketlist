@@ -1,7 +1,6 @@
 package de.hdmstuttgart.mi.bucketlist.View.Controller.SceneController;
 
 import de.hdmstuttgart.mi.bucketlist.View.CustomNodes.CategoryBox;
-import de.hdmstuttgart.mi.bucketlist.View.Listener;
 import de.hdmstuttgart.mi.bucketlist.Model.Category;
 import de.hdmstuttgart.mi.bucketlist.Model.Categorylist;
 import de.hdmstuttgart.mi.bucketlist.ModelController.CategoryManager;

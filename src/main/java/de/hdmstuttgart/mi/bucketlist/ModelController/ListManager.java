@@ -23,7 +23,7 @@ public class ListManager implements Narrator {
     private static final Logger log = LogManager.getLogger(ListManager.class);
 
     //private ArrayList<Eventlist> eventlists = new ArrayList<>();
-    private ObservableList<Eventlist> eventlists = FXCollections.observableArrayList();
+    private final ObservableList<Eventlist> eventlists = FXCollections.observableArrayList();
     private final EventlistRepository eventlistRepository = new EventlistRepository(Sourcetype.FILESOURCE);
     private final ArrayList<Listener> listeners = new ArrayList<>();
 
@@ -87,30 +87,6 @@ public class ListManager implements Narrator {
         }else{
             this.eventlists.removeAll(temp);
             log.info("Eventlist " + "\"" + eventlistName + "\"" + " deleted successfully");
-
-           //informListeners();
-        }
-    }
-
-    /**
-     * updates the name of a eventlist
-     * its not possible to update the eventName to a name which is already assigned to an other event
-     * @param eventlistNameOld -- the current name of the list
-     * @param eventlistNameNew -- the new name of the list
-     */
-    public void updateEventlistName(String eventlistNameOld, String eventlistNameNew) throws ElementAlreadyExistsException {
-        boolean match = this.eventlists
-                .stream()
-                .anyMatch(eventlist -> eventlist.getName().equals(eventlistNameNew));
-        if(match){
-            log.error("Name change failed. Name already assigned");
-            throw new ElementAlreadyExistsException("There is already an eventlist with the name "  + "\"" + eventlistNameNew + "\"");
-        }else{
-            Eventlist eventlist1 = getEventlistByName(eventlistNameOld);
-            eventlist1.updateEventlistName(eventlistNameNew);
-
-            informListeners();
-            log.info("Eventname updated succeessfully from " + eventlistNameOld + " to " + eventlistNameNew);
         }
     }
 
@@ -125,11 +101,11 @@ public class ListManager implements Narrator {
    public void addEventToList(String eventName, Category eventCategory, String eventlistName) throws ElementAlreadyExistsException {
 
        log.debug("addEventToList method started");
-        for (int i = 0; i < this.eventlists.size(); i++) {
-            if(this.eventlists.get(i).getName().equals(eventlistName)){
-                this.eventlists.get(i).addEvent(eventName,eventCategory);
-            }
-        }
+       for (Eventlist eventlist : this.eventlists) {
+           if (eventlist.getName().equals(eventlistName)) {
+               eventlist.addEvent(eventName, eventCategory);
+           }
+       }
        log.debug( "Event " + "\"" + eventName + "\"" + " added successfully to " + eventlistName);
     }
 
@@ -140,9 +116,9 @@ public class ListManager implements Narrator {
      */
     public void deleteEvent(String eventName, String eventlistName){
         log.debug("deleteEvent method started");
-        for (int i = 0; i < this.eventlists.size(); i++) {
-            if(this.eventlists.get(i).getName().equals(eventlistName)){
-                this.eventlists.get(i).deleteEvent(eventName);
+        for (Eventlist eventlist : this.eventlists) {
+            if (eventlist.getName().equals(eventlistName)) {
+                eventlist.deleteEvent(eventName);
             }
         }
         log.debug("Event " + "\"" + eventName + "\"" + " deleted successfully");
@@ -157,10 +133,10 @@ public class ListManager implements Narrator {
      */
     public void completeEvent(String eventName, String eventlistName, String eventImageUrl, String eventDescription, int eventDay, int eventMonth, int eventYear) {
         log.debug("completeEvent method started");
-        for (int i = 0; i < this.eventlists.size(); i++) {
-            if(this.eventlists.get(i).getName().equals(eventlistName)){
-                this.eventlists.get(i).completeEvent(eventName,eventImageUrl,eventDescription, eventDay, eventMonth, eventYear);
-                log.debug("Event "  + "\"" + eventName + "\"" + " completed succesfully");
+        for (Eventlist eventlist : this.eventlists) {
+            if (eventlist.getName().equals(eventlistName)) {
+                eventlist.completeEvent(eventName, eventImageUrl, eventDescription, eventDay, eventMonth, eventYear);
+                log.debug("Event " + "\"" + eventName + "\"" + " completed succesfully");
             }
         }
         log.debug("Event completed successfully");
@@ -183,7 +159,7 @@ public class ListManager implements Narrator {
         //create temp list and set all Items to this.eventlists because otherwise no change report is fired
         ArrayList<Eventlist> temp = this.eventlistRepository.loadSaveable();
         this.eventlists.setAll(temp);
-        log.debug("Lists in listManager loaded " + this.eventlists.toString());
+        log.debug("Lists in listManager loaded " + this.eventlists);
     }
 
     // ------------------------ getter ----------------------------
@@ -203,9 +179,9 @@ public class ListManager implements Narrator {
      */
     public Eventlist getEventlistByName(String eventlistName){
         Eventlist eventlist = new Eventlist();
-        for (int i = 0; i < this.eventlists.size(); i++) {
-            if(eventlists.get(i).getName().equals(eventlistName)){
-                eventlist = this.eventlists.get(i);
+        for (Eventlist value : this.eventlists) {
+            if (value.getName().equals(eventlistName)) {
+                eventlist = value;
             }
         }
         return eventlist;

@@ -1,20 +1,15 @@
 package de.hdmstuttgart.mi.bucketlist.View.Controller.CustomNodesController;
 
 import de.hdmstuttgart.mi.bucketlist.Model.Eventlist;
-import de.hdmstuttgart.mi.bucketlist.View.Controller.PopUpController.ModifyListController;
 import de.hdmstuttgart.mi.bucketlist.View.Controller.SceneController.EventlistController;
 import de.hdmstuttgart.mi.bucketlist.View.Controller.SceneController.PaneLoader;
 import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
 import de.hdmstuttgart.mi.bucketlist.ModelController.StatisticsManager;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 

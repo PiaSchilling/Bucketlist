@@ -41,14 +41,14 @@ public class EventlistRepository {
         //prepares the source (old data is deleted)
         this.saver.updateSource();
 
-        for (int i = 0; i < eventlists.size(); i++) {
-            this.saver.writeToSource(eventlists.get(i));
+        for (Eventlist eventlist : eventlists) {
+            this.saver.writeToSource(eventlist);
         }
         log.debug("writeSaveable method ended");
     }
 
     /**
-     * Casts the savables-list, which is filled by the source, to the concrete object type
+     * Casts the saveables-list, which is filled by the source, to the concrete object type
      * @return -- a Filled Arraylist of Eventlists
      */
     public ArrayList<Eventlist> loadSaveable(){
@@ -64,10 +64,10 @@ public class EventlistRepository {
         this.saver.readFromSource(saveables,eventlist);
 
         //cast the savable list to a eventlist list
-        for (int i = 0; i < saveables.size(); i++) {
-            try{
-                eventlists.add((Eventlist) saveables.get(i));
-            }catch (ClassCastException classCastException){
+        for (Saveable saveable : saveables) {
+            try {
+                eventlists.add((Eventlist) saveable);
+            } catch (ClassCastException classCastException) {
                 log.error(classCastException.getMessage());
             }
         }

@@ -73,15 +73,15 @@ public class Eventlist implements Saveable,Narrator {
         //StringDate needs to have 2 chars for day and month
         StringBuffer stringBuffer = new StringBuffer();
         if(expiryDay < 10){
-            stringBuffer.append("0" + expiryDay + "/");
+            stringBuffer.append("0").append(expiryDay).append("/");
         }else{
-            stringBuffer.append(expiryDay + "/");
+            stringBuffer.append(expiryDay).append("/");
         }
 
         if(expiryMonth < 10){
-            stringBuffer.append("0" + expiryMonth + "/");
+            stringBuffer.append("0").append(expiryMonth).append("/");
         }else{
-            stringBuffer.append(expiryMonth + "/");
+            stringBuffer.append(expiryMonth).append("/");
         }
         stringBuffer.append(expiryYear);
         expiryDateString= stringBuffer.toString();
@@ -267,9 +267,9 @@ public class Eventlist implements Saveable,Narrator {
      */
     public Event getEventByName(String eventname){
         Event event = new Event();
-        for (int i = 0; i < this.events.size(); i++) {
-            if(this.events.get(i).getEventName().equals(eventname)){
-                event = this.events.get(i);
+        for (Event value : this.events) {
+            if (value.getEventName().equals(eventname)) {
+                event = value;
             }
         }
         return event;

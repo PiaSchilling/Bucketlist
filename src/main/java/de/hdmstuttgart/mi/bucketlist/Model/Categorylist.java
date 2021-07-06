@@ -15,7 +15,7 @@ public class Categorylist {
     private static final Logger log = LogManager.getLogger(Categorylist.class);
 
     private ArrayList<Event> events;
-    private Category listCategory;
+    private final Category listCategory;
 
     public Categorylist(Category listCategory){
         this.listCategory = listCategory;

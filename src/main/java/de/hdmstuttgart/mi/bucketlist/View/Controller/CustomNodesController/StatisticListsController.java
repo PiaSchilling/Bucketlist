@@ -1,6 +1,5 @@
 package de.hdmstuttgart.mi.bucketlist.View.Controller.CustomNodesController;
 
-import de.hdmstuttgart.mi.bucketlist.View.Controller.SceneController.MenuController;
 import de.hdmstuttgart.mi.bucketlist.View.Controller.SceneController.PaneLoader;
 import de.hdmstuttgart.mi.bucketlist.View.Controller.SceneController.StatisticEventlistController;
 import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
@@ -16,7 +15,7 @@ public class StatisticListsController {
 
     private final ListManager listManager;
     private String eventlistName;
-    private BorderPane borderPane;
+    private final BorderPane borderPane;
 
     private static final Logger log = LogManager.getLogger(StatisticListsController.class);
 
@@ -31,7 +30,7 @@ public class StatisticListsController {
 
     /**
      * sets the Headline in the 2nd Statistic Scene and displays the name of the handed over eventlist
-     * @param eventlistName
+     * @param eventlistName - the name which should be set to the label
      */
     public void setEventlistNameLabel(String eventlistName){
         log.debug("setEventlistNameLabel() method has started ");

@@ -70,8 +70,8 @@ public class FileSource implements Saver{
             log.error(e.getMessage() + "no Data will be loaded");
         }
 
-        for (int i = 0; i < listOfFiles.length; i++) {
-            saveables.add(saveable.fromJson(new File(listOfFiles[i].toString())));
+        for (File listOfFile : listOfFiles) {
+            saveables.add(saveable.fromJson(new File(listOfFile.toString())));
         }
     }
 
