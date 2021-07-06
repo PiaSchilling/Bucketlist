@@ -1,5 +1,6 @@
 package de.hdmstuttgart.mi.bucketlist.View.Controller.CustomNodesController;
 
+import de.hdmstuttgart.mi.bucketlist.View.Controller.SceneController.MenuController;
 import de.hdmstuttgart.mi.bucketlist.View.Controller.SceneController.PaneLoader;
 import de.hdmstuttgart.mi.bucketlist.View.Controller.SceneController.StatisticEventlistController;
 import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
@@ -44,7 +45,6 @@ public class StatisticListsController {
     @FXML
     public void switchToStatisticListScene() {
         log.debug("switchToStatisticListScene() in StatisticListsController has started");
-
         StatisticEventlistController statisticEventlistController= new StatisticEventlistController(this.listManager, this.eventlistName,this.borderPane);
         AnchorPane anchorPane = PaneLoader.loadAnchorPane(statisticEventlistController,"statisticEventlist");
         this.borderPane.setCenter(anchorPane);

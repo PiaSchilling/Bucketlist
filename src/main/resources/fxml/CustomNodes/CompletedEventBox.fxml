@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="anchorpane" prefHeight="270.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="anchorpane" prefHeight="270.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/14.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label id="eventNameLabel" fx:id="eventNameLabel" layoutX="77.0" layoutY="37.0" styleClass="h2" text="Eventname" />
       <Label id="categoryLabel" fx:id="categoryLabel" layoutX="77.0" layoutY="76.0" styleClass="h3" text="Category" />

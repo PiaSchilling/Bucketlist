@@ -189,10 +189,10 @@ public class StatisticEventlistController implements Initializable, Listener {
         log.debug("labels set");
 
         setProgressProgressBar();
-        log.debug("progress bar method ended");
+        log.debug("progress bar set");
 
         setDateLabel();
-        log.debug("set date label method ended");
+        log.debug("set date label set");
 
         log.debug("showStatisticEventlist() method ended");
     }
@@ -212,6 +212,7 @@ public class StatisticEventlistController implements Initializable, Listener {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         log.debug("showStatisticEventlist() in initialize() has started ");
+
         showStatisticEventlist();
     }
 }
