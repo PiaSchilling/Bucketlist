@@ -27,7 +27,7 @@ public class ListManager implements Narrator {
     private final EventlistRepository eventlistRepository = new EventlistRepository(Sourcetype.FILESOURCE);
     private final ArrayList<Listener> listeners = new ArrayList<>();
 
-    //default constructor
+    //default constructor //todo why is this here ?
     public ListManager(){
     }
 
@@ -46,8 +46,6 @@ public class ListManager implements Narrator {
         }else{
             this.eventlists.add(new Eventlist(eventlistName));
             log.info( "Eventlist " + "\"" + eventlistName + "\"" + " added successfully");
-
-           // informListeners();
         }
     }
 
@@ -69,8 +67,6 @@ public class ListManager implements Narrator {
         }else{
             this.eventlists.add(new Eventlist(eventlistName, expiryDay, expiryMonth, expiryYear));
             log.info( "Eventlist " + "\"" + eventlistName + "\"" + " added successfully");
-
-            //informListeners();
         }
     }
 

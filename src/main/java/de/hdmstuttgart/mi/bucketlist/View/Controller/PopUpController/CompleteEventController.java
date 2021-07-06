@@ -19,8 +19,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 /**
- * represents a dialogue box to complete an Event
- * reminder: its not possible to only inject the fitting event because of the listener (eventlist controller can only listen eventlist not event)
+ * represents a dialogue box which allows the user to complete an Event
+ * reminder: its not possible to only inject the event because of the listener (eventlist controller can only listen eventlist not event)
  */
 public class CompleteEventController implements Initializable {
 
@@ -69,7 +69,6 @@ public class CompleteEventController implements Initializable {
      * description and image are optional (a default image will be set in the eventCompletedController)
      */
     public void completeEvent(){
-
         //todo maybe make the date optional as well
 
         //description is optional

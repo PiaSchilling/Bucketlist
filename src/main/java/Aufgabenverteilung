@@ -17,14 +17,12 @@ DOKU://todo doku
  - unnötige Methoden
  - Threads --> loadLists evtl auch einfach durch Service anstatt Thread, so kann man einfacher Ladebalken etc machen
  - sourceFactory recht unnötige weil eh JSON gemappt wird und ein File übergeben wird
- - Model-view-controller
  - Interfaces
  - Threads
  - Exceptions
 
 - - - - - - - - - - - --------------------------------------------------------------------
 
-//todo javadoc bei jeder methode und jeder klasse
 todo Thread läuft ohne sleep nicht
 
 
@@ -44,7 +42,6 @@ Merve:
 - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 Sara:
-//todo fxml version anpassen
 //todo neues error image
 //todo default als png
 //todo video --> wird in doku verlinkt

@@ -9,6 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+/**
+ * controller for the modify-popUp: user can either delete the event or rename it
+ */
 public class ModifyEventController {
 
     private final Eventlist eventlist;

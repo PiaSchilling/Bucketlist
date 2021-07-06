@@ -16,8 +16,8 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * not good: tests work only because they are in a particular order (tests should not depend on other tests)
- * test maybe should not touch the real Data directory but work in a own Test-directory (design problem of the fileSource because there the directory name it coded hard)
+ * todo not good: tests work only because they are in a particular order (tests should not depend on other tests)
+ * test maybe should not touch the real Data directory but work in a own Test-directory (design problem of the fileSource because the directory name is hard-coded there )
  */
 class FileSourceTest {
 

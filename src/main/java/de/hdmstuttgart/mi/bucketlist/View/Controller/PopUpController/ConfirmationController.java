@@ -9,6 +9,10 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for the confirmationBox returns true/false resp. yes/no
+ * Message (Text in the box) can be set so the box is usable in different use cases
+ */
 public class ConfirmationController implements Initializable {
 
     private boolean choice;

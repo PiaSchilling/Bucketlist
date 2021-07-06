@@ -16,6 +16,10 @@ import org.apache.logging.log4j.Logger;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Responsible for showing the right scene according to which button in the side-menu is clicked
+ * only the content in the center of the borderpane changes (different anchorpanes are set) the left always! stays the same
+ */
 public class MenuController implements Initializable {
 
     private final ListManager listManager;

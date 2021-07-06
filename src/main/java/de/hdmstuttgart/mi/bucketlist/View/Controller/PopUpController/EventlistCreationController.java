@@ -59,7 +59,7 @@ public class EventlistCreationController implements Initializable {
     private ComboBox<Integer> yearBox;
 
 
-    /** todo doesnt show error wehn date is selected and name already exists
+    /**
      * creates a new Eventlist
      * if a date is selected, a list with expiry date is created, otherwise one without
      * this method will not allow to create eventlists without a name or two lists with the same name

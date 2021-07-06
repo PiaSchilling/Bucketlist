@@ -34,6 +34,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
+ * Controller for the EventlistsScene (overview of all the eventlists)
  * EventlistsController called listsController because otherwise it would be to similar to EvenlistController
  */
 public class ListsController implements Initializable, ListChangeListener<Eventlist> {

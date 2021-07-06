@@ -4,6 +4,9 @@ import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * Runnable for the background thread which is responsible for loading the data form the files into the listManager
+ */
 public class PersistenceRunnable implements Runnable{
 
     private final ListManager listManager;

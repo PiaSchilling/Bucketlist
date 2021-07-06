@@ -9,6 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+/**
+ * todo never used, can be deleted
+ */
 public class ModifyListController {
 
     private final ListManager listManager;

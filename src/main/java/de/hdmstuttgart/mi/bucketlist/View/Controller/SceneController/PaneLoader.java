@@ -13,12 +13,21 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
-
-
+/**
+ * "Scene Manager" provides methods to show popUp windows etc.
+ */
 public class PaneLoader {
 
     private static final Logger log = LogManager.getLogger(PaneLoader.class);
 
+    /**
+     * returns the filled anchorpane according to the fxmlName passed to the constructor
+     * each anchorpane represents a "scene" (listsScene is one anchorpane, categoryScene is one and statistics is one)
+     * these anchorpanes will be set to the center of the border pane in the menuController
+     * @param controller -- the controller to the fxml
+     * @param fxmlFile -- the name of the fxml which should be loaded into the anchorpane
+     * @return -- the "filled" anchorpane
+     */
     public static AnchorPane loadAnchorPane(Object controller, String fxmlFile) {
 
         AnchorPane anchorPane = new AnchorPane();
@@ -39,6 +48,11 @@ public class PaneLoader {
         return anchorPane;
     }
 
+    /**
+     * shows a popUp Window
+     * @param controller -- the controller to the fxml
+     * @param fxml -- the name of the fxml
+     */
     public static void loadPopUpWindow(Object controller, String fxml){
 
         String fxmlPath = "/fxml/PopUpWindows/" + fxml + ".fxml";
@@ -64,6 +78,11 @@ public class PaneLoader {
         stage.show();
     }
 
+    /**
+     * shows a confirmation popUp window
+     * @param message -- the text which should be set (e.g. are you sure you want to quit ?)
+     * @return -- the choice of the user (yes/no)
+     */
     public static boolean loadConfirmationWindow(String message){
 
         Stage stage = new Stage();
