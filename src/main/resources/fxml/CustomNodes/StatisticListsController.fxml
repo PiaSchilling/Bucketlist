@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="statisticBox" onMouseClicked="#switchToStatisticListScene" prefHeight="90.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="statisticBox" onMouseClicked="#switchToStatisticListScene" prefHeight="90.0" prefWidth="375.0" xmlns="http://javafx.com/javafx/14.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView id="statisticBoxImage" fitHeight="90.0" fitWidth="393.0" pickOnBounds="true" preserveRatio="true">
          <image>

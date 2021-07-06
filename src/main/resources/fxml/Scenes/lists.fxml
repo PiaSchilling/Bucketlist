@@ -22,7 +22,7 @@
             <Font size="32.0" />
          </font>
       </Label>
-      <Button fx:id="addListButton" layoutX="987.0" layoutY="29.0" mnemonicParsing="false" onAction="#openCreationWindow" prefHeight="53.0" prefWidth="53.0" style="-fx-background-color: transparent;" AnchorPane.topAnchor="85.0">
+      <Button id="plusButton" fx:id="addListButton" layoutX="987.0" layoutY="29.0" mnemonicParsing="false" onAction="#openCreationWindow" prefHeight="53.0" prefWidth="53.0" stylesheets="@../../styles/lists.css" AnchorPane.topAnchor="85.0">
          <graphic>
             <ImageView fitHeight="39.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                <image>

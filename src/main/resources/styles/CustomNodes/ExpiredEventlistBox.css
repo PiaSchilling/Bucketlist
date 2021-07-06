@@ -22,3 +22,8 @@
     -fx-text-fill:#585858;
     -fx-font-size: 12;
 }
+
+
+.optionsButton{
+    -fx-background-color: transparent;
+}

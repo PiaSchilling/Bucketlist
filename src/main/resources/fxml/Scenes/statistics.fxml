@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="800.0" prefWidth="1080.0" stylesheets="@../../styles/general.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorPane" prefHeight="800.0" prefWidth="1080.0" stylesheets="@../../styles/general.css" xmlns="http://javafx.com/javafx/14.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ScrollPane id="scrollPane" fx:id="scrollPane" layoutX="650.0" layoutY="155.0" prefHeight="643.0" prefWidth="400.0" stylesheets="@../../styles/CustomNodes/StatisticListBox.css">
          <content>

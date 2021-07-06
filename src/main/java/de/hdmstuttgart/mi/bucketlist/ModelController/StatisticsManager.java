@@ -56,7 +56,6 @@ public class StatisticsManager {
         for (int i = 0; i < temp.size(); i++) {
             count = count + temp.get(i).getEvents().size();
         }
-        System.out.println(count);
         return count;
     }
 
@@ -76,7 +75,6 @@ public class StatisticsManager {
         for (int i = 0; i < temp.size(); i++) {
             count = count + temp.get(i).getEvents().size();
         }
-        System.out.println(count);
         return String.valueOf(count);
     }
 

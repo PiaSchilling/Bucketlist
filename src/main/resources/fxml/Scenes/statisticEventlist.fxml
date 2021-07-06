@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1020.0" stylesheets="@../../styles/general.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="800.0" prefWidth="1020.0" stylesheets="@../../styles/general.css" xmlns="http://javafx.com/javafx/14.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#1f93ff00" height="396.0" layoutX="40.0" layoutY="285.0" stroke="WHITE" strokeLineCap="ROUND" strokeType="INSIDE" width="550.0" />
       <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#1f93ff00" height="396.0" layoutX="627.0" layoutY="287.0" stroke="WHITE" strokeLineCap="ROUND" strokeType="INSIDE" width="356.0" />

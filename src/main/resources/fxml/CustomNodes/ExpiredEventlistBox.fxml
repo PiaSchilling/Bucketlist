@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="anchorpane" fx:id="anchorpane" onMouseClicked="#switchToListScene" prefHeight="100.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="anchorpane" fx:id="anchorpane" onMouseClicked="#switchToListScene" prefHeight="100.0" prefWidth="500.0" styleClass="optionsButton" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="CENTER" layoutX="43.0" prefHeight="100.0" prefWidth="412.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -31,7 +31,7 @@
             <Label id="expiryDateLabel" fx:id="expiryDateLabel" alignment="CENTER" contentDisplay="CENTER" styleClass="h3" text="Test" />
          </children>
       </VBox>
-      <Button fx:id="deleteButton" layoutX="431.0" layoutY="26.0" mnemonicParsing="false" onAction="#deleteEventlist" prefHeight="50.0" prefWidth="50.0" style="-fx-background-color: transparnet;">
+      <Button fx:id="deleteButton" layoutX="431.0" layoutY="26.0" mnemonicParsing="false" onAction="#deleteEventlist" prefHeight="50.0" prefWidth="50.0" styleClass="optionsButton" stylesheets="@../../styles/CustomNodes/ExpiredEventlistBox.css">
          <graphic>
             <ImageView fitHeight="25.0" fitWidth="25.0" opacity="0.5" pickOnBounds="true" preserveRatio="true">
                <image>

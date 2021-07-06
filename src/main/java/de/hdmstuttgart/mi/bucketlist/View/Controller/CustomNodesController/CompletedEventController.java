@@ -64,7 +64,7 @@ public class CompletedEventController {
         }else {
             image = new Image(new File(imageUrl).toURI().toString());
             if(image.errorProperty().getValue()){
-                URL url = this.getClass().getResource("/images/ErrorImage.jpg");
+                URL url = this.getClass().getResource("/images/ErrorImage.png");
                 image = new Image(url.toString());
                 log.debug("Problems loading Image, Error Image will be loaded");
             }else{
