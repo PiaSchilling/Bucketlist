@@ -83,7 +83,6 @@ public class CategorylistController implements Initializable {
         categoryController.injectBorderPane(this.borderPane);
         AnchorPane anchorPane = PaneLoader.loadAnchorPane(categoryController,"categories");
         this.borderPane.setCenter(anchorPane);
-        System.out.println("NOT IMPLEMENTED");
     }
 
 

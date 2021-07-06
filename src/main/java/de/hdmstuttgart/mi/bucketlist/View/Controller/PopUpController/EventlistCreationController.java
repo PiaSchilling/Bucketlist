@@ -84,7 +84,7 @@ public class EventlistCreationController implements Initializable {
                 }
                 Stage stage = (Stage) this.createButton.getScene().getWindow();
                 stage.close();
-                log.debug("GUI - Event added to GUI");
+                log.debug("PupUp - Event added to GUI");
             }catch (ElementAlreadyExistsException exception){
                 this.errorLabel.setText(exception.getMessage());
             }

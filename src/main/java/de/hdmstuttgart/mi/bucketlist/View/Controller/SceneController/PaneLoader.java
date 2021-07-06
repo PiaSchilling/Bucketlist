@@ -28,7 +28,6 @@ public class PaneLoader {
         FXMLLoader loader = new FXMLLoader(PaneLoader.class.getResource(filePath));
 
         loader.setController(controller);
-        System.out.println(fxmlFile);
 
         try {
             anchorPane= loader.load();

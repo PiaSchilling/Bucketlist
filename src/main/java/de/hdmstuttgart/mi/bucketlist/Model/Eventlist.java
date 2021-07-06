@@ -19,6 +19,9 @@ import javafx.beans.property.StringProperty;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * List of Events, the lists can be created, modified und deleted by the user
+ */
 // ObjectMapper parses every attribute (despite of its marked as ignorable)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY )
 public class Eventlist implements Saveable,Narrator {
@@ -52,7 +55,7 @@ public class Eventlist implements Saveable,Narrator {
 
     /**
      * default constructor for json parsing
-     * Caution: do not use for creating Eventlists ! //todo kann dadruch zu doofen Fehlern kommen da man auch so Eventlisten erstellen kann
+     * Caution: do not use for creating Eventlists ! //todo kann dadruch zu doofen Fehlern kommen da man auch so Eventlisten ohne namen etc. erstellen kann
      */
     public Eventlist(){
     }
@@ -90,7 +93,7 @@ public class Eventlist implements Saveable,Narrator {
 
    // ------------------------- persistence methods ---------------------------------------------
 
-    /**
+    /** todo SourceFactory macht eig keinen Sinn wenn hier sowieso ein File übergeben wird
      * writes the object as a json string to a file
      * @param file -- file which should hold the created json strings
      */
@@ -248,7 +251,7 @@ public class Eventlist implements Saveable,Narrator {
         return this.listSize;
     }
 
-    /** todo does not really return a copy of the list (Elements in the list are not copied)
+    /** todo does not really return a copy of the list (Elements in the list are the same) but there is actually no real need for a deep copy
      * returns a COPY of the Eventlist
      * @return -- copy of the eventlist
      */

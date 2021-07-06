@@ -78,13 +78,10 @@ public class CompleteEventController implements Initializable {
         if(this.yearComboBox.getSelectionModel().isEmpty() || this.dayComboBox.getSelectionModel().isEmpty() || this.monthComboBox.getSelectionModel().isEmpty()){
             this.errorLabel.setText("Please select a date");
         }else{
-            System.out.println("name " + this.eventname);
             int days = this.dayComboBox.getValue();
             int months = this.monthComboBox.getValue();
             int years = this.yearComboBox.getValue();
             this.eventlist.completeEvent(this.eventname,this.imageUrl,description,days,months,years);
-
-
 
             Stage stage = (Stage) this.completeButton.getScene().getWindow();
             stage.close();

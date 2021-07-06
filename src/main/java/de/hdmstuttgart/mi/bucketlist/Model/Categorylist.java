@@ -2,10 +2,13 @@ package de.hdmstuttgart.mi.bucketlist.Model;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * List which contains Events all of the same Category
+ * lists will not be directly modified by the user
+ */
 public class Categorylist {
 
     // initialize Logger
@@ -19,7 +22,6 @@ public class Categorylist {
         this.events = new ArrayList<>();
     }
 
-
     /**
      * fills the empty Array-List of Events with a (filled) ArrayList
      * @param events -- List of Events which replaces the empty list
@@ -27,9 +29,11 @@ public class Categorylist {
     public void fill(ArrayList<Event> events){
         log.debug("fill method started");
         //check if there are any events which dont match the category of the list
-        if(events.stream().anyMatch(event -> event.getEventCategory() != this.listCategory)){
+        if(events
+                .stream()
+                .anyMatch(event -> event.getEventCategory() != this.listCategory)){
             //normaly this should be never reached
-            //todo might be a system out (display for the user)
+            //todo delete, can never happen
             log.error("List Contains Events with the wrong category");
         }else{
             this.events = events;
@@ -38,10 +42,6 @@ public class Categorylist {
         log.debug("fill method ended");
     }
 
-    /**
-     * returns the category of the list
-     * @return
-     */
     public Category getListCategory(){
         return this.listCategory;
     }

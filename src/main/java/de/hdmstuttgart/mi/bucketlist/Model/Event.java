@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * Similar to a task which the user can create and later close
+ */
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY )
 public class Event {
 
@@ -29,7 +32,6 @@ public class Event {
      * default constructor for json parsing //todo needed ?
      */
     public Event(){
-
     }
 
     /**
