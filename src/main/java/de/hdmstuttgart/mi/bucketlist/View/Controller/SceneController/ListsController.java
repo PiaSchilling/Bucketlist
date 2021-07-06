@@ -106,7 +106,7 @@ public class ListsController implements Initializable, ListChangeListener<Eventl
      * @param expiryDate -- expiry date of the eventlist
      */
     private void createEventlistBox (String eventlistname, String eventCount, String expiryDate){
-        EventlistBox eventlistBox = new EventlistBox(this.listManager, this.borderPane,eventlistname);
+        EventlistBox eventlistBox = new EventlistBox(this.listManager, this.borderPane,eventlistname,this);
         eventlistBox.getController().setEventlistname(eventlistname);
         eventlistBox.getController().setNumberOfEvents(eventCount);
         eventlistBox.getController().setExpiryDate(expiryDate);
@@ -122,7 +122,7 @@ public class ListsController implements Initializable, ListChangeListener<Eventl
      * @param expiryDate -- expiry date of the eventlist
      */
     private void createExpiredEventlistBox (String eventlistname, String eventCount, String expiryDate){
-        ExpiredEventlistBox expiredEventlistBox = new ExpiredEventlistBox(this.listManager, this.borderPane,eventlistname);
+        ExpiredEventlistBox expiredEventlistBox = new ExpiredEventlistBox(this.listManager, this.borderPane,eventlistname,this);
         expiredEventlistBox.getController().setEventlistname(eventlistname);
         expiredEventlistBox.getController().setNumberOfEvents(eventCount);
         expiredEventlistBox.getController().setExpiryDate(expiryDate);

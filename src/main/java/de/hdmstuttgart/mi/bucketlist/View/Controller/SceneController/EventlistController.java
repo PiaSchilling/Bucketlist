@@ -33,18 +33,19 @@ public class EventlistController implements Initializable, Listener {
    private final Eventlist eventlist;
    private final String eventlistName;
    private final BorderPane borderPane;
+   private final ListsController listsController;
 
    private static final Logger log = LogManager.getLogger(EventlistController.class);
 
-   public EventlistController(String eventlistName,ListManager listManager,BorderPane borderPane){
+   public EventlistController(String eventlistName,ListManager listManager,BorderPane borderPane, ListsController listsController){
       this.listManager = listManager;
       this.eventlistName = eventlistName;
       this.borderPane = borderPane;
+      this.listsController = listsController;
 
       this.eventlist = this.listManager.getEventlistByName(eventlistName);
       this.eventlist.addListener(this);
    }
-
 
    @FXML //label for the name of the eventlist
    private Label listNameLabel;
@@ -123,9 +124,8 @@ public class EventlistController implements Initializable, Listener {
     */
    @FXML
    void switchToListsScene(){
-      ListsController listsController = new ListsController(this.listManager);
-      listsController.injectBorderPane(this.borderPane);
-      AnchorPane anchorPane = PaneLoader.loadAnchorPane(listsController,"lists");
+      this.listsController.injectBorderPane(this.borderPane);
+      AnchorPane anchorPane = PaneLoader.loadAnchorPane(this.listsController,"lists");
       this.borderPane.setCenter(anchorPane);
    }
 

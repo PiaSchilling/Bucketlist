@@ -2,6 +2,7 @@ package de.hdmstuttgart.mi.bucketlist.View.Controller.CustomNodesController;
 
 import de.hdmstuttgart.mi.bucketlist.Model.Eventlist;
 import de.hdmstuttgart.mi.bucketlist.View.Controller.SceneController.EventlistController;
+import de.hdmstuttgart.mi.bucketlist.View.Controller.SceneController.ListsController;
 import de.hdmstuttgart.mi.bucketlist.View.Controller.SceneController.PaneLoader;
 import de.hdmstuttgart.mi.bucketlist.ModelController.ListManager;
 import de.hdmstuttgart.mi.bucketlist.ModelController.StatisticsManager;
@@ -22,13 +23,15 @@ public class EventlistBoxController implements Initializable{
     private String eventlistname;
     private final BorderPane borderPane;
     private final Eventlist eventlist;
+    private final ListsController listsController;
     private final StringProperty numberOfEvents;
 
 
-    public EventlistBoxController(ListManager listManager, BorderPane borderPane, String eventlistname){
+    public EventlistBoxController(ListManager listManager, BorderPane borderPane, String eventlistname, ListsController listsController){
         this.listManager = listManager;
         this.borderPane = borderPane;
         this.eventlistname = eventlistname;
+        this.listsController = listsController;
         this.eventlist = this.listManager.getEventlistByName(eventlistname);
         this.numberOfEvents = this.eventlist.getListSizeProperty();
     }
@@ -83,7 +86,7 @@ public class EventlistBoxController implements Initializable{
      */
     @FXML
     void switchToListScene() {
-            EventlistController eventlistController = new EventlistController(this.eventlistname, this.listManager,this.borderPane);
+            EventlistController eventlistController = new EventlistController(this.eventlistname, this.listManager,this.borderPane,listsController);
             AnchorPane anchorPane = PaneLoader.loadAnchorPane(eventlistController,"eventlist");
             this.borderPane.setCenter(anchorPane);
     }
