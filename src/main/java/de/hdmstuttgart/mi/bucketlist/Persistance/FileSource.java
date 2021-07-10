@@ -67,9 +67,8 @@ public class FileSource implements Saver{
         try {
             listOfFiles = listDirectory("Data");
         } catch (EmptyDirectoryException e) {
-            log.error(e.getMessage() + "no Data will be loaded");
+            log.info(e.getMessage() + "no Data will be loaded");
         }
-
         for (File listOfFile : listOfFiles) {
             saveables.add(saveable.fromJson(new File(listOfFile.toString())));
         }

@@ -81,7 +81,7 @@ public class ListManager implements Narrator {
                 .filter(eventlist -> eventlist.getName().equals(eventlistName))
                 .collect(Collectors.toList());
         if(temp.size() == 0){
-            log.error("No Eventlist with matching name found");
+            log.info("No Eventlist with matching name found");
         }else if(temp.size() > 1){
             log.info("Multiple Eventlists with matching name found");
         }else{

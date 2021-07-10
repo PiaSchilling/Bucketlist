@@ -180,7 +180,7 @@ public class Eventlist implements Saveable,Narrator {
             this.listSize.set(this.events.size() + " EVENTS");
             log.info("Event deleted successfully");
         }else{
-            log.error("No Event with matching name found");
+            log.info("No Event with matching name found");
         }
     }
 
@@ -196,7 +196,7 @@ public class Eventlist implements Saveable,Narrator {
             informListeners();
             log.info("Event completed successfully");
         }else{
-            log.error("No Event with matching name found");
+            log.info("No Event with matching name found");
         }
     }
     // ------------------------ modify field methods ----------------------------------------
@@ -221,7 +221,7 @@ public class Eventlist implements Saveable,Narrator {
         boolean match = this.events.stream()
                 .anyMatch(event -> event.getEventName().equals(eventNameNew));
         if(match){
-            log.error("Name change failed. Name already assigned");
+            log.info("Name change failed. Name already assigned");
             throw new ElementAlreadyExistsException("There is already an event with the name "  + "\"" + eventNameNew +  "\"" + " in the list " +  "\"" + this.eventlistName +  "\"" + ". Please select another name.");
         }else{
             Event event = getEventByName(eventNameOld);
